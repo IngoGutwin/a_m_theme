@@ -1,0 +1,13 @@
+@import "./theme.css";
+@import "./navbar.css";
+@import "./hero-section.css";
+
+
+
+body {
+  @apply bg-creme; 
+}
+
+main {
+  @apply w-full p-2;
+}

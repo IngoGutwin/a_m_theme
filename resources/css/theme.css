@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --color-creme: #f9f3e5;
+  --color-blue: #395968;
+  --color-black: #0b1111;
+  --color-white: #fdfcf7;
+  --color-brown: #a97150;
+  --font-cormorant-regular: "Cormorant", "serif";
+  --font-cormorant-bold: "Cormorant", "serif";
+  --font-lato-regular: "Lato", "sans serif";
+  --font-lato-bold: "Lato", "sans serif";
+}
+
+@keyframes slide-in-translate-x {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes fade-in-transition {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@font-face {
+  font-family: "Cormorant Regular";
+  src: url("http://localhost:5173/fonts/cormorant/Cormorant-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Cormorant Bold";
+  src: url("http://localhost:5173/fonts/cormorant/Cormorant-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("http://localhost:5173/fonts/lato/Lato-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("http://localhost:5173/fonts/lato/Lato-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+}

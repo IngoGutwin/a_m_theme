@@ -1,0 +1,36 @@
+{
+  "name": "lone/sensible",
+  "description": "a theme with vite, vuejs and tailwind",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "IngoGutwin",
+      "email": "onmabu@gmail.com"
+    }
+  ],
+  "require": {
+    "wpengine/advanced-custom-fields": "^6.4",
+    "vinkla/headache": "^3.5"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://composer.advancedcustomfields.com"
+    }
+  ],
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
+  },
+  "extra": {
+    "installer-paths": {
+      "../../plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "../../mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "a_m_theme",
+  "version": "1.0.0",
+  "private": "true",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "dev-debug": "DEBUG='vite:*' npm run dev"
+  },
+  "keywords": [
+    "wordpress",
+    "vite",
+    "vuejs",
+    "tailwindcss",
+    "roots"
+  ],
+  "author": "Ingo Gutwin",
+  "license": "MIT",
+  "description": "a simple theme for wordpress theme with vuejs + vite + tailwindcss. full - seo and page reload",
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.9",
+    "@types/node": "^22.13.9",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "tailwindcss": "^4.0.9",
+    "vite": "^6.2.0",
+    "vue": "^3.5.13"
+  }
+}
