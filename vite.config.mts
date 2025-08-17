@@ -5,7 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { fileURLToPath } from "node:url";
 
 export default defineConfig(({ mode }) => ({
-  publicDir: "vitePublic",
+  publicDir: "public",
   base: "",
   css: {
     devSourcemap: true,
