@@ -19,20 +19,13 @@
  */
 function generate_teaser_slides($group_name, $slides_count)
 {
-  $field_group_key = md5("$group_name");
-
-  // Bail early if field group already exists.
-  if (acf_is_local_field_group($field_group_key)) {
-    return false;
-  }
-
   $fields = array();
 
   for ($i = 0; $i < $slides_count; $i++) {
     $fields[] = array(
-      'key' => $group_name . '_' . $i . '_' . $field_group_key,
+      'key' => "field_{$group_name}_{$i}",
       'label' => 'Product ' . $i + 1,
-      'name' => $group_name,
+      'name' => "{$group_name}_{$i}",
       'type' => 'group',
       'instructions' => '',
       'required' => 0,
@@ -45,7 +38,7 @@ function generate_teaser_slides($group_name, $slides_count)
       'layout' => 'block',
       'sub_fields' => array(
         array(
-          'key' => $i . '_title'  . '_' . $field_group_key,
+          'key' => "field_{$group_name}_{$i}_title",
           'label' => 'Titel',
           'name' => 'title',
           'type' => 'text',
@@ -57,7 +50,7 @@ function generate_teaser_slides($group_name, $slides_count)
           'maxlength' => '',
         ),
         array(
-          'key' => $i . '_subtitle' . '_' . $field_group_key,
+          'key' => "field_{$group_name}_{$i}_subtitle",
           'label' => 'Sub Titel',
           'name' => 'sub_title',
           'type' => 'text',
@@ -69,7 +62,7 @@ function generate_teaser_slides($group_name, $slides_count)
           'maxlength' => '',
         ),
         array(
-          'key' => $i . '_image' . '_' . $field_group_key,
+          'key' => "field_{$group_name}_{$i}_image",
           'label' => 'Image',
           'name' => 'image',
           'type' => 'image',
@@ -95,7 +88,7 @@ function generate_teaser_slides($group_name, $slides_count)
           'preview_size' => 'medium',
         ),
         array(
-          'key' => $i . '_url' . '_' . $field_group_key,
+          'key' => "field_{$group_name}_{$i}_url",
           'label' => 'URL',
           'name' => 'url',
           'type' => 'page_link',
@@ -112,7 +105,7 @@ function generate_teaser_slides($group_name, $slides_count)
   }
 
   $acf_group_added = acf_add_local_field_group(array(
-    'key' => "group_$field_group_key",
+    'key' => "group_{$group_name}",
     'title' => $group_name,
     'fields' => $fields,
     'location' => array(

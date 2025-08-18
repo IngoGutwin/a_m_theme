@@ -7,15 +7,8 @@ function generate_hero_section($group_name)
 		return;
 	}
 
-	$field_group_key = md5("$group_name");
-
-	// Bail early if field group already exists.
-	if (acf_is_local_field_group($field_group_key)) {
-		return false;
-	}
-
 	$acf_fields_added = acf_add_local_field_group(array(
-		'key' => "group_$field_group_key",
+		'key' => "field_{$group_name}",
 		'title' => $group_name,
 		'fields' => array(
 			array(
