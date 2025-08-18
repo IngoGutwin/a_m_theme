@@ -19,6 +19,7 @@ function am_theme_enqueue_development_scripts(): void
 
   wp_enqueue_script_module($id_vite_client, $vite_host_url . '/@vite/client', array(), null);
   wp_enqueue_script_module('index', $vite_host_url . $resources_path . '/app/index.ts', array(), null);
+  wp_enqueue_style('theme-main', $vite_host_url . $resources_path . '/css/main.css', [], null);
 }
 
 function am_theme_handle_scripts(): void
