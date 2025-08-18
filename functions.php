@@ -39,9 +39,10 @@ function allow_svg($svg_mime)
 }
 add_filter('upload_mimes', 'allow_svg');
 
-function load_acf_blocks_landing_page()
+function load_acf_blocks()
 {
   generate_hero_section('Hero Section');
+  generate_teaser_slides('Product Teaser Landing Page', 4);
 }
 
 add_action('acf/init', function (): void {
@@ -52,5 +53,5 @@ add_action('acf/init', function (): void {
     "gallery-slider"
   );
   include_acf_modules_landing_page($acf_modules);
-  load_acf_blocks_landing_page();
+  load_acf_blocks();
 });
