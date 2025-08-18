@@ -1,5 +1,5 @@
 .navbar {
-  @apply relative bg-blue flex justify-between items-center max-w-5xl mx-auto md:py-8 mb-2 md:mb-4;
+  @apply relative bg-creme flex justify-between items-center max-w-5xl mx-auto md:py-8 mb-2 md:mb-4;
 
   .logo {
     @apply font-cormorant-bold font-bold text-blue md:text-2xl;
