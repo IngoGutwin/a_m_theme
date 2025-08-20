@@ -18,6 +18,7 @@ main {
 h1,
 h2 {
   @apply font-lato-bold;
+
   section {
     @apply py-10;
   }
