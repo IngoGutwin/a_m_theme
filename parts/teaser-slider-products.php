@@ -30,4 +30,3 @@ $teaser_slider_data = $args;
 		</ul>
 	</div>
 </section>
-<!-- teaser slider section start -->
