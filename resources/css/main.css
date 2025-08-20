@@ -3,7 +3,6 @@
 @import "./hero-section.css";
 @import "./teaser-slider-products.css";
 
-
 body {
   @apply bg-creme;
 }
@@ -11,7 +10,7 @@ body {
 main {
   @apply w-full p-2;
 
-  section{
+  section {
     @apply py-10;
   }
 }
