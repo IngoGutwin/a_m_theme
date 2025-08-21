@@ -1,21 +1,17 @@
 .hero {
-  @apply max-w-5xl mx-auto flex flex-col justify-center items-center mt-8;
+  @apply mx-auto flex max-w-5xl flex-col items-start;
 
   .book-appointment-btn {
-    @apply bg-brown border-8 border-blue hover:border-brown hover:bg-blue py-2 px-4 -mt-8 rounded-2xl cursor-pointer self-end;
-    @apply text-xl md:text-3xl font-bold text-creme font-cormorant-regular;
+    @apply border-brown bg-blue hover:bg-brown -mt-8 cursor-pointer self-end rounded-2xl border-8 px-4 py-2;
+    @apply font-cormorant-regular text-creme text-xl font-bold md:text-3xl;
   }
 
   h1 {
-    @apply text-2xl md:text-4xl lg:text-5xl text-black font-bold row-start-3 row-span-2 col-start-1 whitespace-normal md:row-start-2 md:row-span-3 z-20 my-6;
+    @apply z-20 col-start-1 row-span-2 row-start-3 my-6 whitespace-normal text-2xl font-bold text-black md:row-span-3 md:row-start-2 md:text-4xl lg:text-5xl;
   }
 
   h2 {
-    @apply text-xl md:text-2xl lg:text-3xl text-black mt-2 md:mt-5;
-  }
-
-  h1, h2 {
-    @apply  font-lato-bold;
+    @apply mt-2 text-xl text-black md:mt-5 md:text-2xl lg:text-3xl;
   }
 
   .hero-intro {

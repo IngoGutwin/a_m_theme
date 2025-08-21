@@ -1,5 +1,5 @@
 .navbar {
-  @apply relative bg-creme flex justify-between items-center max-w-5xl mx-auto md:py-8 mb-2 md:mb-4;
+  @apply relative mx-auto flex max-w-5xl items-center justify-between bg-creme md:py-4;
 
   .logo {
     @apply font-cormorant-bold font-bold text-blue md:text-2xl;
@@ -8,19 +8,19 @@
   .nav-right {
     @apply flex items-center;
 
-    >button {
-      @apply flex items-center p-2 md:text-xl font-cormorant-bold cursor-pointer hover:bg-blue/20;
+    > button {
+      @apply flex cursor-pointer items-center p-2 font-cormorant-bold hover:bg-blue/20 md:text-xl;
     }
 
     .shootings,
     .navigation {
-      @apply absolute right-0 top-12 md:top-24 z-50 flex w-full bg-brown font-cormorant-bold font-bold text-creme md:text-xl p-8 transition-transform;
+      @apply absolute top-12 right-0 z-50 flex w-full bg-blue p-8 font-cormorant-bold font-bold text-creme transition-transform md:top-24 md:text-xl;
 
-      >li {
-        @apply p-2 rounded-2xl;
+      > li {
+        @apply rounded-2xl p-2;
 
         &:hover {
-          @apply bg-blue;
+          @apply bg-brown;
         }
       }
     }
@@ -32,14 +32,14 @@
 
     .shootings[data-is-toggled="true"],
     .navigation[data-is-toggled="true"] {
-      @apply translate-x-0 visible;
+      @apply visible translate-x-0;
     }
 
     .hamburger {
-      @apply cursor-pointer p-2 hover:bg-blue/20;
+      @apply cursor-pointer p-2 hover:bg-brown/20;
 
-      >div {
-        @apply bg-brown h-1 w-8 my-1 rounded-2xl;
+      > div {
+        @apply my-1 h-1 w-8 rounded-2xl bg-blue;
       }
     }
   }
