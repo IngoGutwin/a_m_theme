@@ -17,7 +17,7 @@
     }
 
     .info {
-      @apply mt-8;
+      @apply mt-8 font-lato-regular;
 
       li {
         @apply my-4 py-2;
