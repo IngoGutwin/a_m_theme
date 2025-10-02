@@ -1,8 +1,12 @@
 .navbar {
-  @apply relative flex items-center justify-between bg-creme;
+  @apply relative flex items-center justify-between bg-creme py-4;
 
   .logo {
-    @apply font-lato-bold font-extrabold text-blue md:text-2xl;
+    svg {
+      path {
+        @apply fill-blue;
+      }
+    }
   }
 
   .nav-right {
