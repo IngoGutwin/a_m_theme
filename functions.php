@@ -66,23 +66,75 @@ function allow_svg( $svg_mime ) {
 add_filter( 'upload_mimes', 'allow_svg' );
 
 /**
- * Load ACF blocks and register custom field groups.
+ * Load ACF blocks and register custom field groups for landing page template.
  *
  * @return void
  */
-function load_acf_blocks(): void {
+function load_acf_blocks_landing_page(): void {
 	/**
 	 * Register the modules here
 	 */
 	$acf_modules = array(
-		'hero-section',
+		'banner-call-to-action',
 		'product-teaser',
+		'prose-block',
+		'gallery-slider',
 	);
 	include_acf_modules( $acf_modules );
-	/**
-	 * Generate the acf-blocks
-	 */
-	generate_hero_section( 'Hero Section' );
-	generate_teaser_slides( 'Product Teaser', 5 );
+
+	generate_banner_cta_section( 'Hero Section' );
+	generate_teaser_slides( 'Product Teaser', 10 );
+	generate_prose_block_teaser( 'Teaser Prose Block' );
+	generate_gallery_slider( 'Impressions Gallery One', 10 );
+	generate_prose_block_teaser( 'Info Call to Action' );
+	generate_banner_cta_section( 'Call to Action Banner' );
+	generate_prose_block_teaser( 'Call to Action Banner Message' );
+	generate_gallery_slider( 'Impressions Gallery Two', 10 );
+	generate_prose_block_teaser( 'Advertisment Seo Block' );
 }
-add_action( 'acf/init', 'load_acf_blocks' );
+
+/**
+ * Return the requested URL.
+ *
+ * @return string
+ */
+function get_current_url(): string {
+	$scheme = is_ssl() ? 'https://' : 'http://';
+	$host   = '';
+	if ( isset( $_SERVER['HTTP_HOST'] ) ) {
+		$host = sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) );
+	}
+	$uri = '';
+	if ( isset( $_SERVER['REQUEST_URI'] ) ) {
+		$uri = esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) );
+	}
+	return $scheme . $host . $uri;
+}
+
+/**
+ * Calls the associated acf function which load the acf-fields.
+ *
+ * @param string $file_name The requested filename.
+ * @return void
+ */
+function call_acf_loading_functions( $file_name ): void {
+	if ( str_contains( $file_name, 'page-landing' ) ) {
+		load_acf_blocks_landing_page();
+	}
+}
+
+/**
+ * Check if is_admin and call the acf loading functions.
+ *
+ * @return void
+ */
+function handle_acf_loading_behaivior(): void {
+	if ( is_admin() ) {
+		load_acf_blocks_landing_page();
+	} else {
+		$requested_template_file_name = get_page_template_slug( url_to_postid( get_current_url() ) );
+		call_acf_loading_functions( $requested_template_file_name );
+	}
+}
+
+add_action( 'acf/init', 'handle_acf_loading_behaivior' );
