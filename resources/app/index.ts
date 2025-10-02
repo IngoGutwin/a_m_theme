@@ -1,9 +1,2 @@
 import "./lib/navbar.utils";
-
-function init() {
-}
-
-document.addEventListener("DOMContentLoaded", init);
-
-
-
+import "./lib/slider.utils";

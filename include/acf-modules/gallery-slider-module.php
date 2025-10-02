@@ -16,7 +16,7 @@
  * It's crucial to choose a unique name for the `$group_name` to prevent conflicts
  * with existing ACF field groups.
 
- * @param string $group_name A unique identifier for this ACF field group.
+ * @param string $group_title A unique identifier for this ACF field group.
  *
  * @param int    $slides_count The number of individual slides (and their associated
  *    fields) you want to generate within this slider.
@@ -25,45 +25,19 @@
  * generated and registered. Returns `false` if a field
  * group with the given `$group_name` already exists,
  */
-function generate_gallery_slider( $group_name, $slides_count ) {
-
-	$field_group_key = md5( "$group_name" );
+function generate_gallery_slider( $group_title, $slides_count ) {
 
 	$fields = array();
 
-	$fields[] = array(
-		'key'           => 'slider_heading' . $field_group_key,
-		'label'         => 'Slider Überschrift',
-		'name'          => 'hero_slider_heading',
-		'type'          => 'text',
-		'instructions'  => 'Hauptüberschrift für den Hero Slider',
-		'required'      => 0,
-		'wrapper'       => array( 'width' => '50' ),
-		'default_value' => '',
-		'placeholder'   => 'Willkommen auf unserer Website',
-		'maxlength'     => '',
-	);
-
-	$fields[] = array(
-		'key'           => 'slider_cta' . $field_group_key,
-		'label'         => 'Slider Beschreibung',
-		'name'          => 'hero_slider_text',
-		'type'          => 'textarea',
-		'instructions'  => 'Optional: Beschreibungstext unter der Überschrift',
-		'required'      => 0,
-		'wrapper'       => array( 'width' => '50' ),
-		'default_value' => '',
-		'placeholder'   => 'Entdecken Sie unsere neuesten Angebote...',
-		'maxlength'     => '',
-		'rows'          => 3,
-		'new_lines'     => '',
-	);
+	$field_group_hash = md5( "$group_title" );
 
 	for ( $i = 0; $i < $slides_count; $i++ ) {
+		$fields_hash = md5( "{$group_title}_{$i}" );
+
 		$fields[] = array(
-			'key'               => 'field_' . $group_name . '_slide_' . $i,
-			'label'             => 'Slide ' . $i + 1,
-			'name'              => $group_name,
+			'key'               => "field_{$fields_hash}",
+			'label'             => 'Slide' . $i + 1,
+			'name'              => "$fields_hash",
 			'type'              => 'group',
 			'instructions'      => '',
 			'required'          => 0,
@@ -76,9 +50,9 @@ function generate_gallery_slider( $group_name, $slides_count ) {
 			'layout'            => 'block',
 			'sub_fields'        => array(
 				array(
-					'key'               => $i . '_image_' . $field_group_key,
+					'key'               => "field_image_url_{$fields_hash}",
 					'label'             => 'Image',
-					'name'              => 'image',
+					'name'              => 'image_url',
 					'aria-label'        => '',
 					'type'              => 'image',
 					'instructions'      => '',
@@ -102,9 +76,9 @@ function generate_gallery_slider( $group_name, $slides_count ) {
 					'preview_size'      => 'medium',
 				),
 				array(
-					'key'          => $i . '_url_' . $field_group_key,
+					'key'          => "field_page_url_{$fields_hash}",
 					'label'        => 'Page URL',
-					'name'         => 'url',
+					'name'         => 'page_url',
 					'type'         => 'page_link',
 					'instructions' => 'Choose a Site',
 					'post_type'    => array( 'page', 'post' ),
@@ -118,8 +92,8 @@ function generate_gallery_slider( $group_name, $slides_count ) {
 
 	$acf_group_added = acf_add_local_field_group(
 		array(
-			'key'                   => 'group_' . $field_group_key,
-			'title'                 => $group_name,
+			'key'                   => "group_{$field_group_hash}",
+			'title'                 => $group_title,
 			'fields'                => $fields,
 			'location'              => array(
 				array(
