@@ -3,7 +3,6 @@
  * Handles toggle functionality for navbar and shootings dropdown
  */
 
-
 const navbar = document.querySelector<HTMLElement>("#navbar-right");
 const navbarToggle = navbar?.querySelector<HTMLDivElement>("#navbar-toggle");
 const navbarLinks = navbar?.querySelector<HTMLUListElement>("#navigation-links");
@@ -13,11 +12,15 @@ const shootingToggleIcon = navbar?.querySelector<SVGElement>("#shootings-toggle-
 
 /**
  * Toggles a data attribute on an HTML element between "true" and "false"
- * 
+ *
  * @param element - The HTML element to toggle the attrubute on
- * @param attribute - The data attribute name to toggle (default: "isToggled") 
+ * @param attribute - The data attribute name to toggle (default: "isToggled")
  */
-function toggleDataAttribute(element: HTMLElement | null | undefined, attribute: string = "isToggled"): void {
+
+function toggleDataAttribute(
+  element: HTMLElement | null | undefined,
+  attribute: string = "isToggled"
+): void {
   if (!element) {
     console.warn("Elemnt not found for toggle operation");
     return;
@@ -42,5 +45,11 @@ function toggleNavbar(): void {
   navbarToggle?.classList.toggle("bg-blue/50");
 }
 
-navbarToggle?.addEventListener("click", toggleNavbar);
-shootingsToggle?.addEventListener("click", toggleShootings);
+function initNavBar() {
+  navbarToggle?.addEventListener("click", toggleNavbar);
+  shootingsToggle?.addEventListener("click", toggleShootings);
+}
+
+if (navbar) {
+  initNavBar();
+}

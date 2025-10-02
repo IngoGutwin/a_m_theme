@@ -1,0 +1,41 @@
+.swiper {
+  @apply my-8;
+  --swiper-navigation-color: var(--color-brown);
+
+  .swiper-wrapper {
+    .gallery-slide {
+      @apply m-auto flex w-auto items-center justify-center px-2;
+
+      img {
+        @apply max-h-[480px] max-w-[720px];
+      }
+    }
+
+    .teaser-slide {
+      @apply relative flex w-auto flex-col justify-between px-2;
+
+      article {
+        @apply flex flex-col items-start self-start pb-2;
+
+        a {
+          @apply after:absolute after:top-0 after:left-0 after:z-40 after:h-full after:content-[""];
+
+          h2 {
+            @apply pb-2 text-start font-lato-bold text-xl font-bold;
+          }
+          p {
+            @apply font-lato-regular text-lg;
+          }
+        }
+      }
+      img {
+        @apply max-w-[360px];
+      }
+    }
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    @apply h-16 w-16 rounded-full bg-blue/80 p-2;
+  }
+}

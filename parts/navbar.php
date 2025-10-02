@@ -2,16 +2,17 @@
 /**
  * Navigation html part
  *
- * @package a_m_theme
+ * @package Theme a_m_theme
  */
 
 $shooting_menu_items   = wp_get_nav_menu_items( 'Shootings' );
 $navigation_menu_items = wp_get_nav_menu_items( 'Navigation' );
 ?>
+<!-- nav bar start -->
 <nav class="navbar">
 	<div>
 	<a href="<?php echo esc_html( home_url() ); ?>">
-		<div class="logo"><span class="-mb-3">authentische</span><br><span>Momente</span></div>
+		<div class="logo"><span>authentische</span><br><span>Momente</span></div>
 	</a>
 	</div>
 
@@ -62,3 +63,4 @@ $navigation_menu_items = wp_get_nav_menu_items( 'Navigation' );
 	</ul>
 	</div>
 </nav>
+<!-- nav bar end -->
