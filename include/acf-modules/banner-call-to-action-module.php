@@ -1,8 +1,8 @@
 <?php
 /**
- * Hero Section ACF Module
+ * Banner Call to Action ACF Module
  *
- * Registers an Advanced Custom Fields (ACF) group for a Hero Section.
+ * Registers an Advanced Custom Fields (ACF) group for a Banner Section.
  *
  * @package    a_m_theme
  * @subpackage ACF_Modules
@@ -12,37 +12,39 @@
  * Registers the Hero Section field group for specific page templates.
  *
  * This function defines and registers an ACF field group with the following fields:
- * - Hero Title (text)
- * - Hero Sub Title (WYSIWYG editor)
- * - Hero Button Text (text)
- * - Hero Background Image SM (image, URL return)
- * - Hero Background Image XL (image, URL return)
+ * - Title (text)
+ * - Sub Title (WYSIWYG editor)
+ * - Button Text (text)
+ * - Background Image SM (image, URL return)
+ * - Background Image XL (image, URL return)
  *
  * The group is assigned to the templates:
  * - page-landing.php
  * - page-shooting.php
  *
- * @param string $group_name The unique name used as the group key and title.
+ * @param string $group_title The unique name used as the group key and title.
  *
  * @return array|false The field group configuration array if registered, false otherwise.
  *
  * @see acf_add_local_field_group()
  */
-function generate_hero_section( $group_name ) {
+function generate_banner_cta_section( $group_title ) {
 
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 		return;
 	}
 
+	$field_group_hash = md5( "$group_title" );
+
 	$acf_fields_added = acf_add_local_field_group(
 		array(
-			'key'                   => "field_{$group_name}",
-			'title'                 => $group_name,
+			'key'                   => $field_group_hash,
+			'title'                 => $group_title,
 			'fields'                => array(
 				array(
-					'key'               => 'field_hero_title',
-					'label'             => 'Hero Title',
-					'name'              => 'hero_title',
+					'key'               => 'title_' . $field_group_hash,
+					'label'             => 'Title',
+					'name'              => 'title_' . $field_group_hash,
 					'aria-label'        => '',
 					'type'              => 'text',
 					'instructions'      => '',
@@ -61,9 +63,9 @@ function generate_hero_section( $group_name ) {
 					'append'            => '',
 				),
 				array(
-					'key'               => 'field_sub_hero_title',
-					'label'             => 'Hero Sub Title',
-					'name'              => 'hero_sub_title',
+					'key'               => 'sub_title_' . $field_group_hash,
+					'label'             => 'Sub Title',
+					'name'              => 'sub_title_' . $field_group_hash,
 					'aria-label'        => '',
 					'type'              => 'wysiwyg',
 					'instructions'      => '',
@@ -82,9 +84,9 @@ function generate_hero_section( $group_name ) {
 					'append'            => '',
 				),
 				array(
-					'key'               => 'field_hero_button_text',
-					'label'             => 'Hero Button Text',
-					'name'              => 'hero_button_text',
+					'key'               => 'button_text_' . $field_group_hash,
+					'label'             => 'Button Text',
+					'name'              => 'button_text_' . $field_group_hash,
 					'aria-label'        => '',
 					'type'              => 'text',
 					'instructions'      => '',
@@ -103,9 +105,9 @@ function generate_hero_section( $group_name ) {
 					'append'            => '',
 				),
 				array(
-					'key'               => 'field_hero_background_image_sm',
-					'label'             => 'Hero Background Image SM',
-					'name'              => 'hero_bg_image_sm',
+					'key'               => 'bg_image_sm_' . $field_group_hash,
+					'label'             => 'Background Image SM',
+					'name'              => 'bg_image_sm_' . $field_group_hash,
 					'aria-label'        => '',
 					'type'              => 'image',
 					'instructions'      => '',
@@ -129,9 +131,9 @@ function generate_hero_section( $group_name ) {
 					'preview_size'      => 'medium',
 				),
 				array(
-					'key'               => 'field_hero_background_image_xl',
-					'label'             => 'Hero Background Image XL',
-					'name'              => 'hero_bg_image_xl',
+					'key'               => 'bg_image_xl' . $field_group_hash,
+					'label'             => 'Background Image XL',
+					'name'              => 'bg_image_xl_' . $field_group_hash,
 					'aria-label'        => '',
 					'type'              => 'image',
 					'instructions'      => '',

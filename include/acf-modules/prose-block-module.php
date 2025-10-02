@@ -27,22 +27,17 @@ function generate_prose_block_teaser( $group_title ) {
 		return;
 	}
 
-	$field_group_key = md5( "$group_title" );
-
-	// Bail early if field group already exists.
-	if ( acf_is_local_field_group( $field_group_key ) ) {
-		return false;
-	}
+	$field_group_hash = md5( "$group_title" );
 
 	$acf_group_added = acf_add_local_field_group(
 		array(
-			'key'                   => "group_$field_group_key",
+			'key'                   => $field_group_hash,
 			'title'                 => $group_title,
 			'fields'                => array(
 				array(
-					'key'               => 'title_' . $field_group_key,
+					'key'               => 'title_' . $field_group_hash,
 					'label'             => 'Title',
-					'name'              => 'title',
+					'name'              => 'title_' . $field_group_hash,
 					'aria-label'        => '',
 					'type'              => 'text',
 					'instructions'      => '',
@@ -61,9 +56,9 @@ function generate_prose_block_teaser( $group_title ) {
 					'append'            => '',
 				),
 				array(
-					'key'               => 'description_' . $field_group_key,
+					'key'               => 'description_' . $field_group_hash,
 					'label'             => 'Description',
-					'name'              => 'description',
+					'name'              => 'description_' . $field_group_hash,
 					'aria-label'        => '',
 					'type'              => 'wysiwyg',
 					'instructions'      => '',
@@ -82,9 +77,35 @@ function generate_prose_block_teaser( $group_title ) {
 					'delay'             => 0,
 				),
 				array(
-					'key'               => 'hashtags_' . $field_group_key,
+					'key'               => 'bg_image_' . $field_group_hash,
+					'label'             => 'Description',
+					'name'              => 'bg_image_' . $field_group_hash,
+					'aria-label'        => '',
+					'type'              => 'image',
+					'instructions'      => '',
+					'required'          => 0,
+					'conditional_logic' => 0,
+					'wrapper'           => array(
+						'width' => '',
+						'class' => '',
+						'id'    => '',
+					),
+					'return_format'     => 'url',
+					'library'           => 'all',
+					'min_width'         => '',
+					'min_height'        => '',
+					'min_size'          => '',
+					'max_width'         => '',
+					'max_height'        => '',
+					'max_size'          => '',
+					'mime_types'        => '',
+					'allow_in_bindings' => 0,
+					'preview_size'      => 'medium',
+				),
+				array(
+					'key'               => 'hashtags_' . $field_group_hash,
 					'label'             => 'Hashtags',
-					'name'              => 'hashtags',
+					'name'              => 'hashtags_' . $field_group_hash,
 					'aria-label'        => '',
 					'type'              => 'text',
 					'instructions'      => '',
