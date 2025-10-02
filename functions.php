@@ -72,7 +72,43 @@ add_filter( 'upload_mimes', 'allow_svg' );
  *
  * @return void
  */
-function load_acf_blocks_landing_page(): void {
+function load_acf_fields_landing_page(): void {
+	$template_name = 'page-landing';
+	generate_banner_cta_section( 'Hero Section', $template_name );
+	generate_teaser_slides( 'Product Teaser', 10, $template_name );
+	generate_prose_block_teaser( 'Teaser Prose Block', $template_name );
+	generate_gallery_slider( 'Impressions Gallery One', 10, $template_name );
+	generate_prose_block_teaser( 'Info Call to Action', $template_name );
+	generate_banner_cta_section( 'Call to Action Banner', $template_name );
+	generate_prose_block_teaser( 'Call to Action Banner Message', $template_name );
+	generate_gallery_slider( 'Impressions Gallery Two', 10, $template_name );
+	generate_prose_block_teaser( 'Advertisement Seo Block', $template_name );
+	generate_footer_section( 'Footer Section' );
+}
+
+/**
+ * Load ACF blocks and register custom field groups for shooting page template.
+ *
+ * @return void
+ */
+function load_acf_fields_shooting_page(): void {
+	$template_name = 'page-shooting';
+	generate_banner_cta_section( 'Hero Section Shooting', $template_name );
+	generate_prose_block_teaser( 'Shooting Prices', $template_name );
+	generate_gallery_slider( 'Shooting Impressions', 10, $template_name );
+	generate_teaser_slides( 'Shooting Products', 10, $template_name );
+	generate_prose_block_teaser( 'Shooting Checkup', $template_name );
+	generate_banner_cta_section( 'Family Shooting Ad', $template_name );
+	generate_gallery_slider( 'Shooting Advertisement Impressions', 10, $template_name );
+	generate_prose_block_teaser( 'Shooting Infos', $template_name );
+}
+
+/**
+ * Load ACF blocks and register custom field groups for landing page template.
+ *
+ * @return void
+ */
+function load_acf_fields(): void {
 	/**
 	 * Register the modules here
 	 */
@@ -85,60 +121,9 @@ function load_acf_blocks_landing_page(): void {
 	);
 	include_acf_modules( $acf_modules );
 
-	generate_banner_cta_section( 'Hero Section' );
-	generate_teaser_slides( 'Product Teaser', 10 );
-	generate_prose_block_teaser( 'Teaser Prose Block' );
-	generate_gallery_slider( 'Impressions Gallery One', 10 );
-	generate_prose_block_teaser( 'Info Call to Action' );
-	generate_banner_cta_section( 'Call to Action Banner' );
-	generate_prose_block_teaser( 'Call to Action Banner Message' );
-	generate_gallery_slider( 'Impressions Gallery Two', 10 );
-	generate_prose_block_teaser( 'Advertisment Seo Block' );
-	generate_footer_section( 'Footer Section' );
+	load_acf_fields_landing_page();
+	load_acf_fields_shooting_page();
 }
 
-/**
- * Return the requested URL.
- *
- * @return string
- */
-function get_current_url(): string {
-	$scheme = is_ssl() ? 'https://' : 'http://';
-	$host   = '';
-	if ( isset( $_SERVER['HTTP_HOST'] ) ) {
-		$host = sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) );
-	}
-	$uri = '';
-	if ( isset( $_SERVER['REQUEST_URI'] ) ) {
-		$uri = esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) );
-	}
-	return $scheme . $host . $uri;
-}
 
-/**
- * Calls the associated acf function which load the acf-fields.
- *
- * @param string $file_name The requested filename.
- * @return void
- */
-function call_acf_loading_functions( $file_name ): void {
-	if ( str_contains( $file_name, 'page-landing' ) ) {
-		load_acf_blocks_landing_page();
-	}
-}
-
-/**
- * Check if is_admin and call the acf loading functions.
- *
- * @return void
- */
-function handle_acf_loading_behaivior(): void {
-	if ( is_admin() ) {
-		load_acf_blocks_landing_page();
-	} else {
-		$requested_template_file_name = get_page_template_slug( url_to_postid( get_current_url() ) );
-		call_acf_loading_functions( $requested_template_file_name );
-	}
-}
-
-add_action( 'acf/init', 'handle_acf_loading_behaivior' );
+add_action( 'acf/init', 'load_acf_fields' );

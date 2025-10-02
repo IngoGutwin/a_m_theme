@@ -35,11 +35,9 @@ function init() {
     let swiperClass = section.classList[1];
     switch (swiperClass) {
       case "gallery-section":
-        console.log(section);
         new Swiper(section, galleryOneConfig);
         break;
       case "teaser-section":
-        console.log(section);
         new Swiper(section, teaserSliderConfig);
         break;
     }

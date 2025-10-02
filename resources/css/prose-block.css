@@ -14,4 +14,19 @@
   h3 {
     @apply mt-8 mb-2 font-lato-bold font-bold md:text-2xl;
   }
+
+  ul {
+    @apply list-disc pl-12;
+  }
+
+  ol {
+    li {
+      @apply my-4;
+    }
+  }
+
+  ul,
+  ol {
+    @apply font-lato-regular text-xl;
+  }
 }

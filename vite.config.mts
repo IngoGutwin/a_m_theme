@@ -41,7 +41,7 @@ export default defineConfig(({ mode }) => ({
     hmr: {
       host: "a-m.test",
       clientPort: 5173,
-      protocol: 'ws'
+      protocol: "ws",
     },
     watch: {
       usePolling: true,
@@ -57,14 +57,7 @@ export default defineConfig(({ mode }) => ({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: fileURLToPath(
-          new URL("/resources/app/index.ts", import.meta.url)
-        ),
-        // "pregnant-shooting": "/resources/ts/pregnant-shooting.ts",
-        // "baby-shooting": "/resources/ts/pages/baby-shooting-page.ts",
-        // "family-shooting": "/resources/ts/family-shooting.ts",
-        // "wedding-shooting": "/resources/ts/wedding-shooting.ts",
-        // "blog-index": "/resources/ts/blog-index.ts",
+        main: fileURLToPath(new URL("/resources/app/index.ts", import.meta.url)),
       },
     },
   },
@@ -75,7 +68,7 @@ export default defineConfig(({ mode }) => ({
         __dirname,
         mode === "development" ? "./wp-content/uploads" : "../../uploads"
       ),
-      "@styles": path.resolve(__dirname, "./resources/css")
+      "@styles": path.resolve(__dirname, "./resources/css"),
     },
   },
 }));

@@ -18,11 +18,13 @@
  *
  * @param string $group_title A unique identifier for this ACF field group.
  *
+ * @param string $template_name A unique identifier for this ACF field group.
+ *
  * @return bool Returns `true` if the ACF field group was successfully
  * generated and registered. Returns `false` if a field
  * group with the given `$group_name` already exists,
  */
-function generate_prose_block_teaser( $group_title ) {
+function generate_prose_block_teaser( $group_title, $template_name ) {
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 		return;
 	}
@@ -78,7 +80,7 @@ function generate_prose_block_teaser( $group_title ) {
 				),
 				array(
 					'key'               => 'bg_image_' . $field_group_hash,
-					'label'             => 'Description',
+					'label'             => 'Image',
 					'name'              => 'bg_image_' . $field_group_hash,
 					'aria-label'        => '',
 					'type'              => 'image',
@@ -129,14 +131,7 @@ function generate_prose_block_teaser( $group_title ) {
 					array(
 						'param'    => 'page_template',
 						'operator' => '==',
-						'value'    => 'page-landing.php',
-					),
-				),
-				array(
-					array(
-						'param'    => 'page_template',
-						'operator' => '==',
-						'value'    => 'page-shooting.php',
+						'value'    => $template_name . '.php',
 					),
 				),
 			),
