@@ -1,0 +1,31 @@
+.footer {
+  @apply flex justify-center bg-blue py-8 text-creme;
+
+  .footer-container {
+    @apply m-auto min-w-5xl px-2;
+
+    .social {
+      @apply m-auto flex w-full justify-between;
+
+      .media {
+        @apply flex gap-8;
+      }
+
+      .logo {
+        @apply font-lato-bold font-extrabold md:text-2xl;
+      }
+    }
+
+    .info {
+      @apply mt-8;
+
+      li {
+        @apply my-4 py-2;
+      }
+    }
+
+    .copyright {
+      @apply mt-4;
+    }
+  }
+}

@@ -32,4 +32,4 @@ get_template_part( 'parts/gallery-slider', '', $page_fields['Impressions Gallery
 
 get_template_part( 'parts/prose-block', 'default', $page_fields['Advertisment Seo Block'] );
 
-get_template_part( 'parts/footer-default', 'default' );
+get_template_part( 'parts/footer-default', 'default', $page_fields['Footer Section'] );

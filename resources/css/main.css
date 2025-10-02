@@ -3,6 +3,7 @@
 @import "./banner-section.css";
 @import "./prose-block.css";
 @import "./swiper.css";
+@import "./footer-section.css";
 
 body {
   @apply bg-creme;
