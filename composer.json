@@ -10,7 +10,8 @@
   ],
   "require": {
     "wpengine/advanced-custom-fields": "^6.4",
-    "vinkla/headache": "^3.5"
+    "vinkla/headache": "^3.5",
+    "enshrined/svg-sanitize": "^0.22.0"
   },
   "repositories": [
     {
