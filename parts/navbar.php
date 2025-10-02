@@ -12,7 +12,7 @@ $navigation_menu_items = wp_get_nav_menu_items( 'Navigation' );
 <nav class="navbar">
 	<div>
 	<a href="<?php echo esc_html( home_url() ); ?>">
-		<div class="logo"><span>authentische</span><br><span>Momente</span></div>
+		<div class="logo"><?php get_am_theme_logo(); ?></div>
 	</a>
 	</div>
 

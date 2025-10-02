@@ -17,7 +17,7 @@ $gdpr      = $args[ "gdpr_{$hash}" ] ?? '';
 			<div class="social">
 				<div class="logo">
 					<a href="<?php echo esc_html( home_url() ); ?>">
-						<div class="logo"><span>authentische</span><br><span>Momente</span></div>
+						<div class="logo"><?php get_am_theme_logo(); ?></div>
 					</a>
 				</div>
 				<ul class="media">
@@ -39,7 +39,7 @@ $gdpr      = $args[ "gdpr_{$hash}" ] ?? '';
 			</ul>
 			<p class="copyright">
 				©
-				<?php echo esc_html( gmdate( 'Y' ) ); ?> authentische Momente
+				<?php echo esc_html( gmdate( 'Y' ) ); ?> your companys name
 				<br>
 				Alle Rechte vorbehalten. Alle Preise verstehen sich inkl. MwSt
 			</p>

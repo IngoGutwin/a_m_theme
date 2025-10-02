@@ -8,6 +8,8 @@
  */
 
 require_once get_template_directory() . '/include/acf-loader-helpers.php';
+require_once get_template_directory() . '/include/svg-sanitizer.php';
+require_once get_template_directory() . '/include/logo.php';
 
 /**
  * Enqueue scripts and styles for production build.

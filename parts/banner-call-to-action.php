@@ -18,7 +18,7 @@ $bg_image_xl  = $section[ "bg_image_xl_{$hash}" ] . ' 1448w' ?? '';
 	<picture>
 		<source media="(min-width:465px)" type="image/jpeg" srcset="<?php echo esc_html( $bg_image_sm ); ?>">
 		<source media="(max-width:465px)" type="image/jpeg" srcset="<?php echo esc_html( $bg_image_xl ); ?>">
-		<img srcset="<?php echo esc_html( implode( ', ', array( $bg_image_sm, $bg_image_xl ) ) ); ?>" src="<?php echo esc_html( $bg_image_xl ); ?>" alt="Schwangere Shooting in Bonn von authentische Momente" />
+		<img srcset="<?php echo esc_html( implode( ', ', array( $bg_image_sm, $bg_image_xl ) ) ); ?>" src="<?php echo esc_html( $bg_image_xl ); ?>" alt="" />
 	</picture>
 
 	<button class="book-appointment-btn"><?php echo esc_html( $button_text ); ?></button>
