@@ -14,7 +14,14 @@ get_template_part( 'parts/header-default', 'default' );
 
 get_template_part( 'parts/navbar' );
 
-get_template_part( 'parts/banner-call-to-action', '', $page_fields['Hero Section'] );
+get_template_part(
+	'parts/banner-call-to-action',
+	'',
+	array(
+		'page_fields' => $page_fields['Hero Section'],
+		'css_class'   => 'banner',
+	)
+);
 
 get_template_part( 'parts/teaser-slider-products', 'products', $page_fields['Product Teaser'] );
 
@@ -24,7 +31,14 @@ get_template_part( 'parts/gallery-slider', '', $page_fields['Impressions Gallery
 
 get_template_part( 'parts/prose-block', 'default', $page_fields['Info Call to Action'] );
 
-get_template_part( 'parts/banner-call-to-action', '', $page_fields['Call to Action Banner'] );
+get_template_part(
+	'parts/banner-call-to-action',
+	'',
+	array(
+		'page_fields' => $page_fields['Call to Action Banner'],
+		'css_class'   => 'ads-banner',
+	)
+);
 
 get_template_part( 'parts/prose-block', 'default', $page_fields['Call to Action Banner Message'] );
 

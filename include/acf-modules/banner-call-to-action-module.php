@@ -24,11 +24,13 @@
  *
  * @param string $group_title The unique name used as the group key and title.
  *
+ * @param string $template The template name for the fields.
+ *
  * @return array|false The field group configuration array if registered, false otherwise.
  *
  * @see acf_add_local_field_group()
  */
-function generate_banner_cta_section( $group_title ) {
+function generate_banner_cta_section( $group_title, $template ) {
 
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 		return;
@@ -162,14 +164,7 @@ function generate_banner_cta_section( $group_title ) {
 					array(
 						'param'    => 'page_template',
 						'operator' => '==',
-						'value'    => 'page-landing.php',
-					),
-				),
-				array(
-					array(
-						'param'    => 'page_template',
-						'operator' => '==',
-						'value'    => 'page-shooting.php',
+						'value'    => $template . '.php',
 					),
 				),
 			),

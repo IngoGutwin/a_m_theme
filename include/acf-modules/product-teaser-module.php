@@ -20,11 +20,14 @@
  *
  * @param int    $slides_count The number of individual slides (and their associated
  * fields) you want to generate within this slider.
+ *
+ * @param string $template_name A unique identifier for this ACF field group.
+ *
  * @return bool Returns `true` if the ACF field group was successfully
  * generated and registered. Returns `false` if a field
  * group with the given `$group_name` already exists,
  */
-function generate_teaser_slides( $group_name, $slides_count ) {
+function generate_teaser_slides( $group_name, $slides_count, $template_name ) {
 	$fields = array();
 
 	for ( $i = 0; $i < $slides_count; $i++ ) {
@@ -120,14 +123,7 @@ function generate_teaser_slides( $group_name, $slides_count ) {
 					array(
 						'param'    => 'page_template',
 						'operator' => '==',
-						'value'    => 'page-landing.php',
-					),
-				),
-				array(
-					array(
-						'param'    => 'page_template',
-						'operator' => '==',
-						'value'    => 'page-shooting.php',
+						'value'    => $template_name . '.php',
 					),
 				),
 			),

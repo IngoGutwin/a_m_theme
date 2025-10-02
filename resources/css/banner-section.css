@@ -1,15 +1,46 @@
-.banner {
+.banner,
+.ads-banner {
   @apply flex flex-col items-start;
 
   .book-appointment-btn {
-    @apply -mt-8 cursor-pointer self-end rounded-2xl border-8 border-brown bg-blue px-4 py-2 font-lato-bold text-xl font-bold text-creme hover:bg-brown md:text-3xl;
+    @apply -mt-8 cursor-pointer self-end rounded-2xl border-8 border-brown bg-blue px-4 py-2 font-lato-bold text-sm font-bold text-creme hover:bg-brown md:text-lg;
   }
+}
 
-  h1 {
-    @apply my-6 font-lato-bold font-bold whitespace-normal text-black;
+.banner {
+  .banner-intro {
+    @apply font-lato-regular md:text-2xl;
+
+    h1 {
+      @apply mt-4 font-lato-bold font-bold;
+    }
+
+    p {
+      @apply mt-4;
+    }
+
+    h1,
+    p {
+      @apply whitespace-normal text-black;
+    }
   }
+}
 
+.ads-banner {
   .banner-intro {
     @apply font-lato-regular md:text-xl;
+
+    h1 {
+      @apply mt-4 font-lato-bold font-bold;
+    }
+
+    p {
+      @apply mt-8;
+    }
+
+    h1,
+    p {
+      @apply whitespace-normal text-black;
+    }
   }
 }
