@@ -79,6 +79,7 @@ function load_acf_blocks_landing_page(): void {
 		'product-teaser',
 		'prose-block',
 		'gallery-slider',
+		'footer',
 	);
 	include_acf_modules( $acf_modules );
 
@@ -91,6 +92,7 @@ function load_acf_blocks_landing_page(): void {
 	generate_prose_block_teaser( 'Call to Action Banner Message' );
 	generate_gallery_slider( 'Impressions Gallery Two', 10 );
 	generate_prose_block_teaser( 'Advertisment Seo Block' );
+	generate_footer_section( 'Footer Section' );
 }
 
 /**
