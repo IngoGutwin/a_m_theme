@@ -1,0 +1,15 @@
+.banner {
+  @apply flex flex-col items-start;
+
+  .book-appointment-btn {
+    @apply -mt-8 cursor-pointer self-end rounded-2xl border-8 border-brown bg-blue px-4 py-2 font-lato-bold text-xl font-bold text-creme hover:bg-brown md:text-3xl;
+  }
+
+  h1 {
+    @apply my-6 font-lato-bold font-bold whitespace-normal text-black;
+  }
+
+  .banner-intro {
+    @apply font-lato-regular md:text-xl;
+  }
+}

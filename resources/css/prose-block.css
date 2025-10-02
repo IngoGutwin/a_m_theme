@@ -1,0 +1,17 @@
+.prose-block {
+  h2 {
+    @apply my-6 font-lato-bold text-2xl font-bold text-black md:mt-5 md:text-3xl lg:text-4xl;
+  }
+
+  p {
+    @apply my-2 font-lato-regular md:text-xl;
+
+    a {
+      @apply font-bold;
+    }
+  }
+
+  h3 {
+    @apply mt-8 mb-2 font-lato-bold font-bold md:text-2xl;
+  }
+}

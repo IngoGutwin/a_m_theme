@@ -1,20 +1,20 @@
 .navbar {
-  @apply bg-creme relative mx-auto flex max-w-5xl items-center justify-between md:py-4;
+  @apply relative flex items-center justify-between bg-creme;
 
   .logo {
-    @apply font-cormorant-bold text-blue font-bold md:text-2xl;
+    @apply font-lato-bold font-extrabold text-blue md:text-2xl;
   }
 
   .nav-right {
     @apply flex items-center;
 
     > button {
-      @apply font-cormorant-bold hover:bg-blue/20 flex cursor-pointer items-center p-2 md:text-xl;
+      @apply flex cursor-pointer items-center p-2 font-lato-regular hover:bg-blue/20 md:text-xl;
     }
 
     .shootings,
     .navigation {
-      @apply bg-blue font-cormorant-bold text-creme absolute right-0 top-12 z-50 flex w-full p-8 font-bold transition-transform md:top-24 md:text-xl;
+      @apply absolute top-12 right-0 z-50 flex w-full bg-blue p-8 font-lato-regular font-bold text-creme transition-transform md:top-24 md:text-xl;
 
       > li {
         @apply rounded-2xl p-2;
@@ -36,10 +36,10 @@
     }
 
     .hamburger {
-      @apply hover:bg-brown/20 cursor-pointer p-2;
+      @apply cursor-pointer hover:bg-brown/20;
 
       > div {
-        @apply bg-blue my-1 h-1 w-8 rounded-2xl;
+        @apply my-1 h-[4px] w-8 rounded-2xl bg-blue md:h-[6px] md:w-10;
       }
     }
   }
