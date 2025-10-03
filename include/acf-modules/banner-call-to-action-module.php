@@ -40,7 +40,7 @@ function generate_banner_cta_section( $group_title, $template ) {
 
 	$acf_fields_added = acf_add_local_field_group(
 		array(
-			'key'                   => $field_group_hash,
+			'key'                   => 'group_' . $field_group_hash,
 			'title'                 => $group_title,
 			'fields'                => array(
 				array(

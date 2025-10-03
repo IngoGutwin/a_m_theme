@@ -44,7 +44,8 @@ function get_page_fields( $post_id ) {
 		// 3. Get all fields of this group (returns definitions, not values)
 		$acf_group_fields = acf_get_fields( $field_group['key'] );
 
-		$result[ $field_group['title'] ]['group_hash']        = $field_group['key'];
+		$group_hash                                    = preg_replace( '/^group_/', '', $field_group['key'] );
+		$result[ $field_group['title'] ]['group_hash'] = $group_hash;
 		$result[ $field_group['title'] ]['field_group_title'] = $field_group['title'];
 
 		// 4. Loop through each field in the group
