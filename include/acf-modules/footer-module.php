@@ -80,6 +80,10 @@ function generate_footer_section( $group_title ) {
 			'resource' => 'facebook',
 			'type'     => 'url',
 		),
+		array(
+			'resource' => 'contact',
+			'type'     => 'url',
+		),
 	);
 
 	$fields = make_acf_fields( $resources, $field_group_hash );

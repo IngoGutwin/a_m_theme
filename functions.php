@@ -35,7 +35,6 @@ function am_theme_enqueue_development_scripts(): void {
 	$resources_path = '/resources';
 	$id_vite_client = 'vite-client';
 	$vite_host_url  = 'http://localhost:5173';
-
 	wp_enqueue_script_module( $id_vite_client, $vite_host_url . '/@vite/client', array(), null );
 	wp_enqueue_script_module( 'index', $vite_host_url . $resources_path . '/app/index.ts', array(), null );
 	wp_enqueue_style( 'main', $vite_host_url . $resources_path . '/css/main.css', array(), null );
@@ -104,6 +103,17 @@ function load_acf_fields_shooting_page(): void {
 }
 
 /**
+ * Load ACF blocks and register custom field groups for contact page template.
+ *
+ * @return void
+ */
+function load_acf_fields_contact_page(): void {
+	$template_name = 'page-contact';
+	generate_banner_cta_section( 'Hero Section Contact', $template_name );
+	generate_prose_block_teaser( 'Contact Description', $template_name );
+}
+
+/**
  * Load ACF blocks and register custom field groups for landing page template.
  *
  * @return void
@@ -123,6 +133,7 @@ function load_acf_fields(): void {
 
 	load_acf_fields_landing_page();
 	load_acf_fields_shooting_page();
+	load_acf_fields_contact_page();
 }
 
 

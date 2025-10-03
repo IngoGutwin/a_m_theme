@@ -9,6 +9,7 @@ $instagram = $args[ "instagram_{$hash}" ] ?? '';
 $facebook  = $args[ "facebook_{$hash}" ] ?? '';
 $impressum = $args[ "impressum_{$hash}" ] ?? '';
 $gdpr      = $args[ "gdpr_{$hash}" ] ?? '';
+$contact   = $args[ "contact_{$hash}" ] ?? '';
 ?>
 
 </main>
@@ -36,6 +37,7 @@ $gdpr      = $args[ "gdpr_{$hash}" ] ?? '';
 			<ul class="info">
 				<li><a href="<?php echo esc_html( $gdpr ); ?>">Datenschutz</a></li>
 				<li><a href="<?php echo esc_html( $impressum ); ?>">Impressum</a></li>
+				<li><a href="<?php echo esc_html( $contact ); ?>">Kontakt</a></li>
 			</ul>
 			<p class="copyright">
 				©
