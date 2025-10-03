@@ -18,7 +18,7 @@ $navigation_menu_items = wp_get_nav_menu_items( 'Navigation' ) ?? array();
 
 	<div class="nav-right" id="navbar-right">
 	<button id="shootings-toggle">
-		shootings
+		Shootings
 		<svg id="shootings-toggle-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
 		<path d="M12 17L19 8H5L12 17Z" fill="currentColor"></path>
 		</svg>

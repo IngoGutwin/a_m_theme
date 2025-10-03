@@ -1,8 +1,10 @@
 .navbar {
-  @apply relative flex items-center justify-between bg-creme py-4;
+  @apply relative flex items-center justify-between bg-creme;
 
   .logo {
     svg {
+      @apply h-18 w-32 md:h-28 md:w-48;
+
       path {
         @apply fill-blue;
       }
@@ -13,7 +15,7 @@
     @apply flex items-center;
 
     > button {
-      @apply flex cursor-pointer items-center p-2 font-lato-regular hover:bg-blue/20 md:text-xl;
+      @apply flex cursor-pointer items-center p-2 font-lato-bold font-bold hover:bg-blue/20 md:text-2xl;
     }
 
     .shootings,
