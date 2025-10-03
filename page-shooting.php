@@ -10,6 +10,24 @@ $page_id = get_the_ID();
 
 $page_fields = get_page_fields( $page_id );
 
+$hero_section_shooting_fields = $page_fields['Hero Section Shooting'] ?? array();
+
+$shooting_prices_fields = $page_fields['Shooting Prices'] ?? array();
+
+$shooting_impressions_fields = $page_fields['Shooting Impressions'] ?? array();
+
+$shooting_products_fields = $page_fields['Shooting Products'] ?? array();
+
+$shooting_checkup_fields = $page_fields['Shooting Checkup'] ?? array();
+
+$shooting_advertisement_banner_fields = $page_fields['Shooting Advertisement Banner'] ?? array();
+
+$shooting_advertisement_impressions_fields = $page_fields['Shooting Advertisement Impressions'] ?? array();
+
+$shooting_info_fields = $page_fields['Shooting Infos'] ?? array();
+
+$footer_section = $page_fields['Footer Section'] ?? array();
+
 get_template_part( 'parts/header-default', 'default' );
 
 get_template_part( 'parts/navbar' );
@@ -18,30 +36,30 @@ get_template_part(
 	'parts/banner-call-to-action',
 	'',
 	array(
-		'page_fields' => $page_fields['Hero Section Shooting'],
+		'page_fields' => $hero_section_shooting_fields,
 		'css_class'   => 'banner',
 	)
 );
 
-get_template_part( 'parts/prose-block', 'default', $page_fields['Shooting Prices'] );
+get_template_part( 'parts/prose-block', 'default', $shooting_prices_fields );
 
-get_template_part( 'parts/gallery-slider', '', $page_fields['Shooting Impressions'] );
+get_template_part( 'parts/gallery-slider', '', $shooting_impressions_fields );
 
-get_template_part( 'parts/teaser-slider-products', 'products', $page_fields['Shooting Products'] );
+get_template_part( 'parts/teaser-slider-products', 'products', $shooting_products_fields );
 
-get_template_part( 'parts/prose-block', 'default', $page_fields['Shooting Checkup'] );
+get_template_part( 'parts/prose-block', 'default', $shooting_checkup_fields );
 
 get_template_part(
 	'parts/banner-call-to-action',
 	'',
 	array(
-		'page_fields' => $page_fields['Family Shooting Ad'],
+		'page_fields' => $shooting_advertisement_banner_fields,
 		'css_class'   => 'ads-banner',
 	)
 );
 
-get_template_part( 'parts/gallery-slider', '', $page_fields['Shooting Advertisement Impressions'] );
+get_template_part( 'parts/gallery-slider', '', $shooting_advertisement_impressions_fields );
 
-get_template_part( 'parts/prose-block', 'default', $page_fields['Shooting Infos'] );
+get_template_part( 'parts/prose-block', 'default', $shooting_info_fields );
 
-get_template_part( 'parts/footer-default', 'default' );
+get_template_part( 'parts/footer-default', 'default', $footer_section );

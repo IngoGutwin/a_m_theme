@@ -5,8 +5,8 @@
  * @package Theme a_m_theme
  */
 
-$shooting_menu_items   = wp_get_nav_menu_items( 'Shootings' );
-$navigation_menu_items = wp_get_nav_menu_items( 'Navigation' );
+$shooting_menu_items   = wp_get_nav_menu_items( 'Shootings' ) ?? array();
+$navigation_menu_items = wp_get_nav_menu_items( 'Navigation' ) ?? array();
 ?>
 <!-- nav bar start -->
 <nav class="navbar">

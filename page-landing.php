@@ -10,7 +10,25 @@ $page_id = get_the_ID();
 
 $page_fields = get_page_fields( $page_id );
 
-get_template_part( 'parts/header-default', 'default' );
+$hero_section_fields = $page_fields['Hero Section'] ?? array();
+
+$product_teaser_fields = $page_fields['Product Teaser'] ?? array();
+
+$teaser_prose_block_fields = $page_fields['Teaser Prose Block'] ?? array();
+
+$impressions_galley_one_fields = $page_fields['Impressions Gallery One'] ?? array();
+
+$info_call_to_action_fields = $page_fields['Info Call to Action'] ?? array();
+
+$call_to_action_ads_banner = $page_fields['Call to Action Banner'] ?? array();
+
+$impressions_galley_two = $page_fields['Impressions Gallery Two'] ?? array();
+
+$advertisement_seo_block = $page_fields['Advertisment Seo Block'] ?? array();
+
+$footer_section = $page_fields['Footer Section'] ?? array();
+
+get_template_part( 'parts/header-default' );
 
 get_template_part( 'parts/navbar' );
 
@@ -18,32 +36,32 @@ get_template_part(
 	'parts/banner-call-to-action',
 	'',
 	array(
-		'page_fields' => $page_fields['Hero Section'],
+		'page_fields' => $hero_section_fields,
 		'css_class'   => 'banner',
 	)
 );
 
-get_template_part( 'parts/teaser-slider-products', 'products', $page_fields['Product Teaser'] );
+get_template_part( 'parts/teaser-slider-products', 'products', $product_teaser_fields );
 
-get_template_part( 'parts/prose-block', 'default', $page_fields['Teaser Prose Block'] );
+get_template_part( 'parts/prose-block', 'default', $teaser_prose_block_fields );
 
-get_template_part( 'parts/gallery-slider', '', $page_fields['Impressions Gallery One'] );
+get_template_part( 'parts/gallery-slider', '', $impressions_galley_one_fields );
 
-get_template_part( 'parts/prose-block', 'default', $page_fields['Info Call to Action'] );
+get_template_part( 'parts/prose-block', 'default', $info_call_to_action_fields );
 
 get_template_part(
 	'parts/banner-call-to-action',
 	'',
 	array(
-		'page_fields' => $page_fields['Call to Action Banner'],
+		'page_fields' => $call_to_action_ads_banner,
 		'css_class'   => 'ads-banner',
 	)
 );
 
 get_template_part( 'parts/prose-block', 'default', $page_fields['Call to Action Banner Message'] );
 
-get_template_part( 'parts/gallery-slider', '', $page_fields['Impressions Gallery Two'] );
+get_template_part( 'parts/gallery-slider', '', $impressions_galley_two );
 
-get_template_part( 'parts/prose-block', 'default', $page_fields['Advertisment Seo Block'] );
+get_template_part( 'parts/prose-block', 'default', $advertisement_seo_block );
 
-get_template_part( 'parts/footer-default', 'default', $page_fields['Footer Section'] );
+get_template_part( 'parts/footer-default', 'default', $footer_section );

@@ -22,7 +22,14 @@ $bg_image_xl  = $section[ "bg_image_xl_{$hash}" ] . ' 1448w' ?? '';
 		<img srcset="<?php echo esc_html( implode( ', ', array( $bg_image_sm, $bg_image_xl ) ) ); ?>" src="<?php echo esc_html( $bg_image_xl ); ?>" alt="" />
 	</picture>
 
-	<button class="book-appointment-btn"><?php echo esc_html( $button_text ); ?></button>
+	<?php
+	if ( ! empty( $button_text ) ) {
+		?>
+		<button class="book-appointment-btn"><?php echo esc_html( $button_text ); ?></button>
+
+		<?php
+	}
+	?>
 
 	<div class="banner-intro">
 	<?php

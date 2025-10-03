@@ -98,7 +98,7 @@ function load_acf_fields_shooting_page(): void {
 	generate_gallery_slider( 'Shooting Impressions', 10, $template_name );
 	generate_teaser_slides( 'Shooting Products', 10, $template_name );
 	generate_prose_block_teaser( 'Shooting Checkup', $template_name );
-	generate_banner_cta_section( 'Family Shooting Ad', $template_name );
+	generate_banner_cta_section( 'Shooting Advertisement Banner', $template_name );
 	generate_gallery_slider( 'Shooting Advertisement Impressions', 10, $template_name );
 	generate_prose_block_teaser( 'Shooting Infos', $template_name );
 }
