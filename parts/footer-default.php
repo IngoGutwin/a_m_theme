@@ -4,23 +4,12 @@
  *
  * @package a_m_theme
  */
-
-$fields = array();
-
-if ( ! empty( $args ) ) {
-	$fields = $args;
-} else {
-	$front_page_fields = get_page_fields( get_option( 'page_on_front' ) );
-	$fields            = $front_page_fields['Footer Section'];
-}
-
-$hash      = $fields['group_hash'] ?? '';
-$instagram = $fields[ "instagram_{$hash}" ] ?? '';
-$facebook  = $fields[ "facebook_{$hash}" ] ?? '';
-$impressum = $fields[ "impressum_{$hash}" ] ?? '';
-$gdpr      = $fields[ "gdpr_{$hash}" ] ?? '';
-$contact   = $fields[ "contact_{$hash}" ] ?? '';
-
+$hash      = $args['group_hash'] ?? '';
+$instagram = $args[ "instagram_{$hash}" ] ?? '';
+$facebook  = $args[ "facebook_{$hash}" ] ?? '';
+$impressum = $args[ "impressum_{$hash}" ] ?? '';
+$gdpr      = $args[ "gdpr_{$hash}" ] ?? '';
+$contact   = $args[ "contact_{$hash}" ] ?? '';
 ?>
 
 </main>
@@ -48,6 +37,7 @@ $contact   = $fields[ "contact_{$hash}" ] ?? '';
 			<ul class="info">
 				<li><a href="<?php echo esc_html( $gdpr ); ?>">Datenschutz</a></li>
 				<li><a href="<?php echo esc_html( $impressum ); ?>">Impressum</a></li>
+				<li><a href="<?php echo esc_html( $contact ); ?>">Kontakt</a></li>
 			</ul>
 			<p class="copyright">
 				©

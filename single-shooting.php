@@ -1,10 +1,11 @@
 <?php
 /**
- * Template Name: shooting page
- * Template Post Type: page
+ * Singe post type for shooting
  *
  * @package a_m_theme
  */
+
+$page_on_front = (int) get_option( 'page_on_front' );
 
 $page_id = get_the_ID();
 
@@ -25,8 +26,6 @@ $shooting_advertisement_banner_fields = $page_fields['Shooting Advertisement Ban
 $shooting_advertisement_impressions_fields = $page_fields['Shooting Advertisement Impressions'] ?? array();
 
 $shooting_info_fields = $page_fields['Shooting Infos'] ?? array();
-
-$footer_section = $page_fields['Footer Section'] ?? array();
 
 get_template_part( 'parts/header-default', 'default' );
 
@@ -62,4 +61,4 @@ get_template_part( 'parts/gallery-slider', '', $shooting_advertisement_impressio
 
 get_template_part( 'parts/prose-block', 'default', $shooting_info_fields );
 
-get_template_part( 'parts/footer-default', 'default', $footer_section );
+get_template_part( 'parts/footer-default' );

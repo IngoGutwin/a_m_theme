@@ -16,7 +16,7 @@
  * It's crucial to choose a unique name for the `$group_name` to prevent conflicts
  * with existing ACF field groups.
 
- * @param string $group_name A unique identifier for this ACF field group.
+ * @param string $group_title A unique identifier for this ACF field group.
  *
  * @param int    $slides_count The number of individual slides (and their associated
  * fields) you want to generate within this slider.
@@ -32,11 +32,13 @@
 function generate_teaser_slides( $group_title, $slides_count, $location_value, $location_param ) {
 	$fields = array();
 
+	$field_group_hash = md5( "$group_title" );
+
 	for ( $i = 0; $i < $slides_count; $i++ ) {
 		$fields[] = array(
-			'key'               => "field_{$group_name}_{$i}",
+			'key'               => "field_{$field_group_hash}_{$i}",
 			'label'             => 'Product ' . $i + 1,
-			'name'              => "{$group_name}_{$i}",
+			'name'              => "{$group_title}b_{$i}",
 			'type'              => 'group',
 			'instructions'      => '',
 			'required'          => 0,
@@ -49,7 +51,7 @@ function generate_teaser_slides( $group_title, $slides_count, $location_value, $
 			'layout'            => 'block',
 			'sub_fields'        => array(
 				array(
-					'key'           => "field_{$group_name}_{$i}_title",
+					'key'           => "title_{$group_title}",
 					'label'         => 'Titel',
 					'name'          => 'title',
 					'type'          => 'text',
@@ -61,7 +63,7 @@ function generate_teaser_slides( $group_title, $slides_count, $location_value, $
 					'maxlength'     => '',
 				),
 				array(
-					'key'           => "field_{$group_name}_{$i}_subtitle",
+					'key'           => "subtitle_{$field_group_hash}",
 					'label'         => 'Sub Titel',
 					'name'          => 'sub_title',
 					'type'          => 'text',
@@ -73,7 +75,7 @@ function generate_teaser_slides( $group_title, $slides_count, $location_value, $
 					'maxlength'     => '',
 				),
 				array(
-					'key'               => "field_{$group_name}_{$i}_image",
+					'key'               => "image_{$field_group_hash}",
 					'label'             => 'Image',
 					'name'              => 'image',
 					'type'              => 'image',
@@ -99,7 +101,7 @@ function generate_teaser_slides( $group_title, $slides_count, $location_value, $
 					'preview_size'      => 'medium',
 				),
 				array(
-					'key'           => "field_{$group_name}_{$i}_url",
+					'key'           => "url_{$field_group_hash}",
 					'label'         => 'URL',
 					'name'          => 'url',
 					'type'          => 'page_link',
@@ -117,8 +119,8 @@ function generate_teaser_slides( $group_title, $slides_count, $location_value, $
 
 	$acf_group_added = acf_add_local_field_group(
 		array(
-			'key'                   => "group_{$group_name}",
-			'title'                 => $group_name,
+			'key'                   => "group_{$field_group_hash}",
+			'title'                 => $group_title,
 			'fields'                => $fields,
 			'location'              => array(
 				array(

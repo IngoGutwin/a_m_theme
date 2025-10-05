@@ -35,7 +35,6 @@ function am_theme_enqueue_development_scripts(): void {
 	$resources_path = '/resources';
 	$id_vite_client = 'vite-client';
 	$vite_host_url  = 'http://localhost:5173';
-
 	wp_enqueue_script_module( $id_vite_client, $vite_host_url . '/@vite/client', array(), null );
 	wp_enqueue_script_module( 'index', $vite_host_url . $resources_path . '/app/index.ts', array(), null );
 	wp_enqueue_style( 'main', $vite_host_url . $resources_path . '/css/main.css', array(), null );
@@ -56,34 +55,22 @@ function am_theme_handle_scripts(): void {
 add_action( 'wp_enqueue_scripts', 'am_theme_handle_scripts' );
 
 /**
- * Allow SVG uploads in WordPress.
- *
- * @param array<string,string> $svg_mime Existing mime types.
- * @return array<string,string> Modified mime types with SVG support.
- */
-function allow_svg( $svg_mime ) {
-	$svg_mime['svg'] = 'image/svg+xml';
-	return $svg_mime;
-}
-add_filter( 'upload_mimes', 'allow_svg' );
-
-/**
  * Load ACF blocks and register custom field groups for landing page template.
  *
  * @return void
  */
-function load_acf_fields_landing_page(): void {
-	$template_name = 'page-landing';
-	generate_banner_cta_section( 'Hero Section', $template_name );
-	generate_teaser_slides( 'Product Teaser', 10, $template_name );
-	generate_prose_block_teaser( 'Teaser Prose Block', $template_name );
-	generate_gallery_slider( 'Impressions Gallery One', 10, $template_name );
-	generate_prose_block_teaser( 'Info Call to Action', $template_name );
-	generate_banner_cta_section( 'Call to Action Banner', $template_name );
-	generate_prose_block_teaser( 'Call to Action Banner Message', $template_name );
-	generate_gallery_slider( 'Impressions Gallery Two', 10, $template_name );
-	generate_prose_block_teaser( 'Advertisement Seo Block', $template_name );
-	generate_footer_section( 'Footer Section' );
+function load_acf_fields_front_page(): void {
+	$location_value = 'front-page.php';
+	$location_param = 'page_template';
+	generate_banner_cta_section( 'Hero Section', $location_value, $location_param );
+	generate_teaser_slides( 'Product Teaser', 10, $location_value, $location_param );
+	generate_prose_block( 'Teaser Prose Block', $location_value, $location_param );
+	generate_gallery_slider( 'Impressions Gallery One', 10, $location_value, $location_param );
+	generate_prose_block( 'Info Call to Action', $location_value, $location_param );
+	generate_banner_cta_section( 'Call to Action Banner', $location_value, $location_value );
+	generate_prose_block( 'Call to Action Banner Message', $location_value, $location_param );
+	generate_gallery_slider( 'Impressions Gallery Two', 10, $location_value, $location_param );
+	generate_prose_block( 'Advertisement Seo Block', $location_value, $location_param );
 }
 
 /**
@@ -92,15 +79,37 @@ function load_acf_fields_landing_page(): void {
  * @return void
  */
 function load_acf_fields_shooting_page(): void {
-	$template_name = 'page-shooting';
-	generate_banner_cta_section( 'Hero Section Shooting', $template_name );
-	generate_prose_block_teaser( 'Shooting Prices', $template_name );
-	generate_gallery_slider( 'Shooting Impressions', 10, $template_name );
-	generate_teaser_slides( 'Shooting Products', 10, $template_name );
-	generate_prose_block_teaser( 'Shooting Checkup', $template_name );
-	generate_banner_cta_section( 'Shooting Advertisement Banner', $template_name );
-	generate_gallery_slider( 'Shooting Advertisement Impressions', 10, $template_name );
-	generate_prose_block_teaser( 'Shooting Infos', $template_name );
+	$location_value = 'shooting';
+	$location_param = 'post_type';
+	generate_banner_cta_section( 'Hero Section Shooting', $location_value, $location_param );
+	generate_prose_block( 'Shooting Prices', $location_value, $location_param );
+	generate_gallery_slider( 'Shooting Impressions', 10, $location_value, $location_param );
+	generate_teaser_slides( 'Shooting Products', 10, $location_value, $location_param );
+	generate_prose_block( 'Shooting Checkup', $location_value, $location_param );
+	generate_banner_cta_section( 'Shooting Advertisement Banner', $location_value, $location_param );
+	generate_gallery_slider( 'Shooting Advertisement Impressions', 10, $location_value, $location_param );
+	generate_prose_block( 'Shooting Infos', $location_value, $location_param );
+}
+
+/**
+ * Load ACF blocks and register custom field groups for contact page template.
+ *
+ * @return void
+ */
+function load_acf_fields_contact_page(): void {
+	$location_value = 'page-contact.php';
+	$location_param = 'page_template';
+	generate_banner_cta_section( 'Hero Section Contact', $location_value, $location_param );
+	generate_prose_block( 'Contact Description', $location_value, $location_param );
+}
+
+/**
+ * Load general ACF blocks and register custom field groups for contact page template.
+ *
+ * @return void
+ */
+function load_general_acf_fields(): void {
+	generate_footer_section( 'Footer Section' );
 }
 
 /**
@@ -120,9 +129,10 @@ function load_acf_fields(): void {
 		'footer',
 	);
 	include_acf_modules( $acf_modules );
-
-	load_acf_fields_landing_page();
+	load_general_acf_fields();
+	load_acf_fields_front_page();
 	load_acf_fields_shooting_page();
+	load_acf_fields_contact_page();
 }
 
 

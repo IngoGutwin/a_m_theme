@@ -22,7 +22,6 @@
  * @see acf_add_local_field_group()
  */
 function generate_footer_section( $group_title ) {
-
 	/**
 	 * Builds up the acf fileds array.
 	 *
@@ -80,6 +79,10 @@ function generate_footer_section( $group_title ) {
 			'resource' => 'facebook',
 			'type'     => 'url',
 		),
+		array(
+			'resource' => 'contact',
+			'type'     => 'url',
+		),
 	);
 
 	$fields = make_acf_fields( $resources, $field_group_hash );
@@ -94,14 +97,7 @@ function generate_footer_section( $group_title ) {
 					array(
 						'param'    => 'page_template',
 						'operator' => '==',
-						'value'    => 'page-landing.php',
-					),
-				),
-				array(
-					array(
-						'param'    => 'page_template',
-						'operator' => '==',
-						'value'    => 'page-shooting.php',
+						'value'    => 'front-page.php',
 					),
 				),
 			),

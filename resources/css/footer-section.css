@@ -8,19 +8,25 @@
       @apply m-auto flex w-full justify-between;
 
       .media {
-        @apply flex gap-8;
+        @apply flex items-center gap-8;
       }
 
       .logo {
-        @apply font-lato-bold font-extrabold md:text-2xl;
+        svg {
+          @apply h-18 w-32 md:h-28 md:w-48;
+
+          path {
+            @apply fill-creme;
+          }
+        }
       }
     }
 
     .info {
-      @apply mt-8 font-lato-regular;
+      @apply mt-8 font-lato-regular text-lg;
 
       li {
-        @apply my-4 py-2;
+        @apply my-2 py-2 md:my-4;
       }
     }
 

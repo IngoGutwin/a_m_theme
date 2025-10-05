@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: landing page
+ * Template Name: Front Page
  * Template Post Type: page
  *
  * @package a_m_theme
