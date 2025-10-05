@@ -22,7 +22,6 @@
  * @see acf_add_local_field_group()
  */
 function generate_footer_section( $group_title ) {
-
 	/**
 	 * Builds up the acf fileds array.
 	 *
@@ -98,14 +97,7 @@ function generate_footer_section( $group_title ) {
 					array(
 						'param'    => 'page_template',
 						'operator' => '==',
-						'value'    => 'page-landing.php',
-					),
-				),
-				array(
-					array(
-						'param'    => 'page_template',
-						'operator' => '==',
-						'value'    => 'page-shooting.php',
+						'value'    => 'front-page.php',
 					),
 				),
 			),
