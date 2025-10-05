@@ -21,13 +21,15 @@
  * @param int    $slides_count The number of individual slides (and their associated
  * fields) you want to generate within this slider.
  *
- * @param string $template_name A unique identifier for this ACF field group.
+ * @param string $location_value post/file type/name.
+ *
+ * @param string $location_param post/template type.
  *
  * @return bool Returns `true` if the ACF field group was successfully
  * generated and registered. Returns `false` if a field
  * group with the given `$group_name` already exists,
  */
-function generate_teaser_slides( $group_name, $slides_count, $template_name ) {
+function generate_teaser_slides( $group_title, $slides_count, $location_value, $location_param ) {
 	$fields = array();
 
 	for ( $i = 0; $i < $slides_count; $i++ ) {
@@ -104,7 +106,7 @@ function generate_teaser_slides( $group_name, $slides_count, $template_name ) {
 					'instructions'  => 'Link zu der entsprechenden Seite',
 					'required'      => 0,
 					'wrapper'       => array( 'width' => '50' ),
-					'post_type'     => array( 'page', 'post' ),
+					'post_type'     => array( 'page', 'post', 'shooting' ),
 					'default_value' => '',
 					'placeholder'   => 'https://example.com',
 					'multiple'      => 0,
@@ -121,9 +123,9 @@ function generate_teaser_slides( $group_name, $slides_count, $template_name ) {
 			'location'              => array(
 				array(
 					array(
-						'param'    => 'page_template',
+						'param'    => $location_param,
 						'operator' => '==',
-						'value'    => $template_name . '.php',
+						'value'    => $location_value,
 					),
 				),
 			),

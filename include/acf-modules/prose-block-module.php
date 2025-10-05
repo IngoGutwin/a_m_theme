@@ -18,13 +18,15 @@
  *
  * @param string $group_title A unique identifier for this ACF field group.
  *
- * @param string $template_name A unique identifier for this ACF field group.
+ * @param string $location_value the template or post file/type.
+ *
+ * @param string $location_param the post/template type.
  *
  * @return bool Returns `true` if the ACF field group was successfully
  * generated and registered. Returns `false` if a field
  * group with the given `$group_name` already exists,
  */
-function generate_prose_block_teaser( $group_title, $template_name ) {
+function generate_prose_block( $group_title, $location_value, $location_param ) {
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 		return;
 	}
@@ -129,9 +131,9 @@ function generate_prose_block_teaser( $group_title, $template_name ) {
 			'location'              => array(
 				array(
 					array(
-						'param'    => 'page_template',
+						'param'    => $location_param,
 						'operator' => '==',
-						'value'    => $template_name . '.php',
+						'value'    => $location_value,
 					),
 				),
 			),

@@ -4,11 +4,23 @@
  *
  * @package a_m_theme
  */
-$hash      = $args['group_hash'] ?? '';
-$instagram = $args[ "instagram_{$hash}" ] ?? '';
-$facebook  = $args[ "facebook_{$hash}" ] ?? '';
-$impressum = $args[ "impressum_{$hash}" ] ?? '';
-$gdpr      = $args[ "gdpr_{$hash}" ] ?? '';
+
+$fields = array();
+
+if ( ! empty( $args ) ) {
+	$fields = $args;
+} else {
+	$front_page_fields = get_page_fields( get_option( 'page_on_front' ) );
+	$fields            = $front_page_fields['Footer Section'];
+}
+
+$hash      = $fields['group_hash'] ?? '';
+$instagram = $fields[ "instagram_{$hash}" ] ?? '';
+$facebook  = $fields[ "facebook_{$hash}" ] ?? '';
+$impressum = $fields[ "impressum_{$hash}" ] ?? '';
+$gdpr      = $fields[ "gdpr_{$hash}" ] ?? '';
+$contact   = $fields[ "contact_{$hash}" ] ?? '';
+
 ?>
 
 </main>
