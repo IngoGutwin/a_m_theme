@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: contact page
+ * Template Name: Contact Page
  * Template Post Type: page
  *
  * @package a_m_theme

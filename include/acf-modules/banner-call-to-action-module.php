@@ -26,11 +26,13 @@
  *
  * @param string $template The template name for the fields.
  *
+ * @param string $post_type The post type name.
+ *
  * @return array|false The field group configuration array if registered, false otherwise.
  *
  * @see acf_add_local_field_group()
  */
-function generate_banner_cta_section( $group_title, $template ) {
+function generate_banner_cta_section( $group_title, $template, $post_type ) {
 
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 		return;
@@ -68,6 +70,27 @@ function generate_banner_cta_section( $group_title, $template ) {
 					'key'               => 'sub_title_' . $field_group_hash,
 					'label'             => 'Sub Title',
 					'name'              => 'sub_title_' . $field_group_hash,
+					'aria-label'        => '',
+					'type'              => 'text',
+					'instructions'      => '',
+					'required'          => 0,
+					'conditional_logic' => 0,
+					'wrapper'           => array(
+						'width' => '',
+						'class' => '',
+						'id'    => '',
+					),
+					'default_value'     => '',
+					'maxlength'         => '',
+					'allow_in_bindings' => 0,
+					'placeholder'       => '',
+					'prepend'           => '',
+					'append'            => '',
+				),
+				array(
+					'key'               => 'description_' . $field_group_hash,
+					'label'             => 'Description',
+					'name'              => 'description_' . $field_group_hash,
 					'aria-label'        => '',
 					'type'              => 'wysiwyg',
 					'instructions'      => '',
@@ -162,9 +185,9 @@ function generate_banner_cta_section( $group_title, $template ) {
 			'location'              => array(
 				array(
 					array(
-						'param'    => 'page_template',
+						'param'    => $post_type,
 						'operator' => '==',
-						'value'    => $template . '.php',
+						'value'    => $template,
 					),
 				),
 			),
