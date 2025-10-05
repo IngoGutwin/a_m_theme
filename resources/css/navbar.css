@@ -18,6 +18,10 @@
       @apply flex cursor-pointer items-center p-2 font-lato-bold font-bold hover:bg-blue/20 md:text-2xl;
     }
 
+    > a {
+      @apply flex cursor-pointer items-center p-2 font-lato-bold font-bold hover:bg-blue/20 md:text-2xl;
+    }
+
     .shootings,
     .navigation {
       @apply absolute top-12 right-0 z-50 flex w-full bg-blue p-8 font-lato-regular font-bold text-creme transition-transform md:top-24 md:text-xl;

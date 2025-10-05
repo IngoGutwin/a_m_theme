@@ -47,7 +47,7 @@ function toggleNavbar(): void {
 
 function initNavBar() {
   navbarToggle?.addEventListener("click", toggleNavbar);
-  shootingsToggle?.addEventListener("click", toggleShootings);
+  // shootingsToggle?.addEventListener("click", toggleShootings);
 }
 
 if (navbar) {

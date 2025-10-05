@@ -6,13 +6,14 @@
  */
 
 $section      = $args['page_fields'];
-$hash         = $section['group_hash'];
-$css_class    = $args['css_class'];
+$hash         = $section['group_hash'] ?? '';
+$css_class    = $args['css_class'] ?? '';
 $banner_title = $section[ "title_{$hash}" ] ?? '';
 $sub_title    = $section[ "sub_title_{$hash}" ] ?? '';
+$description    = $section[ "description_{$hash}" ] ?? '';
 $button_text  = $section[ "button_text_{$hash}" ] ?? '';
-$bg_image_sm  = $section[ "bg_image_sm_{$hash}" ] . ' 558w' ?? '';
-$bg_image_xl  = $section[ "bg_image_xl_{$hash}" ] . ' 1448w' ?? '';
+$bg_image_xl  = isset( $section[ "bg_image_xl_{$hash}" ] ) ? $section[ "bg_image_xl_{$hash}" ] . ' 1448w' : '';
+$bg_image_sm  = isset( $section[ "bg_image_sm_{$hash}" ] ) ? $section[ "bg_image_sm_{$hash}" ] . ' 558w' : '';
 ?>
 <!-- banner section start -->
 <section class="<?php echo esc_html( $css_class ); ?>">
@@ -35,12 +36,12 @@ $bg_image_xl  = $section[ "bg_image_xl_{$hash}" ] . ' 1448w' ?? '';
 	<?php
 	if ( ! empty( $banner_title ) ) {
 		?>
-			<h1><?php echo esc_html( $banner_title ); ?></h1>
+			<h1><?php echo esc_html( $banner_title . ' ' . $sub_title ); ?></h1>
 		<?php
 	}
 	if ( ! empty( $sub_title ) ) {
 		?>
-			<?php echo wp_kses_post( $sub_title ); ?>
+			<?php echo wp_kses_post( $description ); ?>
 		<?php
 	}
 	?>

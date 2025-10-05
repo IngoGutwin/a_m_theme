@@ -7,6 +7,7 @@
 
 $shooting_menu_items   = wp_get_nav_menu_items( 'Shootings' ) ?? array();
 $navigation_menu_items = wp_get_nav_menu_items( 'Navigation' ) ?? array();
+$shootings_url         = 'http://a-m.test/shootings-preise';
 ?>
 <!-- nav bar start -->
 <nav class="navbar">
@@ -17,12 +18,9 @@ $navigation_menu_items = wp_get_nav_menu_items( 'Navigation' ) ?? array();
 	</div>
 
 	<div class="nav-right" id="navbar-right">
-	<button id="shootings-toggle">
-		Shootings
-		<svg id="shootings-toggle-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
-		<path d="M12 17L19 8H5L12 17Z" fill="currentColor"></path>
-		</svg>
-	</button>
+	<a href="<?php echo esc_html( $shootings_url ); ?>">
+		Foto-Shootings
+	</a>
 
 	<div class="hamburger" id="navbar-toggle">
 		<div></div>
