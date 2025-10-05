@@ -14,18 +14,18 @@
 		foreach ( $args as $slide ) {
 			if ( ! empty( $slide['url'] ) ) {
 				?>
-			<div class="swiper-slide teaser-slide">
-				<article>
-					<a href="<?php echo esc_html( $slide['url'] ); ?>">
-						<h2><?php echo esc_html( $slide['title'] ); ?></h2>
-						<p><?php echo esc_html( $slide['sub_title'] ); ?></p>
-					</a>
-				</article>
-				<picture>
-					<source type="image/webp" srcset="<?php echo esc_html( $slide['image'] ); ?>" />
-					<img src="<?php echo esc_html( $slide['image'] ); ?>" srcset="<?php echo esc_html( $slide['image'] . ' 558w' ); ?>" />
-				</picture>
-			</div>
+				<a href="<?php echo esc_html( $slide['url'] ); ?>">
+					<div class="swiper-slide teaser-slide">
+						<article>
+								<h2><?php echo esc_html( $slide['title'] ); ?></h2>
+								<p><?php echo esc_html( $slide['sub_title'] ); ?></p>
+						</article>
+						<picture>
+							<source type="image/webp" srcset="<?php echo esc_html( $slide['image'] ); ?>" />
+							<img src="<?php echo esc_html( $slide['image'] ); ?>" srcset="<?php echo esc_html( $slide['image'] . ' 558w' ); ?>" />
+						</picture>
+					</div>
+				</a>
 				<?php
 				// count up $index.
 				++$index;
