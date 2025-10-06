@@ -4,6 +4,7 @@
 @import "./prose-block.css";
 @import "./swiper.css";
 @import "./footer-section.css";
+@import "./archive-shooting.css";
 
 body {
   @apply bg-creme;

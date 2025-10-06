@@ -1,6 +1,7 @@
 <?php
 /**
- * Archive for shooting post type.
+ * Template Name: Shooting Archive Template
+ * Template Post Type: page
  *
  * @package a_m_theme
  */
@@ -15,24 +16,38 @@ get_template_part( 'parts/navbar' );
 
 if ( have_posts() ) {
 	?>
-		<section>
-			<?php
-			while ( have_posts() ) :
-				the_post();
-				$acf_fields = get_page_fields( get_the_ID() )['Hero Section Shooting'];
-				$hash       = $acf_fields['group_hash'];
-				$hero_title = $acf_fields[ "title_{$hash}" ];
-				$sub_title  = $acf_fields[ "sub_title_{$hash}" ];
-				$thumbnail  = $acf_fields[ "bg_image_sm_{$hash}" ];
-				?>
-				<article>
-					<h2><?php echo esc_html( $hero_title ); ?></h2>
-					<p><?php echo esc_html( $sub_title ); ?></p>
-					<img src="<?php echo esc_html( $thumbnail ); ?>" />
-				</article>
-		</section>
+		<!-- shootings archive start  -->
+		<section class="shootings">
+			<ul class="shootings-list">
 				<?php
-			endwhile;
+				while ( have_posts() ) :
+					the_post();
+					$the_post_id = get_the_ID();
+					$acf_fields  = get_page_fields( $the_post_id )['Hero Section Shooting'];
+					$hash        = $acf_fields['group_hash'];
+					$hero_title  = $acf_fields[ "title_{$hash}" ];
+					$sub_title   = $acf_fields[ "sub_title_{$hash}" ];
+					$thumbnail   = $acf_fields[ "bg_image_sm_{$hash}" ];
+					?>
+					<li>
+						<a href="<?php echo esc_html( get_the_permalink( $the_post_id ) ); ?>">
+							<article>
+								<h2><?php echo esc_html( $hero_title ); ?></h2>
+								<p><?php echo esc_html( $sub_title ); ?></p>
+							</article>
+							<picture>
+								<source type="image/webp" srcset="<?php echo esc_html( $thumbnail ); ?>" />
+								<img src="<?php echo esc_html( $thumbnail ); ?>" srcset="<?php echo esc_html( $thumbnail . ' 558w' ); ?>" />
+							</picture>
+						</a>
+					</li>
+					<?php
+				endwhile;
+				?>
+			</ul>
+		</section>
+		<!-- shootings archive end  -->
+	<?php
 }
 
 get_template_part( 'parts/footer-default' );
