@@ -24,15 +24,15 @@
  *
  * @param string $group_title The unique name used as the group key and title.
  *
- * @param string $template The template name for the fields.
+ * @param string $location_value The post type name.
  *
- * @param string $post_type The post type name.
+ * @param string $location_param The post type name.
  *
  * @return array|false The field group configuration array if registered, false otherwise.
  *
  * @see acf_add_local_field_group()
  */
-function generate_banner_cta_section( $group_title, $template, $post_type ) {
+function generate_banner_cta_section( $group_title, $location_value, $location_param ) {
 
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 		return;
@@ -185,9 +185,9 @@ function generate_banner_cta_section( $group_title, $template, $post_type ) {
 			'location'              => array(
 				array(
 					array(
-						'param'    => $post_type,
+						'param'    => $location_param,
 						'operator' => '==',
-						'value'    => $template,
+						'value'    => $location_value,
 					),
 				),
 			),
