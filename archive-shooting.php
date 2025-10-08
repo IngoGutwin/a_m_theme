@@ -1,7 +1,6 @@
 <?php
 /**
- * Template Name: Shooting Archive Template
- * Template Post Type: page
+ * Template Name: Archive Shooting
  *
  * @package a_m_theme
  */
@@ -10,18 +9,38 @@ $page_id = get_the_ID();
 
 $page_fields = get_page_fields( $page_id );
 
+$hero_section_fields = $page_fields['Hero Section Archive Shootings'];
+
+$seo_section_fields = $page_fields['Archive Seo Description'];
+
 get_template_part( 'parts/header-default', 'default' );
 
 get_template_part( 'parts/navbar' );
 
-if ( have_posts() ) {
+get_template_part(
+	'parts/banner-call-to-action',
+	'',
+	array(
+		'page_fields' => $hero_section_fields,
+		'css_class'   => 'banner',
+	)
+);
+
+$shootings = new WP_Query(
+	array(
+		'post_type'      => 'shooting',
+		'posts_per_page' => -1,
+	)
+);
+
+if ( $shootings->have_posts() ) {
 	?>
 		<!-- shootings archive start  -->
 		<section class="shootings">
 			<ul class="shootings-list">
 				<?php
-				while ( have_posts() ) :
-					the_post();
+				while ( $shootings->have_posts() ) :
+					$shootings->the_post();
 					$the_post_id = get_the_ID();
 					$acf_fields  = get_page_fields( $the_post_id )['Hero Section Shooting'];
 					$hash        = $acf_fields['group_hash'];
@@ -43,6 +62,7 @@ if ( have_posts() ) {
 					</li>
 					<?php
 				endwhile;
+				wp_reset_postdata();
 				?>
 			</ul>
 		</section>

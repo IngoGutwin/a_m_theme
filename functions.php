@@ -104,6 +104,18 @@ function load_acf_fields_contact_page(): void {
 }
 
 /**
+ * Load ACF blocks and register custom field groups for archive shooting-page template.
+ *
+ * @return void
+ */
+function load_acf_fields_archive_shooting_page(): void {
+	$location_value = 'archive-shooting.php';
+	$location_param = 'page_template';
+	generate_banner_cta_section( 'Hero Section Archive Shootings', $location_value, $location_param );
+	generate_prose_block( 'Archive Seo Description', $location_value, $location_param );
+}
+
+/**
  * Load general ACF blocks and register custom field groups for contact page template.
  *
  * @return void
@@ -129,7 +141,9 @@ function load_acf_fields(): void {
 		'footer',
 	);
 	include_acf_modules( $acf_modules );
+
 	load_general_acf_fields();
+	load_acf_fields_archive_shooting_page();
 	load_acf_fields_front_page();
 	load_acf_fields_shooting_page();
 	load_acf_fields_contact_page();
@@ -137,3 +151,36 @@ function load_acf_fields(): void {
 
 
 add_action( 'acf/init', 'load_acf_fields' );
+
+/**
+ * Register custom post type for shootings
+ */
+function shooting_post_type() {
+	$labels = array(
+		'name'          => 'Shootings',
+		'singular_name' => 'Shooting',
+		'menu_name'     => 'Shootings',
+		'add_new'       => 'Neues Shooting',
+		'add_new_item'  => 'Neues Shooting hinzufügen',
+		'edit_item'     => 'Shooting bearbeiten',
+		'new_item'      => 'Neues Shooting',
+		'view_item'     => 'Shooting ansehen',
+		'search_items'  => 'Shootings durchsuchen',
+		'not_found'     => 'Keine Shootings gefunden',
+	);
+
+	$args = array(
+		'labels'       => $labels,
+		'public'       => true,
+		'menu_icon'    => 'dashicons-camera',
+		'rewrite'      => array(
+			'slug'       => 'fotoshootings-preise',
+			'with_front' => false,
+		),
+		'supports'     => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+		'show_in_rest' => true,
+	);
+
+	register_post_type( 'shooting', $args );
+}
+add_action( 'init', 'shooting_post_type' );
