@@ -8,7 +8,6 @@
 $shooting_menu_items   = wp_get_nav_menu_items( 'Shootings' ) ?? array();
 $navigation_menu_items = wp_get_nav_menu_items( 'Navigation' ) ?? array();
 $shootings_url         = $shooting_menu_items[0]->url;
-
 ?>
 <!-- nav bar start -->
 <nav class="navbar">
@@ -40,7 +39,7 @@ $shootings_url         = $shooting_menu_items[0]->url;
 			}
 			?>
 		<li>
-			<a href="<?php echo esc_html( $item->url ); ?>"><?php echo esc_html( $item->post_title ); ?></a>
+			<a href="<?php echo esc_html( $item->url ); ?>"><?php echo esc_html( $item->title ); ?></a>
 		</li>
 		<?php } ?>
 	</ul>
