@@ -1,0 +1,25 @@
+.shootings {
+  .shootings-list {
+    @apply m-auto flex flex-wrap justify-between gap-y-8;
+
+    li {
+      @apply flex w-full justify-center md:w-auto;
+
+      article {
+        h2 {
+          @apply py-2 font-lato-bold text-xl font-bold md:text-2xl;
+        }
+
+        p {
+          @apply pb-2 font-lato-regular text-base md:text-xl;
+        }
+      }
+
+      picture {
+        img {
+          @apply max-w-[380px] lg:max-w-[500px];
+        }
+      }
+    }
+  }
+}
