@@ -4,8 +4,9 @@
  *
  * @package Theme a_m_theme
  */
+$field_group_title = $args['field_group_title'] ?? '';
 ?>
-<!-- Gallery slider section start -->
+<!-- <?php echo esc_html( $field_group_title ); ?> start -->
 <section class="swiper gallery-section">
 	<div class="swiper-wrapper">
 		<?php
@@ -16,7 +17,7 @@
 				<div class="swiper-slide gallery-slide">
 					<picture>
 						<source type="image/webp" srcset="<?php echo esc_html( $slide['image_url'] ); ?>" />
-						<img loading="lazy" height="480" src="<?php echo esc_html( $slide['image_url'] ); ?>" srcset="<?php echo esc_html( $slide['image_url'] . ' 558w' ); ?>" />
+						<img loading="lazy" src="<?php echo esc_html( $slide['image_url'] ); ?>" srcset="<?php echo esc_html( $slide['image_url'] . ' 558w' ); ?>" />
 					</picture>
 				</div>
 				<?php

@@ -4,11 +4,12 @@
  *
  * @package Theme a_m_theme
  */
+$field_group_title = $args['field_group_title'] ?? '';
 $prose_hash        = $args['group_hash'] ?? '';
 $prose_title       = $args[ "title_{$prose_hash}" ] ?? '';
 $prose_description = $args[ "description_{$prose_hash}" ] ?? '';
 ?>
-<!-- prose block section start -->
+<!-- <?php echo esc_html( $field_group_title ); ?> start -->
 <section class="prose-block">
 	<?php
 	if ( ! empty( $prose_title ) ) {
@@ -25,4 +26,3 @@ $prose_description = $args[ "description_{$prose_hash}" ] ?? '';
 	}
 	?>
 </section>
-<!-- prose block section end -->

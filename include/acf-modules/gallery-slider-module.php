@@ -25,11 +25,13 @@
  *
  * @param string $location_param template/post name.
  *
+ * @param int    $menu_order Menu order on admin.
+ *
  * @return bool Returns `true` if the ACF field group was successfully
  * generated and registered. Returns `false` if a field
  * group with the given `$group_name` already exists,
  */
-function generate_gallery_slider( $group_title, $slides_count, $location_value, $location_param ) {
+function generate_gallery_slider( $group_title, $slides_count, $location_value, $location_param, $menu_order ) {
 
 	$fields = array();
 
@@ -108,7 +110,7 @@ function generate_gallery_slider( $group_title, $slides_count, $location_value, 
 					),
 				),
 			),
-			'menu_order'            => 0,
+			'menu_order'            => $menu_order,
 			'position'              => 'normal',
 			'style'                 => 'default',
 			'label_placement'       => 'top',

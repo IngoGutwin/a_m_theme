@@ -25,11 +25,13 @@
  *
  * @param string $location_param post/template type.
  *
+ * @param int    $menu_order front-end-admin.
+ *
  * @return bool Returns `true` if the ACF field group was successfully
  * generated and registered. Returns `false` if a field
  * group with the given `$group_name` already exists,
  */
-function generate_teaser_slides( $group_title, $slides_count, $location_value, $location_param ) {
+function generate_teaser_slides( $group_title, $slides_count, $location_value, $location_param, $menu_order ) {
 	$fields = array();
 
 	$field_group_hash = md5( "$group_title" );
@@ -131,7 +133,7 @@ function generate_teaser_slides( $group_title, $slides_count, $location_value, $
 					),
 				),
 			),
-			'menu_order'            => 0,
+			'menu_order'            => $menu_order,
 			'position'              => 'normal',
 			'style'                 => 'default',
 			'label_placement'       => 'top',

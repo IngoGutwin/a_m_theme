@@ -28,11 +28,13 @@
  *
  * @param string $location_param The post type name.
  *
+ * @param int    $menu_order Order on front-end-admin.
+ *
  * @return array|false The field group configuration array if registered, false otherwise.
  *
  * @see acf_add_local_field_group()
  */
-function generate_banner_cta_section( $group_title, $location_value, $location_param ) {
+function generate_banner_cta_section( $group_title, $location_value, $location_param, $menu_order ) {
 
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 		return;
@@ -191,7 +193,7 @@ function generate_banner_cta_section( $group_title, $location_value, $location_p
 					),
 				),
 			),
-			'menu_order'            => 0,
+			'menu_order'            => $menu_order,
 			'position'              => 'normal',
 			'style'                 => 'default',
 			'label_placement'       => 'top',
