@@ -17,15 +17,11 @@
       article {
         @apply flex flex-col items-start self-start pb-2;
 
-        a {
-          @apply relative after:absolute after:top-0 after:left-0 after:z-40 after:h-full after:w-full after:content-[""];
-
-          h2 {
-            @apply pb-2 text-start font-lato-bold text-xl font-bold;
-          }
-          p {
-            @apply font-lato-regular text-lg;
-          }
+        h2 {
+          @apply pb-2 text-start font-lato-bold font-bold;
+        }
+        p {
+          @apply font-lato-regular;
         }
       }
       img {

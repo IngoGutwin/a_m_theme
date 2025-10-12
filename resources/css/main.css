@@ -4,7 +4,7 @@
 @import "./prose-block.css";
 @import "./swiper.css";
 @import "./footer-section.css";
-@import "./archive-shooting.css";
+@import "./archive.css";
 
 body {
   @apply bg-creme;
@@ -21,7 +21,17 @@ main {
     }
 
     h2 {
-      font-size: clamp(1.12rem, 0.75rem + 3.39vw, 1.44rem);
+      font-size: clamp(1.3rem, 0.75rem + 3.39vw, 1.44rem);
+    }
+
+    h3 {
+      font-size: clamp(1.1rem, 0.75rem + 2vw, 1.4rem);
+    }
+
+    p,
+    ol,
+    ul {
+      font-size: clamp(1rem, 0.75rem + 1vw, 1.25rem);
     }
   }
 
