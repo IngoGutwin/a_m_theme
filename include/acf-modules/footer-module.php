@@ -101,7 +101,7 @@ function generate_footer_section( $group_title ) {
 					),
 				),
 			),
-			'menu_order'            => 0,
+			'menu_order'            => 100,
 			'position'              => 'normal',
 			'style'                 => 'default',
 			'label_placement'       => 'top',

@@ -22,11 +22,13 @@
  *
  * @param string $location_param the post/template type.
  *
+ * @param int    $menu_order Menu Ordern front end admin.
+ *
  * @return bool Returns `true` if the ACF field group was successfully
  * generated and registered. Returns `false` if a field
- * group with the given `$group_name` already exists,
+ * group with the given `$group_name` already exists
  */
-function generate_prose_block( $group_title, $location_value, $location_param ) {
+function generate_prose_block( $group_title, $location_value, $location_param, $menu_order ) {
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 		return;
 	}
@@ -137,7 +139,7 @@ function generate_prose_block( $group_title, $location_value, $location_param ) 
 					),
 				),
 			),
-			'menu_order'            => 0,
+			'menu_order'            => $menu_order,
 			'position'              => 'normal',
 			'style'                 => 'default',
 			'label_placement'       => 'top',

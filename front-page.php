@@ -12,19 +12,21 @@ $page_fields = get_page_fields( $page_id );
 
 $hero_section_fields = $page_fields['Hero Section'] ?? array();
 
-$product_teaser_fields = $page_fields['Product Teaser'] ?? array();
+$product_teaser_fields = $page_fields['Product Teaser Slides'] ?? array();
 
-$teaser_prose_block_fields = $page_fields['Teaser Prose Block'] ?? array();
+$teaser_prose_block_fields = $page_fields['Offer Prose Block'] ?? array();
 
 $impressions_galley_one_fields = $page_fields['Impressions Gallery One'] ?? array();
 
-$info_call_to_action_fields = $page_fields['Info Call to Action'] ?? array();
+$info_call_to_action_fields = $page_fields['Impressions Prose Block'] ?? array();
 
 $call_to_action_ads_banner = $page_fields['Call to Action Banner'] ?? array();
 
+$call_to_action_ads_banner_message = $page_fields['Call to Action Banner Message'] ?? array();
+
 $impressions_galley_two = $page_fields['Impressions Gallery Two'] ?? array();
 
-$advertisement_seo_block = $page_fields['Advertisment Seo Block'] ?? array();
+$advertisement_seo_block = $page_fields['Advertisement Seo Block'] ?? array();
 
 $footer_section = $page_fields['Footer Section'] ?? array();
 
@@ -58,7 +60,7 @@ get_template_part(
 	)
 );
 
-get_template_part( 'parts/prose-block', 'default', $page_fields['Call to Action Banner Message'] );
+get_template_part( 'parts/prose-block', 'default', $call_to_action_ads_banner_message );
 
 get_template_part( 'parts/gallery-slider', '', $impressions_galley_two );
 

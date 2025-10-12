@@ -45,4 +45,3 @@ $shootings_url         = $shooting_menu_items[0]->url;
 	</ul>
 	</div>
 </nav>
-<!-- nav bar end -->

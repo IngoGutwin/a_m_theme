@@ -4,8 +4,9 @@
  *
  * @package Theme a_m_theme
  */
+$field_group_title = $args['field_group_title'] ?? '';
 ?>
-<!-- teaser slider section start -->
+<!-- <?php echo esc_html( $field_group_title ); ?> start -->
 <section class="swiper teaser-section">
 	<div class="swiper-wrapper">
 		<?php
@@ -36,4 +37,3 @@
 	<div class="swiper-button-prev"></div>
 	<div class="swiper-button-next"></div>
 </section>
-<!-- teaser slider section end -->

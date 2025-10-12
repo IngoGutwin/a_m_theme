@@ -4,15 +4,21 @@
  *
  * @package a_m_theme
  */
-$hash      = $args['group_hash'] ?? '';
-$instagram = $args[ "instagram_{$hash}" ] ?? '';
-$facebook  = $args[ "facebook_{$hash}" ] ?? '';
-$impressum = $args[ "impressum_{$hash}" ] ?? '';
-$gdpr      = $args[ "gdpr_{$hash}" ] ?? '';
-$contact   = $args[ "contact_{$hash}" ] ?? '';
+
+$front_page_id = get_option( 'page_on_front' );
+
+$footer_fields = get_page_fields( $front_page_id )['Footer Section'];
+$field_group_title = $footer_fields['field_group_title'];
+$hash      = $footer_fields['group_hash'] ?? '';
+$instagram = $footer_fields[ "instagram_{$hash}" ] ?? '';
+$facebook  = $footer_fields[ "facebook_{$hash}" ] ?? '';
+$impressum = $footer_fields[ "impressum_{$hash}" ] ?? '';
+$gdpr      = $footer_fields[ "gdpr_{$hash}" ] ?? '';
+$contact   = $footer_fields[ "contact_{$hash}" ] ?? '';
 ?>
 
 </main>
+<!-- <?php echo esc_html( $field_group_title ); ?> start -->
 	<footer class="footer">
 		<div class="footer-container">
 			<div class="social">
