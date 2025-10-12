@@ -125,8 +125,8 @@ function load_acf_fields_archive_shooting_page(): void {
 function load_acf_fields_archive_blog_page(): void {
 	$location_value = 'posts_page';
 	$location_param = 'page_type';
-	generate_banner_cta_section( 'Hero Section Blog', $location_value, $location_param );
-	generate_prose_block( 'Archive Seo Description', $location_value, $location_param );
+	generate_banner_cta_section( 'Hero Section Blog Page', $location_value, $location_param, 0 );
+	generate_prose_block( 'Archive Seo Description', $location_value, $location_param, 1 );
 }
 
 /**
@@ -159,6 +159,7 @@ function load_acf_fields(): void {
 	load_general_acf_fields();
 	load_acf_fields_archive_shooting_page();
 	load_acf_fields_archive_blog_page();
+	load_acf_fields_blog_post_page();
 	load_acf_fields_front_page();
 	load_acf_fields_shooting_page();
 	load_acf_fields_contact_page();
