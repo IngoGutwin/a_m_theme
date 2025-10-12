@@ -83,14 +83,15 @@ function load_acf_fields_front_page(): void {
 function load_acf_fields_shooting_page(): void {
 	$location_value = 'shooting';
 	$location_param = 'post_type';
-	generate_banner_cta_section( 'Hero Section Shooting', $location_value, $location_param );
-	generate_prose_block( 'Shooting Prices', $location_value, $location_param );
-	generate_gallery_slider( 'Shooting Impressions', 10, $location_value, $location_param );
-	generate_teaser_slides( 'Shooting Products', 10, $location_value, $location_param );
-	generate_prose_block( 'Shooting Checkup', $location_value, $location_param );
-	generate_banner_cta_section( 'Shooting Advertisement Banner', $location_value, $location_param );
-	generate_gallery_slider( 'Shooting Advertisement Impressions', 10, $location_value, $location_param );
-	generate_prose_block( 'Shooting Infos', $location_value, $location_param );
+	generate_banner_cta_section( 'Hero Section Shooting', $location_value, $location_param, 0 );
+	generate_prose_block( 'Shooting Prices', $location_value, $location_param, 1 );
+	generate_gallery_slider( 'Shooting Impressions Gallery', 10, $location_value, $location_param, 2 );
+	generate_teaser_slides( 'Shooting Products Teaser Slides', 10, $location_value, $location_param, 3 );
+	generate_prose_block( 'Shooting Checkup List', $location_value, $location_param, 4 );
+	generate_banner_cta_section( 'Shooting Advertisement Banner', $location_value, $location_param, 5 );
+	generate_gallery_slider( 'Shooting Advertisement Impressions', 10, $location_value, $location_param, 6 );
+	generate_prose_block( 'Shooting Infos Prose Block', $location_value, $location_param, 7 );
+}
 }
 
 /**
@@ -113,8 +114,8 @@ function load_acf_fields_contact_page(): void {
 function load_acf_fields_archive_shooting_page(): void {
 	$location_value = 'archive-shooting.php';
 	$location_param = 'page_template';
-	generate_banner_cta_section( 'Hero Section Archive Shootings', $location_value, $location_param );
-	generate_prose_block( 'Archive Seo Description', $location_value, $location_param );
+	generate_banner_cta_section( 'Hero Section Archive Shootings', $location_value, $location_param, 0 );
+	generate_prose_block( 'Archive Seo Description', $location_value, $location_param, 1 );
 }
 
 /**
@@ -193,7 +194,7 @@ function shooting_post_type() {
 			'slug'       => 'fotoshootings-preise',
 			'with_front' => false,
 		),
-		'supports'     => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+		'supports'     => array( 'title', 'thumbnail', 'excerpt' ),
 		'show_in_rest' => true,
 	);
 
