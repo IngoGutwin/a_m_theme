@@ -7,7 +7,7 @@
 
 $shooting_menu_items   = wp_get_nav_menu_items( 'Shootings' ) ?? array();
 $navigation_menu_items = wp_get_nav_menu_items( 'Navigation' ) ?? array();
-$shootings_url         = 'http://a-m.test/shootings-preise';
+$shootings_url         = $shooting_menu_items[0]->url;
 ?>
 <!-- nav bar start -->
 <nav class="navbar">
@@ -29,22 +29,6 @@ $shootings_url         = 'http://a-m.test/shootings-preise';
 	</div>
 
 	<ul
-		class="shootings"
-		id="shooting-links"
-		data-is-toggled="false">
-		<?php
-		foreach ( $shooting_menu_items as $item ) {
-			if ( 'home' === $item->post_title ) {
-				continue;
-			}
-			?>
-		<li>
-			<a href="<?php echo esc_html( $item->url ); ?>"><?php echo esc_html( $item->post_title ); ?></a>
-		</li>
-		<?php } ?>
-	</ul>
-
-	<ul
 		class="navigation"
 		id="navigation-links"
 		data-is-toggled="false">
@@ -55,7 +39,7 @@ $shootings_url         = 'http://a-m.test/shootings-preise';
 			}
 			?>
 		<li>
-			<a href="<?php echo esc_html( $item->url ); ?>"><?php echo esc_html( $item->post_title ); ?></a>
+			<a href="<?php echo esc_html( $item->url ); ?>"><?php echo esc_html( $item->title ); ?></a>
 		</li>
 		<?php } ?>
 	</ul>

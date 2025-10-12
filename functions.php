@@ -11,6 +11,8 @@ require_once get_template_directory() . '/include/acf-loader-helpers.php';
 require_once get_template_directory() . '/include/svg-sanitizer.php';
 require_once get_template_directory() . '/include/logo.php';
 
+add_theme_support( 'post-thumbnails' );
+
 /**
  * Enqueue scripts and styles for production build.
  *
@@ -116,6 +118,18 @@ function load_acf_fields_archive_shooting_page(): void {
 }
 
 /**
+ * Load ACF blocks and register custom field groups for the blog template.
+ *
+ * @return void
+ */
+function load_acf_fields_archive_blog_page(): void {
+	$location_value = 'posts_page';
+	$location_param = 'page_type';
+	generate_banner_cta_section( 'Hero Section Blog Page', $location_value, $location_param, 0 );
+	generate_prose_block( 'Archive Seo Description', $location_value, $location_param, 1 );
+}
+
+/**
  * Load general ACF blocks and register custom field groups for contact page template.
  *
  * @return void
@@ -144,6 +158,8 @@ function load_acf_fields(): void {
 
 	load_general_acf_fields();
 	load_acf_fields_archive_shooting_page();
+	load_acf_fields_archive_blog_page();
+	load_acf_fields_blog_post_page();
 	load_acf_fields_front_page();
 	load_acf_fields_shooting_page();
 	load_acf_fields_contact_page();
