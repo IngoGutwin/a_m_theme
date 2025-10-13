@@ -111,6 +111,7 @@ function generate_teaser_slides( $group_title, $slides_count, $location_value, $
 					'required'      => 0,
 					'wrapper'       => array( 'width' => '50' ),
 					'post_type'     => array( 'page', 'post', 'shooting' ),
+					'post_type'     => array( 'page', 'post', 'shooting' ),
 					'default_value' => '',
 					'placeholder'   => 'https://example.com',
 					'multiple'      => 0,
@@ -128,7 +129,9 @@ function generate_teaser_slides( $group_title, $slides_count, $location_value, $
 				array(
 					array(
 						'param'    => $location_param,
+						'param'    => $location_param,
 						'operator' => '==',
+						'value'    => $location_value,
 						'value'    => $location_value,
 					),
 				),

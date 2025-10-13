@@ -9,9 +9,7 @@
   p {
     @apply mt-4 font-lato-regular;
   }
-}
 
-.banner {
   .banner-intro {
     @apply font-lato-regular;
 
@@ -22,11 +20,5 @@
     h1 {
       @apply mt-4 font-lato-bold font-bold;
     }
-  }
-}
-
-.ads-banner {
-  .banner-intro {
-    @apply font-lato-regular;
   }
 }

@@ -4,7 +4,9 @@
  *
  * @package a_m_theme
  */
-
+$global_javascript_variables = array(
+	'contactPageUrl' => get_permalink( get_page_by_path( 'kontakt' ) ),
+);
 ?>
 
 <!DOCTYPE html>
@@ -18,4 +20,4 @@
 </head>
 
 <body>
-	<main id="app">
+	<main id="app" data-global-variables="<?php echo esc_attr( wp_json_encode( $global_javascript_variables ) ); ?>">

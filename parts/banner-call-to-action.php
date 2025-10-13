@@ -26,26 +26,28 @@ $bg_image_sm       = isset( $section[ "bg_image_sm_{$hash}" ] ) ? $section[ "bg_
 
 	<?php
 	if ( ! empty( $button_text ) ) {
-		?>
-		<button class="book-appointment-btn"><?php echo esc_html( $button_text ); ?></button>
-
-		<?php
+		get_template_part(
+			'parts/button',
+			'',
+			array(
+				'button_text' => $button_text,
+				'css_class'   => 'book-appointment-btn',
+			)
+		);
 	}
 	?>
 
 	<div class="banner-intro">
 	<?php
 	if ( ! empty( $banner_title ) ) {
-		if ( $css_class === 'banner' ) {
-			?>
+		?>
+			<h1><?php echo esc_html( $banner_title . ' ' . $sub_title ); ?></h1>
+		<?php
+	}
+	if ( ! empty( $sub_title ) ) {
+		?>
 			<h2><?php echo esc_html( $sub_title ); ?></h2>
-			<h1><?php echo esc_html( $banner_title ); ?></h1>
-			<?php
-		} else {
-			?>
-				<h2><?php echo esc_html( $banner_title ); ?></h2>
-			<?php
-		}
+		<?php
 	}
 	if ( ! empty( $description ) ) {
 		?>

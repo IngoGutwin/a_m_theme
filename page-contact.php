@@ -25,7 +25,7 @@ get_template_part(
 	'',
 	array(
 		'page_fields' => $hero_section_fields,
-		'css_class'   => 'ads-banner',
+		'css_class'   => 'banner',
 	)
 );
 
