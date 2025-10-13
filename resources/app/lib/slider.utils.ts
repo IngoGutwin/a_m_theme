@@ -29,7 +29,7 @@ const galleryOneConfig: SwiperOptions = {
   },
 };
 
-function init() {
+export function initSwiper() {
   let sliderSections = document.querySelectorAll<HTMLElement>(".swiper");
   sliderSections.forEach((section) => {
     let swiperClass = section.classList[1];
@@ -43,5 +43,3 @@ function init() {
     }
   });
 }
-
-document.addEventListener("DOMContentLoaded", init);

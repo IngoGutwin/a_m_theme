@@ -18,30 +18,30 @@ $shootings_url         = $shooting_menu_items[0]->url;
 	</div>
 
 	<div class="nav-right" id="navbar-right">
-	<a href="<?php echo esc_html( $shootings_url ); ?>">
-		Foto-Shootings
-	</a>
+		<a href="<?php echo esc_html( $shootings_url ); ?>">
+			Foto-Shootings
+		</a>
 
-	<div class="hamburger" id="navbar-toggle">
-		<div></div>
-		<div></div>
-		<div></div>
-	</div>
+		<div class="hamburger" id="navbar-toggle">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
 
-	<ul
-		class="navigation"
-		id="navigation-links"
-		data-is-toggled="false">
-		<?php
-		foreach ( $navigation_menu_items as $item ) {
-			if ( 'home' === $item->post_title ) {
-				continue;
-			}
-			?>
-		<li>
-			<a href="<?php echo esc_html( $item->url ); ?>"><?php echo esc_html( $item->title ); ?></a>
-		</li>
-		<?php } ?>
-	</ul>
+		<ul
+			class="navigation"
+			id="navigation-links"
+			data-is-toggled="false">
+			<?php
+			foreach ( $navigation_menu_items as $item ) {
+				if ( 'home' === $item->post_title ) {
+					continue;
+				}
+				?>
+			<li>
+				<a href="<?php echo esc_html( $item->url ); ?>"><?php echo esc_html( $item->title ); ?></a>
+			</li>
+			<?php } ?>
+		</ul>
 	</div>
 </nav>
