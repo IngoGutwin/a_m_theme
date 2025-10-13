@@ -41,7 +41,7 @@ $bg_image_sm       = isset( $section[ "bg_image_sm_{$hash}" ] ) ? $section[ "bg_
 	<?php
 	if ( ! empty( $banner_title ) ) {
 		?>
-			<h1><?php echo esc_html( $banner_title ); ?></h1>
+			<h1><?php echo esc_html( $banner_title . ' ' . $sub_title ); ?></h1>
 		<?php
 	}
 	if ( ! empty( $sub_title ) ) {

@@ -134,7 +134,9 @@ function generate_prose_block( $group_title, $location_value, $location_param, $
 				array(
 					array(
 						'param'    => $location_param,
+						'param'    => $location_param,
 						'operator' => '==',
+						'value'    => $location_value,
 						'value'    => $location_value,
 					),
 				),
