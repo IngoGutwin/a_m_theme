@@ -27,7 +27,7 @@ $bg_image_sm       = isset( $section[ "bg_image_sm_{$hash}" ] ) ? $section[ "bg_
 	<?php
 	if ( ! empty( $button_text ) ) {
 		get_template_part(
-			'parts/button',
+			'parts/contact-button',
 			'',
 			array(
 				'button_text' => $button_text,

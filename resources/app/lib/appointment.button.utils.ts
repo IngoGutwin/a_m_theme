@@ -4,7 +4,7 @@ const appointmetnButtons = document.querySelectorAll<HTMLButtonElement>(".book-a
 const globalVariables = loadGlobalVariables();
 
 function loadListeners() {
-  if (globalVariables) {
+  if (globalVariables?.contactPageUrl) {
     appointmetnButtons.forEach((button: HTMLButtonElement) => {
       button.addEventListener(
         "click",

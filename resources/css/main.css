@@ -31,7 +31,6 @@ main {
     p,
     ol,
     ul,
-    a,
     button {
       font-size: clamp(1rem, 0.75rem + 1vw, 1.25rem);
     }
