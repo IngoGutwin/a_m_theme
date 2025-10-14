@@ -9,6 +9,7 @@ const navbarLinks = navbar?.querySelector<HTMLUListElement>("#navigation-links")
 const shootingsToggle = navbar?.querySelector<HTMLButtonElement>("#shootings-toggle");
 const shootingLinks = navbar?.querySelector<HTMLUListElement>("#shooting-links");
 const shootingToggleIcon = navbar?.querySelector<SVGElement>("#shootings-toggle-icon");
+navbarToggle?.addEventListener("click", toggleNavbar);
 
 /**
  * Toggles a data attribute on an HTML element between "true" and "false"
@@ -20,9 +21,9 @@ const shootingToggleIcon = navbar?.querySelector<SVGElement>("#shootings-toggle-
 function toggleDataAttribute(
   element: HTMLElement | null | undefined,
   attribute: string = "isToggled"
-): void {
+) {
   if (!element) {
-    console.warn("Elemnt not found for toggle operation");
+    console.warn("Element not found for toggle operation");
     return;
   }
   if (element === navbarLinks && shootingLinks?.dataset[attribute] === "true") {
@@ -34,21 +35,22 @@ function toggleDataAttribute(
   element.dataset[attribute] = currentValue === "true" ? "false" : "true";
 }
 
-function toggleShootings(): void {
+function toggleShootings() {
   toggleDataAttribute(shootingLinks);
   shootingToggleIcon?.classList.toggle("rotate-180");
   shootingsToggle?.classList.toggle("bg-blue/50");
 }
 
-function toggleNavbar(): void {
+function transforToggleMenu() {
+  if (navbarToggle) {
+    toggleDataAttribute(navbarToggle);
+    navbarToggle.children[0].classList.toggle("first-div");
+    navbarToggle.children[1].classList.toggle("second-div");
+    navbarToggle.children[2].classList.toggle("third-div");
+  }
+}
+
+function toggleNavbar() {
   toggleDataAttribute(navbarLinks);
-  navbarToggle?.classList.toggle("bg-blue/50");
-}
-
-function initNavBar() {
-  navbarToggle?.addEventListener("click", toggleNavbar);
-}
-
-if (navbar) {
-  initNavBar();
+  transforToggleMenu();
 }

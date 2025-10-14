@@ -1,6 +1,5 @@
 interface GlobalVariables {
   contactPageUrl: string;
-  time: number;
 }
 
 let _globals: GlobalVariables | null = null;
@@ -19,10 +18,10 @@ export function loadGlobalVariables(): GlobalVariables | null {
   if (!data) {
     return null;
   }
+  delete app.dataset.globalVariables;
 
   try {
     _globals = JSON.parse(data) as GlobalVariables;
-    _globals.time = Date.now();
     return _globals;
   } catch (error) {
     console.error(error);
