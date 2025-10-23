@@ -86,11 +86,11 @@ function load_acf_fields_shooting_page(): void {
 	generate_banner_cta_section( 'Hero Section Shooting', $location_value, $location_param, 0 );
 	generate_prose_block( 'Shooting Prices', $location_value, $location_param, 1 );
 	generate_gallery_slider( 'Shooting Impressions Gallery', 10, $location_value, $location_param, 2 );
-	generate_teaser_slides( 'Shooting Products Teaser Slides', 10, $location_value, $location_param, 3 );
-	generate_prose_block( 'Shooting Checkup List', $location_value, $location_param, 4 );
-	generate_banner_cta_section( 'Shooting Advertisement Banner', $location_value, $location_param, 5 );
-	generate_gallery_slider( 'Shooting Advertisement Impressions', 10, $location_value, $location_param, 6 );
-	generate_prose_block( 'Shooting Infos Prose Block', $location_value, $location_param, 7 );
+	generate_prose_block( 'Shooting Checkup List', $location_value, $location_param, 3 );
+	generate_banner_cta_section( 'Shooting Advertisement Banner', $location_value, $location_param, 4 );
+	generate_gallery_slider( 'Shooting Advertisement Impressions', 10, $location_value, $location_param, 5 );
+	generate_prose_block( 'Shooting Infos Prose Block', $location_value, $location_param, 6 );
+	generate_teaser_slides( 'Shooting Products Teaser Slides', 10, $location_value, $location_param, 7 );
 }
 
 /**
