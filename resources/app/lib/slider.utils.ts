@@ -10,23 +10,19 @@ const defaultConfig: SwiperOptions = {
   allowTouchMove: true,
   grabCursor: true,
   slidesPerView: "auto",
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
 };
 
 const teaserSliderConfig: SwiperOptions = {
   ...defaultConfig,
-  navigation: {
-    nextEl: ".teaser-section .swiper-button-next",
-    prevEl: ".teaser-section .swiper-button-prev",
-  },
 };
 
 const galleryOneConfig: SwiperOptions = {
   ...defaultConfig,
   centeredSlides: true,
-  navigation: {
-    nextEl: ".gallery-section .swiper-button-next",
-    prevEl: ".gallery-section .swiper-button-prev",
-  },
 };
 
 export function initSwiper() {

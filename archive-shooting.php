@@ -51,7 +51,7 @@ if ( $shootings->have_posts() ) {
 					<li>
 						<a href="<?php echo esc_html( get_the_permalink( $the_post_id ) ); ?>">
 							<article>
-								<h2><?php echo esc_html( $hero_title ); ?></h2>
+								<h3><?php echo esc_html( $hero_title ); ?></h3>
 								<p><?php echo esc_html( $sub_title ); ?></p>
 							</article>
 							<picture>
@@ -74,7 +74,6 @@ if ( $shootings->have_posts() ) {
 				?>
 			</ul>
 		</section>
-		<!-- shootings archive end  -->
 	<?php
 }
 

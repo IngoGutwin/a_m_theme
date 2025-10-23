@@ -2,6 +2,9 @@
   "name": "a_m_theme",
   "version": "1.0.0",
   "private": "true",
+  "engines": {
+    "node": "22.20.0"
+   },
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",

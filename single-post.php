@@ -20,17 +20,23 @@ get_template_part( 'parts/header-default', 'default' );
 
 get_template_part( 'parts/navbar' );
 
-get_template_part(
-	'parts/banner-call-to-action',
-	'',
-	array(
-		'page_fields' => $hero_section_fields,
-		'css_class'   => 'banner',
-	)
-);
+if ( ! empty( $hero_section_fields ) ) {
+	get_template_part(
+		'parts/banner-call-to-action',
+		'',
+		array(
+			'page_fields' => $hero_section_fields,
+			'css_class'   => 'banner',
+		)
+	);
+}
 
-get_template_part( 'parts/prose-block', 'default', $blog_post );
+if ( ! empty( $blog_post ) ) {
+	get_template_part( 'parts/prose-block', 'default', $blog_post );
+}
 
-get_template_part( 'parts/gallery-slider', '', $gallery_slider );
+if ( ! empty( $gallery_slider ) ) {
+	get_template_part( 'parts/gallery-slider', '', $gallery_slider );
+}
 
 get_template_part( 'parts/footer-default' );

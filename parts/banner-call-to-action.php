@@ -13,6 +13,7 @@ $banner_title      = $section[ "title_{$hash}" ] ?? '';
 $sub_title         = $section[ "sub_title_{$hash}" ] ?? '';
 $description       = $section[ "description_{$hash}" ] ?? '';
 $button_text       = $section[ "button_text_{$hash}" ] ?? '';
+$button_url       = $section[ "button_url_{$hash}" ] ?? '';
 $bg_image_xl       = isset( $section[ "bg_image_xl_{$hash}" ] ) ? $section[ "bg_image_xl_{$hash}" ] . ' 1448w' : '';
 $bg_image_sm       = isset( $section[ "bg_image_sm_{$hash}" ] ) ? $section[ "bg_image_sm_{$hash}" ] . ' 558w' : '';
 ?>
@@ -31,6 +32,7 @@ $bg_image_sm       = isset( $section[ "bg_image_sm_{$hash}" ] ) ? $section[ "bg_
 			'',
 			array(
 				'button_text' => $button_text,
+				'button_url'  => $button_url,
 				'css_class'   => 'book-appointment-btn',
 			)
 		);
@@ -41,7 +43,7 @@ $bg_image_sm       = isset( $section[ "bg_image_sm_{$hash}" ] ) ? $section[ "bg_
 	<?php
 	if ( ! empty( $banner_title ) ) {
 		?>
-			<h1><?php echo esc_html( $banner_title . ' ' . $sub_title ); ?></h1>
+			<h1><?php echo esc_html( $banner_title ); ?></h1>
 		<?php
 	}
 	if ( ! empty( $sub_title ) ) {

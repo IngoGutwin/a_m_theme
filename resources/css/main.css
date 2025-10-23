@@ -21,11 +21,15 @@ main {
     }
 
     h2 {
-      font-size: clamp(1.3rem, 0.75rem + 3.39vw, 1.44rem);
+      font-size: clamp(1.3rem, 0.75rem + 3vw, 2.2rem);
     }
 
     h3 {
-      font-size: clamp(1.1rem, 0.75rem + 2vw, 1.4rem);
+      font-size: clamp(1.1rem, 0.75rem + 2vw, 2rem);
+    }
+
+    h4 {
+      font-size: clamp(0.9rem, 0.75rem + 2vw, 1.5rem);
     }
 
     p,
@@ -33,7 +37,7 @@ main {
     ul,
     a,
     button {
-      font-size: clamp(1rem, 0.75rem + 1vw, 1.25rem);
+      font-size: clamp(1rem, 0.75rem + 1vw, 1.4rem);
     }
   }
 

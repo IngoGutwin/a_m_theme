@@ -40,28 +40,32 @@ function get_page_fields( $post_id ) {
 	$field_groups = acf_get_field_groups( array( 'post_id' => $post_id ) );
 
 	foreach ( $field_groups as $field_group ) {
+		$current_fields_data = array();
 
 		// 3. Get all fields of this group (returns definitions, not values)
 		$acf_group_fields = acf_get_fields( $field_group['key'] );
 
-		$group_hash                                    = preg_replace( '/^group_/', '', $field_group['key'] );
-		$result[ $field_group['title'] ]['group_hash'] = $group_hash;
-		$result[ $field_group['title'] ]['field_group_title'] = $field_group['title'];
-
 		// 4. Loop through each field in the group
 		foreach ( $acf_group_fields as $acf_group ) {
+			$field_name = $acf_group['name'];
 			if ( 'group' === $acf_group['type'] ) {
 				// 👉 Special case: if the field itself is a group,
 				// get_field() will return an associative array of all sub-fields
-				$group_name                                     = $acf_group['name'];
-				$group_values                                   = get_field( $group_name, $post_id );
-				$result[ $field_group['title'] ][ $group_name ] = $group_values;
+				$group_values                       = get_field( $field_name, $post_id );
+				$current_fields_data[ $field_name ] = $group_values;
 			} else {
 				// 👉 Normal field (not a group)
-				$field_name                                     = $acf_group['name'];
-				$field_value                                    = get_field( $field_name, $post_id, true, true );
-				$result[ $field_group['title'] ][ $field_name ] = $field_value;
+				$field_name                         = $acf_group['name'];
+				$field_value                        = get_field( $field_name, $post_id, true, true );
+				$current_fields_data[ $field_name ] = $field_value;
 			}
+		}
+		if ( array_filter( $current_fields_data ) ) {
+			$result[ $field_group['title'] ] = $current_fields_data;
+
+			$group_hash                                    = preg_replace( '/^group_/', '', $field_group['key'] );
+			$result[ $field_group['title'] ]['group_hash'] = $group_hash;
+			$result[ $field_group['title'] ]['field_group_title'] = $field_group['title'];
 		}
 	}
 	return $result;

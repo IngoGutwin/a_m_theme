@@ -37,10 +37,12 @@ function generate_teaser_slides( $group_title, $slides_count, $location_value, $
 	$field_group_hash = md5( "$group_title" );
 
 	for ( $i = 0; $i < $slides_count; $i++ ) {
+		$fields_hash = md5( "{$group_title}_{$i}" );
+
 		$fields[] = array(
 			'key'               => "field_{$field_group_hash}_{$i}",
 			'label'             => 'Product ' . $i + 1,
-			'name'              => "{$group_title}b_{$i}",
+			'name'              => "{$group_title}_{$i}",
 			'type'              => 'group',
 			'instructions'      => '',
 			'required'          => 0,
@@ -111,7 +113,6 @@ function generate_teaser_slides( $group_title, $slides_count, $location_value, $
 					'required'      => 0,
 					'wrapper'       => array( 'width' => '50' ),
 					'post_type'     => array( 'page', 'post', 'shooting' ),
-					'post_type'     => array( 'page', 'post', 'shooting' ),
 					'default_value' => '',
 					'placeholder'   => 'https://example.com',
 					'multiple'      => 0,
@@ -129,9 +130,7 @@ function generate_teaser_slides( $group_title, $slides_count, $location_value, $
 				array(
 					array(
 						'param'    => $location_param,
-						'param'    => $location_param,
 						'operator' => '==',
-						'value'    => $location_value,
 						'value'    => $location_value,
 					),
 				),

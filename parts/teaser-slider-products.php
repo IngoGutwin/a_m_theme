@@ -15,18 +15,18 @@ $field_group_title = $args['field_group_title'] ?? '';
 		foreach ( $args as $slide ) {
 			if ( ! empty( $slide['url'] ) ) {
 				?>
-				<a href="<?php echo esc_html( $slide['url'] ); ?>">
-					<div class="swiper-slide teaser-slide">
+				<div class="swiper-slide teaser-slide">
+					<a href="<?php echo esc_html( $slide['url'] ); ?>">
 						<article>
-								<h2><?php echo esc_html( $slide['title'] ); ?></h2>
+								<h3><?php echo esc_html( $slide['title'] ); ?></h3>
 								<p><?php echo esc_html( $slide['sub_title'] ); ?></p>
 						</article>
 						<picture>
 							<source type="image/webp" srcset="<?php echo esc_html( $slide['image'] ); ?>" />
 							<img src="<?php echo esc_html( $slide['image'] ); ?>" srcset="<?php echo esc_html( $slide['image'] . ' 558w' ); ?>" />
 						</picture>
-					</div>
-				</a>
+					</a>
+				</div>
 				<?php
 				// count up $index.
 				++$index;
@@ -34,6 +34,6 @@ $field_group_title = $args['field_group_title'] ?? '';
 		}
 		?>
 	</div>
-	<div class="swiper-button-prev"></div>
+	<div class="swiper-button-prev "></div>
 	<div class="swiper-button-next"></div>
 </section>
