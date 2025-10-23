@@ -14,23 +14,19 @@
   .nav-right {
     @apply flex items-center;
 
-    > button {
-      @apply flex cursor-pointer items-center p-2 font-lato-bold font-bold hover:bg-blue/20;
+    button {
+      @apply flex cursor-pointer items-center p-2 font-lato-bold font-bold hover:bg-brown/20;
     }
 
-    > a {
-      @apply flex cursor-pointer items-center p-2 font-lato-bold font-bold hover:bg-blue/20;
+    a {
+      @apply flex cursor-pointer items-center p-2 font-lato-bold font-bold hover:bg-brown/20;
+      font-size: clamp(1rem, 0.75rem + 1vw, 1.25rem);
     }
 
-    > a {
-      @apply flex cursor-pointer items-center p-2 font-lato-bold font-bold hover:bg-blue/20 md:text-2xl;
-    }
-
-    .shootings,
     .navigation {
-      @apply absolute top-12 right-0 z-50 flex w-full rounded-2xl bg-blue p-8 font-lato-regular font-bold text-creme transition-transform md:top-24;
+      @apply absolute top-20 right-0 z-50 flex w-full rounded-2xl bg-blue p-8 font-lato-regular font-bold text-creme transition-all duration-300 ease-in-out md:top-34;
 
-      > li {
+      li {
         a {
           @apply h-full w-full rounded-2xl p-2;
 
@@ -41,21 +37,45 @@
       }
     }
 
-    .shootings[data-is-toggled="false"],
     .navigation[data-is-toggled="false"] {
-      @apply hidden translate-x-52;
+      @apply pointer-events-none -translate-y-56 opacity-0;
     }
 
-    .shootings[data-is-toggled="true"],
     .navigation[data-is-toggled="true"] {
-      @apply visible translate-x-0;
+      @apply pointer-events-auto translate-y-0 opacity-100;
     }
 
     .hamburger {
-      @apply cursor-pointer hover:bg-brown/20;
+      @apply cursor-pointer p-1;
 
-      > div {
-        @apply my-1 h-[4px] w-8 rounded-2xl bg-blue md:h-[6px] md:w-10;
+      div {
+        @apply my-1 h-[4px] w-8 rounded-2xl transition-all duration-500 ease-in-out md:h-[6px] md:w-10;
+      }
+    }
+
+    .hamburger[data-is-toggled="false"] {
+      @apply hover:bg-brown/20;
+
+      div {
+        @apply bg-blue;
+      }
+    }
+
+    .hamburger[data-is-toggled="true"] {
+      @apply bg-blue hover:bg-blue/20;
+
+      div {
+        @apply bg-creme opacity-100;
+      }
+
+      .first-div {
+        @apply translate-x-1 translate-y-2 rotate-45;
+      }
+      .second-div {
+        @apply -translate-x-9 opacity-0;
+      }
+      .third-div {
+        @apply -translate-x-1 -translate-y-2 -rotate-45;
       }
     }
   }

@@ -22,7 +22,7 @@ $shootings_url         = $shooting_menu_items[0]->url;
 			Foto-Shootings
 		</a>
 
-		<div class="hamburger" id="navbar-toggle">
+		<div class="hamburger" id="navbar-toggle" data-is-toggled="false">
 			<div></div>
 			<div></div>
 			<div></div>
@@ -31,7 +31,7 @@ $shootings_url         = $shooting_menu_items[0]->url;
 		<ul
 			class="navigation"
 			id="navigation-links"
-			data-is-toggled="false">
+			data-is-toggled="false"
 			<?php
 			foreach ( $navigation_menu_items as $item ) {
 				if ( 'home' === $item->post_title ) {
