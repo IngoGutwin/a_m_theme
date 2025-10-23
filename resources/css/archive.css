@@ -9,7 +9,8 @@
         @apply w-full;
 
         article {
-          h2 {
+          @apply md:max-w-[340px] lg:max-w-[450px] xl:max-w-[550px];
+          h3 {
             @apply py-2 font-lato-bold font-bold;
           }
 

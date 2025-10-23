@@ -1,8 +1,9 @@
 .swiper {
-  @apply my-8;
   --swiper-navigation-color: var(--color-brown);
 
   .swiper-wrapper {
+    @apply my-8;
+
     .gallery-slide {
       @apply m-auto flex w-auto items-center justify-center px-2;
 
@@ -17,13 +18,14 @@
       article {
         @apply flex flex-col items-start self-start pb-2;
 
-        h2 {
+        h3 {
           @apply pb-2 text-start font-lato-bold font-bold;
         }
         p {
           @apply font-lato-regular;
         }
       }
+
       img {
         @apply max-w-[360px];
       }
