@@ -20,15 +20,19 @@ get_template_part( 'parts/header-default' );
 
 get_template_part( 'parts/navbar' );
 
-get_template_part(
-	'parts/banner-call-to-action',
-	'',
-	array(
-		'page_fields' => $hero_section_fields,
-		'css_class'   => 'banner',
-	)
-);
+if ( ! empty( $hero_section_fields ) ) {
+	get_template_part(
+		'parts/banner-call-to-action',
+		'',
+		array(
+			'page_fields' => $hero_section_fields,
+			'css_class'   => 'banner',
+		)
+	);
+}
 
-get_template_part( 'parts/prose-block', 'default', $description_block_fields );
+if ( ! empty( $description_block_fields ) ) {
+	get_template_part( 'parts/prose-block', 'default', $description_block_fields );
+}
 
 get_template_part( 'parts/footer-default', 'default', $footer_section );

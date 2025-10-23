@@ -34,36 +34,56 @@ get_template_part( 'parts/header-default' );
 
 get_template_part( 'parts/navbar' );
 
-get_template_part(
-	'parts/banner-call-to-action',
-	'',
-	array(
-		'page_fields' => $hero_section_fields,
-		'css_class'   => 'banner',
-	)
-);
+if ( ! empty( $hero_section_fields ) ) {
+	get_template_part(
+		'parts/banner-call-to-action',
+		'',
+		array(
+			'page_fields' => $hero_section_fields,
+			'css_class'   => 'banner',
+		)
+	);
+}
 
-get_template_part( 'parts/teaser-slider-products', 'products', $product_teaser_fields );
+if ( ! empty( $product_teaser_fields ) ) {
+	get_template_part( 'parts/teaser-slider-products', 'products', $product_teaser_fields );
+}
 
-get_template_part( 'parts/prose-block', 'default', $teaser_prose_block_fields );
+if ( ! empty( $teaser_prose_block_fields ) ) {
+	get_template_part( 'parts/prose-block', 'default', $teaser_prose_block_fields );
+}
 
-get_template_part( 'parts/gallery-slider', '', $impressions_galley_one_fields );
+if ( ! empty( $impressions_galley_one_fields ) ) {
+	get_template_part( 'parts/gallery-slider', '', $impressions_galley_one_fields );
+}
 
-get_template_part( 'parts/prose-block', 'default', $info_call_to_action_fields );
+if ( ! empty( $info_call_to_action_fields ) ) {
+	get_template_part( 'parts/prose-block', 'default', $info_call_to_action_fields );
+}
 
-get_template_part(
-	'parts/banner-call-to-action',
-	'',
-	array(
-		'page_fields' => $call_to_action_ads_banner,
-		'css_class'   => 'ads-banner',
-	)
-);
+if ( ! empty( $call_to_action_ads_banner ) ) {
+	get_template_part(
+		'parts/banner-call-to-action',
+		'',
+		array(
+			'page_fields' => $call_to_action_ads_banner,
+			'css_class'   => 'ads-banner',
+		)
+	);
+}
 
-get_template_part( 'parts/prose-block', 'default', $call_to_action_ads_banner_message );
+if ( ! empty( $call_to_action_ads_banner_message ) ) {
+	get_template_part( 'parts/prose-block', 'default', $call_to_action_ads_banner_message );
+}
 
-get_template_part( 'parts/gallery-slider', '', $impressions_galley_two );
+if ( ! empty( $impressions_galley_two ) ) {
+	get_template_part( 'parts/gallery-slider', '', $impressions_galley_two );
+}
 
-get_template_part( 'parts/prose-block', 'default', $advertisement_seo_block );
+if ( ! empty( $advertisement_seo_block ) ) {
+	get_template_part( 'parts/prose-block', 'default', $advertisement_seo_block );
+}
 
-get_template_part( 'parts/footer-default', 'default', $footer_section );
+if ( ! empty( $footer_section ) ) {
+	get_template_part( 'parts/footer-default', 'default', $footer_section );
+}
