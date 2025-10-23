@@ -52,7 +52,9 @@ function get_page_fields( $post_id ) {
 				// 👉 Special case: if the field itself is a group,
 				// get_field() will return an associative array of all sub-fields
 				$group_values                       = get_field( $field_name, $post_id );
-				$current_fields_data[ $field_name ] = $group_values;
+				if ( array_filter( $group_values ) ) {
+					$current_fields_data[ $field_name ] = $group_values;
+				}
 			} else {
 				// 👉 Normal field (not a group)
 				$field_name                         = $acf_group['name'];
