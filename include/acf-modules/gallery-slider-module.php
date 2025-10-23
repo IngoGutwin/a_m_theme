@@ -105,9 +105,7 @@ function generate_gallery_slider( $group_title, $slides_count, $location_value, 
 				array(
 					array(
 						'param'    => $location_param,
-						'param'    => $location_param,
 						'operator' => '==',
-						'value'    => $location_value,
 						'value'    => $location_value,
 					),
 				),
