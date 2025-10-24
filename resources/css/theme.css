@@ -36,28 +36,28 @@
 
 @font-face {
   font-family: "Cormorant Regular";
-  src: url("http://localhost:5173/fonts/cormorant/Cormorant-Regular.ttf") format("truetype");
+  src: url("../fonts/cormorant/Cormorant-Regular.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
 }
 
 @font-face {
   font-family: "Cormorant Bold";
-  src: url("http://localhost:5173/fonts/cormorant/Cormorant-Bold.ttf") format("truetype");
+  src: url("../fonts/cormorant/Cormorant-Bold.ttf") format("truetype");
   font-style: normal;
   font-weight: 700;
 }
 
 @font-face {
   font-family: "Lato Regular";
-  src: url("http://localhost:5173/fonts/lato/Lato-Regular.ttf") format("truetype");
+  src: url("../fonts/lato/Lato-Regular.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
 }
 
 @font-face {
   font-family: "Lato Bold";
-  src: url("http://localhost:5173/fonts/lato/Lato-Bold.ttf") format("truetype");
+  src: url("../fonts/lato/Lato-Bold.ttf") format("truetype");
   font-style: normal;
   font-weight: 700;
 }
