@@ -21,11 +21,13 @@ add_theme_support( 'post-thumbnails' );
  * @return void
  */
 function am_theme_enqueue_production_scripts(): void {
-	$json_manifest = json_decode( file_get_contents( get_template_directory() . '/dist/.vite/manifest.json' ), true );
-	$entry_assets  = $json_manifest['resources/app/index.ts'];
-	$entry_css     = $entry_assets['css'];
-	wp_enqueue_script_module( $entry_assets['name'], get_theme_file_uri( '/dist/' ) . $entry_assets['file'], array(), null );
-	wp_enqueue_style( $entry_assets['name'], get_theme_file_uri( '/dist/' ) . $entry_css[0], array(), null );
+	$json_manifest    = json_decode( file_get_contents( get_template_directory() . '/dist/.vite/manifest.json' ), true );
+	$js_files_path = $json_manifest['resources/app/index.ts'];
+	$swiper_css_path = $js_files_path['css'][0];
+	$css_files_path = $json_manifest['resources/css/main.css'];
+	wp_enqueue_script_module( $js_files_path['name'], get_theme_file_uri( '/dist/' ) . $js_files_path['file'], array(), null );
+	wp_enqueue_style( 'swiper-css', get_theme_file_uri( '/dist/' ) . $swiper_css_path, array(), null, 'all' );
+	wp_enqueue_style( 'main', get_theme_file_uri( '/dist/' ) . $css_files_path['file'], array(), null, 'all' );
 }
 
 /**

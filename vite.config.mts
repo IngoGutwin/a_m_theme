@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 
 export default defineConfig(({ mode }) => ({
   publicDir: "public",
-  base: "",
+  base: mode === "development" ? "/" : "/wp-content/themes/a_m_theme/",
   css: {
     devSourcemap: true,
   },
@@ -52,12 +52,13 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     outDir: "dist",
-    assetsDir: "assets",
+    assetsDir: "resources",
     manifest: true,
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: fileURLToPath(new URL("/resources/app/index.ts", import.meta.url)),
+        mainJS: fileURLToPath(new URL("/resources/app/index.ts", import.meta.url)),
+        mainCss: fileURLToPath(new URL("/resources/css/main.css", import.meta.url)),
       },
     },
   },

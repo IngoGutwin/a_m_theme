@@ -84,6 +84,4 @@ if ( ! empty( $advertisement_seo_block ) ) {
 	get_template_part( 'parts/prose-block', 'default', $advertisement_seo_block );
 }
 
-if ( ! empty( $footer_section ) ) {
-	get_template_part( 'parts/footer-default', 'default', $footer_section );
-}
+get_template_part( 'parts/footer-default', 'default', $footer_section );
