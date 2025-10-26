@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 
 export default defineConfig(({ mode }) => ({
   publicDir: "public",
-  base: "",
+  base: mode === "development" ? "/" : "/wp-content/themes/a_m_theme/",
   css: {
     devSourcemap: true,
   },
