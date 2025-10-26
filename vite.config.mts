@@ -57,7 +57,8 @@ export default defineConfig(({ mode }) => ({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: fileURLToPath(new URL("/resources/app/index.ts", import.meta.url)),
+        "js": fileURLToPath(new URL("/resources/app/index.ts", import.meta.url)),
+        "css": fileURLToPath(new URL("/resources/css/main.css", import.meta.url)),
       },
     },
   },
