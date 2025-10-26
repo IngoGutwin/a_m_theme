@@ -1,17 +1,10 @@
 node_modules
 dist
 
-.editorconfig
-.gitignore
-.prettier.config.js
-.prettierignore
-.prettierrc
-eslint.config.mts
 package-lock.json
 package.json
 tsconfig.json
 vite.config.mts
 resources
 
-composer.json
-composer.lock
+vendor
