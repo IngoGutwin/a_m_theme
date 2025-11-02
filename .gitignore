@@ -8,3 +8,5 @@ vite.config.mts
 resources
 
 vendor
+.env
+logs

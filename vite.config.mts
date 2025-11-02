@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 
 export default defineConfig(({ mode }) => ({
   publicDir: "public",
-  base: mode === "development" ? "/" : "/wp-content/themes/a_m_theme/",
+  base: mode === "development" ? "/" : "/wp-content/themes/a_m_theme/dist",
   css: {
     devSourcemap: true,
   },
@@ -52,7 +52,7 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     outDir: "dist",
-    assetsDir: "resources",
+    assetsDir: "",
     manifest: true,
     emptyOutDir: true,
     rollupOptions: {
