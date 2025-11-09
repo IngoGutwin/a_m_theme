@@ -52,7 +52,7 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     outDir: "dist",
-    assetsDir: "assets",
+    assetsDir: "",
     manifest: true,
     emptyOutDir: true,
     rollupOptions: {
