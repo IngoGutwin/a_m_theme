@@ -15,7 +15,6 @@ export function loadGlobalVariables(): GlobalVariables | null {
   }
 
   let data = app.dataset.globalVariables;
-  delete app.dataset.globalVariables;
   if (!data) {
     return null;
   }

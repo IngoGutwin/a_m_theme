@@ -13,18 +13,28 @@ $banner_title      = $section[ "title_{$hash}" ] ?? '';
 $sub_title         = $section[ "sub_title_{$hash}" ] ?? '';
 $description       = $section[ "description_{$hash}" ] ?? '';
 $button_text       = $section[ "button_text_{$hash}" ] ?? '';
-$button_url       = $section[ "button_url_{$hash}" ] ?? '';
-$bg_image_xl       = isset( $section[ "bg_image_xl_{$hash}" ] ) ? $section[ "bg_image_xl_{$hash}" ] . ' 1448w' : '';
-$bg_image_sm       = isset( $section[ "bg_image_sm_{$hash}" ] ) ? $section[ "bg_image_sm_{$hash}" ] . ' 558w' : '';
+$button_url        = $section[ "button_url_{$hash}" ] ?? '';
+$bg_image_xl       = '';
+$bg_image_sm       = '';
+if ( ! empty( $section[ "bg_image_xl_{$hash}" ] ) ) {
+	$bg_image_xl = $section[ "bg_image_xl_{$hash}" ] . $bg_image_xl;
+	$bg_image_sm = $section[ "bg_image_sm_{$hash}" ] . $bg_image_sm;
+}
 ?>
 <!-- <?php echo esc_html( $field_group_title ); ?> start -->
 <section class="<?php echo esc_html( $css_class ); ?>">
+	<?php
+	if ( ! empty( $bg_image_sm ) || ! empty( $bg_image_xl ) ) {
+		?>
 	<picture>
 		<source media="(min-width:465px)" type="image/jpeg" srcset="<?php echo esc_html( $bg_image_sm ); ?>">
 		<source media="(max-width:465px)" type="image/jpeg" srcset="<?php echo esc_html( $bg_image_xl ); ?>">
 		<img srcset="<?php echo esc_html( implode( ', ', array( $bg_image_sm, $bg_image_xl ) ) ); ?>" src="<?php echo esc_html( $bg_image_xl ); ?>" alt="" />
 	</picture>
 
+		<?php
+	}
+	?>
 	<?php
 	if ( ! empty( $button_text ) ) {
 		get_template_part(
