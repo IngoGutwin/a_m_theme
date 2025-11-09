@@ -24,6 +24,24 @@ function am_theme_enqueue_production_scripts(): void {
 	$json_manifest = json_decode( file_get_contents( get_template_directory() . '/dist/.vite/manifest.json' ), true );
 	$entry_assets  = $json_manifest['resources/app/index.ts'];
 	$entry_css     = $entry_assets['css'];
+	wp_enqueue_script(
+		'ccm19-app',
+		COOKIE_API_URL,
+		array(),
+		null,
+		false
+	);
+	add_filter(
+		'script_loader_tag',
+		function ( $tag, $handle ) {
+			if ( $handle === 'ccm19-app' ) {
+				return str_replace( '<script ', '<script referrerpolicy="origin" ', $tag );
+			}
+			return $tag;
+		},
+		10,
+		2
+	);
 	wp_enqueue_script_module( $entry_assets['name'], get_theme_file_uri( '/dist/' ) . $entry_assets['file'], array(), null );
 	wp_enqueue_style( $entry_assets['name'], get_theme_file_uri( '/dist/' ) . $entry_css[0], array(), null );
 }
