@@ -47,7 +47,7 @@ $contact   = $footer_fields[ "contact_{$hash}" ] ?? '';
 			</ul>
 			<p class="copyright">
 				©
-				<?php echo esc_html( gmdate( 'Y' ) ); ?> your companys name
+				<?php echo esc_html( gmdate( 'Y' ) ); ?> Ina Gutwin
 				<br>
 				Alle Rechte vorbehalten. Alle Preise verstehen sich inkl. MwSt
 			</p>
