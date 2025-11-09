@@ -19,7 +19,7 @@ $field_group_title = $args['field_group_title'] ?? '';
 					<a href="<?php echo esc_html( $slide['url'] ); ?>">
 						<article>
 								<h3><?php echo esc_html( $slide['title'] ); ?></h3>
-								<p><?php echo esc_html( $slide['sub_title'] ); ?></p>
+								<h5><?php echo esc_html( $slide['sub_title'] ); ?></h5>
 						</article>
 						<picture>
 							<source type="image/webp" srcset="<?php echo esc_html( $slide['image'] ); ?>" />

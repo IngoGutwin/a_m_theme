@@ -32,6 +32,10 @@ main {
       font-size: clamp(0.9rem, 0.75rem + 2vw, 1.5rem);
     }
 
+    h5 {
+      font-size: clamp(0.7rem, 0.75rem + 1vw, 1.1rem);
+    }
+
     p,
     ol,
     ul,
