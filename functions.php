@@ -21,42 +21,32 @@ add_theme_support( 'post-thumbnails' );
  * @return void
  */
 function am_theme_enqueue_production_scripts(): void {
-	$json_manifest    = json_decode( file_get_contents( get_template_directory() . '/dist/.vite/manifest.json' ), true );
-	$js_files_path = $json_manifest['resources/app/index.ts'];
-	$swiper_css_path = $js_files_path['css'][0];
-	$css_files_path = $json_manifest['resources/css/main.css'];
-	wp_enqueue_script_module( $js_files_path['name'], get_theme_file_uri( '/dist/' ) . $js_files_path['file'], array(), null );
-	wp_enqueue_style( 'swiper-css', get_theme_file_uri( '/dist/' ) . $swiper_css_path, array(), null, 'all' );
-	wp_enqueue_style( 'main', get_theme_file_uri( '/dist/' ) . $css_files_path['file'], array(), null, 'all' );
+	$json_manifest = json_decode( file_get_contents( get_template_directory() . '/dist/.vite/manifest.json' ), true );
+	$entry_assets  = $json_manifest['resources/app/index.ts'];
+	$entry_css     = $entry_assets['css'];
+	wp_enqueue_script(
+		'ccm19-app',
+		COOKIE_API_URL,
+		array(),
+		null,
+		false
+	);
+	add_filter(
+		'script_loader_tag',
+		function ( $tag, $handle ) {
+			if ( $handle === 'ccm19-app' ) {
+				return str_replace( '<script ', '<script referrerpolicy="origin" ', $tag );
+			}
+			return $tag;
+		},
+		10,
+		2
+	);
+	wp_enqueue_script_module( $entry_assets['name'], get_theme_file_uri( '/dist/' ) . $entry_assets['file'], array(), null );
+	wp_enqueue_style( $entry_assets['name'], get_theme_file_uri( '/dist/' ) . $entry_css[0], array(), null );
 }
 
-/**
- * Enqueue scripts and styles for development mode (Vite dev server).
- *
- * @return void
- */
-function am_theme_enqueue_development_scripts(): void {
-	$resources_path = '/resources';
-	$id_vite_client = 'vite-client';
-	$vite_host_url  = 'http://localhost:5173';
-	wp_enqueue_script_module( $id_vite_client, $vite_host_url . '/@vite/client', array(), null );
-	wp_enqueue_script_module( 'index', $vite_host_url . $resources_path . '/app/index.ts', array(), null );
-	wp_enqueue_style( 'main', $vite_host_url . $resources_path . '/css/main.css', array(), null );
-}
-
-/**
- * Enqueue scripts depending on the current environment.
- *
- * @return void
- */
-function am_theme_handle_scripts(): void {
-	if ( WP_ENVIRONMENT === 'production' ) {
-		am_theme_enqueue_production_scripts();
-	} else {
-		am_theme_enqueue_development_scripts();
-	}
-}
-add_action( 'wp_enqueue_scripts', 'am_theme_handle_scripts' );
+add_action( 'wp_enqueue_scripts', 'am_theme_enqueue_production_scripts' );
 
 /**
  * Load ACF blocks and register custom field groups for landing page template.
