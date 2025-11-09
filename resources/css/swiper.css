@@ -19,9 +19,9 @@
         @apply flex flex-col items-start self-start pb-2;
 
         h3 {
-          @apply pb-2 text-start font-lato-bold font-bold;
+          @apply text-start font-lato-bold font-bold;
         }
-        p {
+        h5 {
           @apply font-lato-regular;
         }
       }
