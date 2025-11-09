@@ -7,8 +7,9 @@
    },
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build",
-    "dev-debug": "DEBUG='vite:*' npm run dev"
+    "build": "vite build && npm run copy-images-dir",
+    "dev-debug": "DEBUG='vite:*' npm run dev",
+    "copy-images-dir": "cp -r resources/images/ dist/"
   },
   "keywords": [
     "wordpress",
