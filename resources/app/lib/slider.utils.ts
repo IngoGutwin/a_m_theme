@@ -22,7 +22,6 @@ const teaserSliderConfig: SwiperOptions = {
 
 const galleryOneConfig: SwiperOptions = {
   ...defaultConfig,
-  centeredSlides: true,
 };
 
 export function initSwiper() {
