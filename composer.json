@@ -9,14 +9,15 @@
     }
   ],
   "require": {
-    "wpengine/advanced-custom-fields": "^6.4",
     "vinkla/headache": "^3.5",
-    "enshrined/svg-sanitize": "^0.22.0"
+    "enshrined/svg-sanitize": "^0.22.0",
+    "wpackagist-plugin/advanced-custom-fields": "^6.6.2",
+    "wpackagist-plugin/wordpress-seo": "^26.3"
   },
   "repositories": [
     {
       "type": "composer",
-      "url": "https://composer.advancedcustomfields.com"
+      "url": "https://wpackagist.org"
     }
   ],
   "config": {
