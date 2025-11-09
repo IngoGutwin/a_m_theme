@@ -77,5 +77,7 @@ if ( $shootings->have_posts() ) {
 	<?php
 }
 
+get_template_part( 'parts/prose-block', 'default', $seo_section_fields );
+
 get_template_part( 'parts/footer-default' );
 
