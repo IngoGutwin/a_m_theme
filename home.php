@@ -10,7 +10,7 @@ $page_id = get_option( 'page_for_posts' );
 
 $page_fields = get_page_fields( $page_id );
 
-$hero_section_fields = $page_fields['Hero Section Blog Page'];
+$hero_section_fields = $page_fields['Hero Section Blog Page'] ?? array();
 
 get_template_part( 'parts/header-default', 'default' );
 
@@ -47,7 +47,7 @@ if ( $query->have_posts() ) :
 					<li>
 						<a href="<?php echo esc_html( get_permalink() ); ?>">
 							<article>
-								<h2><?php echo esc_html( the_title() ); ?></h2>
+								<h4><?php echo esc_html( the_title() ); ?></h4>
 								<p><?php echo esc_html( $sub_title ); ?></p>
 							</article>
 							<picture>
