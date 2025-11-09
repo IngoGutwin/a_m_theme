@@ -13,7 +13,7 @@
     }
 
     .teaser-slide {
-      @apply flex w-auto flex-col justify-between px-2;
+      @apply flex w-auto flex-col justify-between px-2 cursor-grab;
 
       article {
         @apply flex flex-col items-start self-start pb-2;

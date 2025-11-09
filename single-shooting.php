@@ -46,7 +46,7 @@ if ( ! empty( $shooting_prices_fields ) ) {
 	get_template_part( 'parts/prose-block', 'default', $shooting_prices_fields );
 }
 
-if ( ! empty( $shooting_impression_fields ) ) {
+if ( ! empty( $shooting_impressions_fields ) ) {
 	get_template_part( 'parts/gallery-slider', '', $shooting_impressions_fields );
 }
 
