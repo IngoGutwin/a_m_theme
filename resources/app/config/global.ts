@@ -1,5 +1,5 @@
 interface GlobalVariables {
-  contactPageUrl: string;
+  shootingBookingUrl: string;
 }
 
 let _globals: GlobalVariables | null = null;

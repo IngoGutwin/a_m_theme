@@ -8,7 +8,7 @@ function loadListeners() {
     appointmetnButtons.forEach((button: HTMLButtonElement) => {
       button.addEventListener(
         "click",
-        () => (window.location.href = globalVariables.contactPageUrl)
+        () => (window.location.href = globalVariables.shootingBookingUrl)
       );
     });
   }

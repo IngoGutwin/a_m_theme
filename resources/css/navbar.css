@@ -1,5 +1,5 @@
 .navbar {
-  @apply relative mx-auto flex max-w-6xl items-center justify-between bg-creme px-2 md:px-0;
+  @apply relative mx-auto flex max-w-6xl items-center justify-between bg-creme px-2 xl:px-0;
 
   .logo {
     svg {
