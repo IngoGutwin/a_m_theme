@@ -22,10 +22,12 @@ $shootings_url         = $shooting_menu_items[0]->url;
 			Foto-Shootings
 		</a>
 
-		<div class="hamburger" id="navbar-toggle" data-is-toggled="false">
-			<div></div>
-			<div></div>
-			<div></div>
+        <div class="menu" id="hamburger-container" data-is-toggled="false">
+            <div class="hamburger" id="hamburger-menu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
 		</div>
 
 		<ul

@@ -15,8 +15,6 @@ $seo_section_fields = $page_fields['Archive Seo Description'];
 
 get_template_part( 'parts/header-default', 'default' );
 
-get_template_part( 'parts/navbar' );
-
 get_template_part(
 	'parts/banner-call-to-action',
 	'',
