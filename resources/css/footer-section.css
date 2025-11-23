@@ -2,7 +2,7 @@
   @apply flex justify-center bg-blue py-8 text-creme;
 
   .footer-container {
-    @apply m-auto w-full max-w-6xl px-2;
+    @apply m-auto w-full max-w-6xl px-2 xl:px-0;
 
     .social {
       @apply m-auto flex w-full justify-between;

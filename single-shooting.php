@@ -29,8 +29,6 @@ $shooting_info_fields = $page_fields['Shooting Infos Prose Block'] ?? array();
 
 get_template_part( 'parts/header-default', 'default' );
 
-get_template_part( 'parts/navbar' );
-
 if ( ! empty( $hero_section_shooting_fields ) ) {
 	get_template_part(
 		'parts/banner-call-to-action',
