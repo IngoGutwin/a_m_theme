@@ -3,7 +3,6 @@ const appointmetnButtons = document.querySelectorAll<HTMLButtonElement>(".book-a
 function loadListeners() {
   appointmetnButtons.forEach((button: HTMLButtonElement) => {
     let targetUrl = button.dataset.targetUrl;
-    console.log(targetUrl);
     button.addEventListener(
       "click",
       () => (window.location.href = targetUrl ? targetUrl : "")
