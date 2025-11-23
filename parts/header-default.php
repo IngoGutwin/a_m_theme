@@ -4,9 +4,7 @@
  *
  * @package a_m_theme
  */
-$global_javascript_variables = array(
-	'shootingBookingUrl' => get_permalink( get_page_by_path( 'buche-dein-shooting' ) ),
-);
+$global_javascript_variables = array();
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +18,14 @@ $global_javascript_variables = array(
 </head>
 
 <body>
-    <?php
-        get_template_part( 'parts/navbar' );
-    ?>
-	<main id="app" data-global-variables="<?php echo esc_attr( wp_json_encode( $global_javascript_variables ) ); ?>">
+	<?php
+		get_template_part( 'parts/navbar' );
+	?>
+<main id="app"
+	<?php
+	if ( ! empty( $global_javascript_variables ) ) {
+		?>
+			data-global-variables="<?php echo esc_attr( wp_json_encode( $global_javascript_variables ) ); ?>">
+		<?php
+	}
+	?>
