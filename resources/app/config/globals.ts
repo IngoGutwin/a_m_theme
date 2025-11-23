@@ -1,14 +1,10 @@
 interface GlobalVariables {
-  shootingBookingUrl: string;
+  someGlobalVar: string;
 }
 
-let _globals: GlobalVariables | null = null;
+export const globals: GlobalVariables | null = loadGlobalVariables();
 
-export function loadGlobalVariables(): GlobalVariables | null {
-  if (_globals) {
-    return _globals;
-  }
-
+function loadGlobalVariables(): GlobalVariables | null {
   let app = document.querySelector<HTMLElement>("#app");
   if (!app) {
     return null;
@@ -21,8 +17,7 @@ export function loadGlobalVariables(): GlobalVariables | null {
   delete app.dataset.globalVariables;
 
   try {
-    _globals = JSON.parse(data) as GlobalVariables;
-    return _globals;
+    return JSON.parse(data) as GlobalVariables;
   } catch (error) {
     console.error(error);
     return null;
