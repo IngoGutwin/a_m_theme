@@ -5,7 +5,7 @@
  * @package a_m_theme
  */
 $global_javascript_variables = array(
-	'contactPageUrl' => get_permalink( get_page_by_path( 'kontakt' ) ),
+	'shootingBookingUrl' => get_permalink( get_page_by_path( 'buche-dein-shooting' ) ),
 );
 ?>
 
@@ -20,4 +20,7 @@ $global_javascript_variables = array(
 </head>
 
 <body>
+    <?php
+        get_template_part( 'parts/navbar' );
+    ?>
 	<main id="app" data-global-variables="<?php echo esc_attr( wp_json_encode( $global_javascript_variables ) ); ?>">

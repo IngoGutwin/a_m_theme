@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 
 export default defineConfig(({ mode }) => ({
   publicDir: "public",
-  base: mode === "development" ? "/" : "/wp-content/themes/a_m_theme/",
+  base: mode === "development" ? "/" : "/wp-content/themes/a_m_theme/dist",
   css: {
     devSourcemap: true,
   },
@@ -42,6 +42,7 @@ export default defineConfig(({ mode }) => ({
       host: "a-m.test",
       clientPort: 5173,
       protocol: "ws",
+      timeout: 300000,
     },
     watch: {
       usePolling: true,
@@ -57,8 +58,8 @@ export default defineConfig(({ mode }) => ({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        "js": fileURLToPath(new URL("/resources/app/index.ts", import.meta.url)),
-        "css": fileURLToPath(new URL("/resources/css/main.css", import.meta.url)),
+        js: fileURLToPath(new URL("/resources/app/index.ts", import.meta.url)),
+        css: fileURLToPath(new URL("/resources/css/main.css", import.meta.url)),
       },
     },
   },

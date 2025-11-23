@@ -1,5 +1,5 @@
 .navbar {
-  @apply relative flex items-center justify-between bg-creme;
+  @apply relative mx-auto flex max-w-6xl items-center justify-between bg-creme px-2 xl:px-0;
 
   .logo {
     svg {
@@ -24,7 +24,7 @@
     }
 
     .navigation {
-      @apply absolute top-20 right-0 z-50 flex w-full rounded-2xl bg-blue p-8 font-lato-regular font-bold text-creme transition-all duration-300 ease-in-out md:top-34;
+      @apply absolute top-20 left-2 z-50 flex w-8/12 rounded-2xl bg-blue p-4 font-lato-regular font-bold text-creme transition-all duration-300 ease-in-out md:top-34;
 
       li {
         a {
@@ -45,37 +45,37 @@
       @apply pointer-events-auto translate-y-0 opacity-100;
     }
 
-    .hamburger {
-      @apply cursor-pointer w-6 h-6 flex flex-col justify-around items-center md:w-8 md:h-8;
+    .menu {
+      @apply p-2 hover:bg-brown/20;
 
-      div {
-        @apply h-[4px] w-6 rounded-2xl transition-all duration-500 ease-in-out md:h-[6px] md:w-8;
+      .hamburger {
+        @apply flex h-6 w-6 cursor-pointer flex-col items-center justify-around md:h-8 md:w-8;
+
+        div {
+          @apply h-[4px] w-6 rounded-2xl bg-blue transition-all duration-500 ease-in-out md:h-[6px] md:w-8;
+        }
       }
     }
 
-    .hamburger[data-is-toggled="false"] {
-      @apply hover:bg-brown/20;
-
-      div {
+    .menu[data-is-toggled="true"] {
+      .hamburger {
         @apply bg-blue;
-      }
-    }
 
-    .hamburger[data-is-toggled="true"] {
-      @apply bg-blue hover:bg-blue/20;
+        div {
+          @apply bg-creme opacity-100;
+        }
 
-      div {
-        @apply bg-creme opacity-100;
-      }
+        .first-div {
+          @apply translate-y-2 rotate-45 md:translate-y-2.5;
+        }
 
-      .first-div {
-        @apply translate-y-2 md:translate-y-2.5 rotate-45;
-      }
-      .second-div {
-        @apply -translate-x-9 opacity-0;
-      }
-      .third-div {
-        @apply -translate-y-2 md:-translate-y-2.5 -rotate-45;
+        .second-div {
+          @apply -translate-x-9 opacity-0;
+        }
+
+        .third-div {
+          @apply -translate-y-2 -rotate-45 md:-translate-y-2.5;
+        }
       }
     }
   }

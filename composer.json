@@ -34,5 +34,8 @@
         "type:wordpress-muplugin"
       ]
     }
+  },
+  "require-dev": {
+    "php-stubs/wordpress-stubs": "^6.8"
   }
 }
