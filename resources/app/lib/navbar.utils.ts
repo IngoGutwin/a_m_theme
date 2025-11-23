@@ -13,6 +13,7 @@ export function initNavBar() {
   let hamburgerMenu = navbar.querySelector<HTMLDivElement>("#hamburger-menu");
   let navbarLinks = navbar?.querySelector<HTMLUListElement>("#navigation-links");
   hamburgerContainer?.addEventListener("click", toggleHamburgerMenu);
+
   /**
    * Toggles a data attribute on an HTML element between "true" and "false"
    *
@@ -46,4 +47,3 @@ export function initNavBar() {
     transformToggleMenu();
   }
 }
-
