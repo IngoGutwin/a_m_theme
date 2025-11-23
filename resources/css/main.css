@@ -45,7 +45,8 @@ main {
     }
   }
 
-  section {
-    @apply mx-auto max-w-6xl px-2 xl:px-0;
+  section,
+  nav {
+    @apply mx-auto max-w-6xl px-2;
   }
 }

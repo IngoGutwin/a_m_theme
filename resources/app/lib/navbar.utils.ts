@@ -9,11 +9,9 @@ export function initNavBar() {
     return null;
   }
 
-  let hamburgerContainer = navbar.querySelector<HTMLDivElement>("#hamburger-container");
-  let hamburgerMenu = navbar.querySelector<HTMLDivElement>("#hamburger-menu");
+  let navbarToggle = navbar.querySelector<HTMLDivElement>("#navbar-toggle");
   let navbarLinks = navbar?.querySelector<HTMLUListElement>("#navigation-links");
-  hamburgerContainer?.addEventListener("click", toggleHamburgerMenu);
-
+  navbarToggle?.addEventListener("click", toggleNavbar);
   /**
    * Toggles a data attribute on an HTML element between "true" and "false"
    *
@@ -31,19 +29,20 @@ export function initNavBar() {
     }
     let currentValue = element.dataset[attribute];
     element.dataset[attribute] = currentValue === "true" ? "false" : "true";
-  }
+}
 
   function transformToggleMenu() {
-    if (hamburgerMenu) {
-      toggleDataAttribute(hamburgerContainer);
-      hamburgerMenu.children[0].classList.toggle("first-div");
-      hamburgerMenu.children[1].classList.toggle("second-div");
-      hamburgerMenu.children[2].classList.toggle("third-div");
+    if (navbarToggle) {
+      toggleDataAttribute(navbarToggle);
+      navbarToggle.children[0].classList.toggle("first-div");
+      navbarToggle.children[1].classList.toggle("second-div");
+      navbarToggle.children[2].classList.toggle("third-div");
     }
   }
 
-  function toggleHamburgerMenu() {
+  function toggleNavbar() {
     toggleDataAttribute(navbarLinks);
     transformToggleMenu();
   }
 }
+

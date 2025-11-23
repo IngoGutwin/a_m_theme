@@ -22,27 +22,24 @@ add_theme_support( 'post-thumbnails' );
  */
 function am_theme_enqueue_production_scripts(): void {
 	$json_manifest = json_decode( file_get_contents( get_template_directory() . '/dist/.vite/manifest.json' ), true );
-	$entry_js      = $json_manifest['resources/app/index.ts'];
-	$entry_css     = $json_manifest['resources/css/main.css'];
-	wp_enqueue_script(
-		'ccm19-app',
-		COOKIE_API_URL,
-		array(),
-		null,
-		false
-	);
-	add_filter(
-		'script_loader_tag',
-		function ( $tag, $handle ) {
-			if ( $handle === 'ccm19-app' ) {
-				return str_replace( '<script ', '<script referrerpolicy="origin" ', $tag );
-			}
-			return $tag;
-		},
-		10,
-		2
-	);
+	$entry_js  = $json_manifest['resources/app/index.ts'];
+	$js_css = $entry_js['css'];
+	$entry_css  = $json_manifest['resources/css/main.css'];
+    wp_enqueue_script(
+        'ccm19-app',
+        COOKIE_API_URL,
+        array(),
+        null,
+        false
+    );
+    add_filter('script_loader_tag', function($tag, $handle) {
+        if ($handle === 'ccm19-app') {
+            return str_replace('<script ', '<script referrerpolicy="origin" ', $tag);
+        }
+        return $tag;
+    }, 10, 2);
 	wp_enqueue_script_module( 'main', get_theme_file_uri( '/dist/' ) . $entry_js['file'], array(), null );
+	wp_enqueue_style( 'swiper-css', get_theme_file_uri( '/dist/' ) . $js_css[0], array(), null );
 	wp_enqueue_style( 'main', get_theme_file_uri( '/dist/' ) . $entry_css['file'], array(), null );
 }
 

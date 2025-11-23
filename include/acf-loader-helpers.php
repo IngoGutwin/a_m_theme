@@ -51,8 +51,8 @@ function get_page_fields( $post_id ) {
 			if ( 'group' === $acf_group['type'] ) {
 				// 👉 Special case: if the field itself is a group,
 				// get_field() will return an associative array of all sub-fields
-				$group_values = get_field( $field_name, $post_id );
-				if ( ! empty( $group_values ) && array_filter( $group_values ) ) {
+				$group_values                       = get_field( $field_name, $post_id );
+				if ( array_filter( $group_values ) ) {
 					$current_fields_data[ $field_name ] = $group_values;
 				}
 			} else {

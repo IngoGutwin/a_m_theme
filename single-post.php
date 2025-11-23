@@ -18,6 +18,8 @@ $gallery_slider = $page_fields['Gallery Slider Blog Post'];
 
 get_template_part( 'parts/header-default', 'default' );
 
+get_template_part( 'parts/navbar' );
+
 if ( ! empty( $hero_section_fields ) ) {
 	get_template_part(
 		'parts/banner-call-to-action',
