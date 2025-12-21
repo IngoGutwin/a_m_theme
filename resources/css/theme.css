@@ -6,8 +6,6 @@
   --color-black: #0b1111;
   --color-white: #fdfcf7;
   --color-brown: #a97150;
-  --font-cormorant-regular: "Cormorant Regular", "serif";
-  --font-cormorant-bold: "Cormorant Bold", "serif";
   --font-lato-regular: "Lato Regular", "sans serif";
   --font-lato-bold: "Lato Bold", "sans serif";
   --spacing-teaser-width-sm: 355px;
@@ -35,29 +33,31 @@
 }
 
 @font-face {
-  font-family: "Cormorant Regular";
-  src: url("../fonts/cormorant/Cormorant-Regular.ttf") format("truetype");
+  font-family: "Lato Regular";
+  src:
+    url("../fonts/lato/Lato-Regular.woff2") format("woff2"),
+    url("../fonts/lato/Lato-Regular.ttf") format("truetype");
   font-style: normal;
+  font-display: swap;
   font-weight: 400;
 }
 
 @font-face {
-  font-family: "Cormorant Bold";
-  src: url("../fonts/cormorant/Cormorant-Bold.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 700;
-}
-
-@font-face {
   font-family: "Lato Regular";
-  src: url("../fonts/lato/Lato-Regular.ttf") format("truetype");
+  src:
+    url("../fonts/lato/Lato-Regular.woff2") format("woff2"),
+    url("../fonts/lato/Lato-Regular.ttf") format("truetype");
   font-style: normal;
+  font-display: swap;
   font-weight: 400;
 }
 
 @font-face {
   font-family: "Lato Bold";
-  src: url("../fonts/lato/Lato-Bold.ttf") format("truetype");
+  src:
+    url("../fonts/lato/Lato-Bold.woff2") format("woff2"),
+    url("../fonts/lato/Lato-Bold.ttf") format("truetype");
   font-style: normal;
-  font-weight: 700;
+  font-display: swap;
+  font-weight: 800;
 }

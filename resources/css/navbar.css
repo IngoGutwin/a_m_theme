@@ -3,7 +3,7 @@
 
   .logo {
     svg {
-      @apply h-18 w-32 font-cormorant-bold md:h-28 md:w-48;
+      @apply h-18 w-32 md:h-28 md:w-48;
 
       path {
         @apply fill-blue;

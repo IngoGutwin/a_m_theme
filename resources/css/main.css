@@ -1,10 +1,10 @@
 @import "./theme.css";
 @import "./navbar.css";
-@import "./banner-section.css";
 @import "./prose-block.css";
-@import "./swiper.css";
-@import "./footer-section.css";
 @import "./archive.css";
+@import "./footer-section.css";
+@import "./banner-section.css";
+@import "./swiper.css";
 
 body {
   @apply bg-creme;
@@ -14,7 +14,7 @@ main {
   @apply w-full;
 
   section {
-    @apply py-8 md:py-10;
+    @apply mx-auto max-w-6xl px-2 py-8 md:py-10 xl:px-0;
 
     h1 {
       font-size: clamp(1.42rem, 0.75rem + 3.39vw, 2.44rem);
@@ -46,6 +46,5 @@ main {
   }
 
   section {
-    @apply mx-auto max-w-6xl px-2 xl:px-0;
   }
 }
