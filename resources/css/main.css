@@ -14,7 +14,7 @@ main {
   @apply w-full;
 
   section {
-    @apply mx-auto max-w-6xl px-2 py-8 md:py-10 xl:px-0;
+    @apply mx-auto max-w-5xl px-2 py-8 md:py-10 xl:px-0;
 
     h1 {
       font-size: clamp(1.42rem, 0.75rem + 3.39vw, 2.44rem);

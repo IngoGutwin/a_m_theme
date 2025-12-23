@@ -43,16 +43,6 @@
 }
 
 @font-face {
-  font-family: "Lato Regular";
-  src:
-    url("../fonts/lato/Lato-Regular.woff2") format("woff2"),
-    url("../fonts/lato/Lato-Regular.ttf") format("truetype");
-  font-style: normal;
-  font-display: swap;
-  font-weight: 400;
-}
-
-@font-face {
   font-family: "Lato Bold";
   src:
     url("../fonts/lato/Lato-Bold.woff2") format("woff2"),

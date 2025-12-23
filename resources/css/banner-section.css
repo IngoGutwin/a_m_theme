@@ -21,4 +21,8 @@
       @apply mt-4 font-lato-bold font-bold;
     }
   }
+
+  picture {
+    @apply mx-auto;
+  }
 }
