@@ -199,16 +199,16 @@
         },
         {
             "name": "vinkla/headache",
-            "version": "3.5.3",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vinkla/headache.git",
-                "reference": "510df5a96f927b555e4acb3a2af95ebb973069d5"
+                "reference": "b1c0c88aacea4b35015d46cc6f9e62bfec775a0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vinkla/headache/zipball/510df5a96f927b555e4acb3a2af95ebb973069d5",
-                "reference": "510df5a96f927b555e4acb3a2af95ebb973069d5",
+                "url": "https://api.github.com/repos/vinkla/headache/zipball/b1c0c88aacea4b35015d46cc6f9e62bfec775a0a",
+                "reference": "b1c0c88aacea4b35015d46cc6f9e62bfec775a0a",
                 "shasum": ""
             },
             "require": {
@@ -235,9 +235,9 @@
             ],
             "support": {
                 "issues": "https://github.com/vinkla/headache/issues",
-                "source": "https://github.com/vinkla/headache/tree/3.5.3"
+                "source": "https://github.com/vinkla/headache/tree/3.6.0"
             },
-            "time": "2025-07-03T09:30:02+00:00"
+            "time": "2025-12-03T08:12:36+00:00"
         },
         {
             "name": "wpackagist-plugin/advanced-custom-fields",
@@ -259,15 +259,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "26.3",
+            "version": "26.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/26.3"
+                "reference": "tags/26.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.26.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.26.5.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
