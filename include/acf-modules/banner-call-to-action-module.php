@@ -22,13 +22,13 @@
  * - page-landing.php
  * - page-shooting.php
  *
- * @param string $group_title The unique name used as the group key and title.
+ * @param string $group_title    The unique name used as the group key and title.
  *
  * @param string $location_value The post type name.
  *
  * @param string $location_param The post type name.
  *
- * @param int    $menu_order Order on front-end-admin.
+ * @param int    $menu_order     Order on front-end-admin.
  *
  * @return array|false The field group configuration array if registered, false otherwise.
  *
@@ -153,32 +153,6 @@ function generate_banner_cta_section( $group_title, $location_value, $location_p
 					'append'            => '',
 				),
 				array(
-					'key'               => 'bg_image_sm_' . $field_group_hash,
-					'label'             => 'Background Image SM',
-					'name'              => 'bg_image_sm_' . $field_group_hash,
-					'aria-label'        => '',
-					'type'              => 'image',
-					'instructions'      => '',
-					'required'          => 0,
-					'conditional_logic' => 0,
-					'wrapper'           => array(
-						'width' => '',
-						'class' => '',
-						'id'    => '',
-					),
-					'return_format'     => 'url',
-					'library'           => 'all',
-					'min_width'         => '',
-					'min_height'        => '',
-					'min_size'          => '',
-					'max_width'         => '',
-					'max_height'        => '',
-					'max_size'          => '',
-					'mime_types'        => '',
-					'allow_in_bindings' => 0,
-					'preview_size'      => 'medium',
-				),
-				array(
 					'key'               => 'bg_image_xl' . $field_group_hash,
 					'label'             => 'Background Image XL',
 					'name'              => 'bg_image_xl_' . $field_group_hash,
@@ -192,7 +166,7 @@ function generate_banner_cta_section( $group_title, $location_value, $location_p
 						'class' => '',
 						'id'    => '',
 					),
-					'return_format'     => 'url',
+					'return_format'     => 'id',
 					'library'           => 'all',
 					'min_width'         => '',
 					'min_height'        => '',
@@ -222,7 +196,7 @@ function generate_banner_cta_section( $group_title, $location_value, $location_p
 			'hide_on_screen'        => '',
 			'active'                => true,
 			'description'           => '',
-			'show_in_rest'          => 0,
+			'show_in_rest'          => true,
 		)
 	);
 
