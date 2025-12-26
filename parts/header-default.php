@@ -21,7 +21,7 @@ $global_javascript_variables = array();
 	<?php
 		get_template_part( 'parts/navbar' );
 	?>
-<main id="app"
+<main id="app">
 	<?php
 	if ( ! empty( $global_javascript_variables ) ) {
 		?>

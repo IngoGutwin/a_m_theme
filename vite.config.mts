@@ -61,7 +61,7 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       input: {
         "base-js": fileURLToPath(new URL("/resources/app/base.ts", import.meta.url)),
-        "appoinment.entry": fileURLToPath(
+        "appoinment-entry": fileURLToPath(
           new URL("/resources/app/appoinment.entry.ts", import.meta.url)
         ),
         "main-css": fileURLToPath(new URL("/resources/css/main.css", import.meta.url)),
