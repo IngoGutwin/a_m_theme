@@ -52,14 +52,19 @@ export default defineConfig(({ mode }) => ({
     strictPort: true,
   },
   build: {
+    target: "es2020",
+    cssCodeSplit: true,
     outDir: "dist",
     assetsDir: "",
     manifest: true,
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        js: fileURLToPath(new URL("/resources/app/index.ts", import.meta.url)),
-        css: fileURLToPath(new URL("/resources/css/main.css", import.meta.url)),
+        "base-js": fileURLToPath(new URL("/resources/app/base.ts", import.meta.url)),
+        "appoinment.entry": fileURLToPath(
+          new URL("/resources/app/appoinment.entry.ts", import.meta.url)
+        ),
+        "main-css": fileURLToPath(new URL("/resources/css/main.css", import.meta.url)),
       },
     },
   },

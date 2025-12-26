@@ -1,2 +1,8 @@
 declare module "swiper/css" {}
 declare module "swiper/css/navigation" {}
+
+declare module "*.vue" {
+  import type { DefineComponent } from "vue";
+  const component: DefineComponent<object, object, unknown>;
+  export default component;
+}
