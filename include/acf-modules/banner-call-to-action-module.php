@@ -166,7 +166,7 @@ function generate_banner_cta_section( $group_title, $location_value, $location_p
 						'class' => '',
 						'id'    => '',
 					),
-					'return_format'     => 'id',
+					'return_format'     => 'url',
 					'library'           => 'all',
 					'min_width'         => '',
 					'min_height'        => '',
