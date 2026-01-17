@@ -1,28 +1,27 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
+    "target": "ESNext",
     "module": "ESNext",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "skipLibCheck": true,
+    "lib": ["ES2020", "DOM"],
+
     "moduleResolution": "bundler",
+
+    "useDefineForClassFields": true,
+    "skipLibCheck": true,
     "allowImportingTsExtensions": true,
     "noEmit": true,
+
     "isolatedModules": true,
     "moduleDetection": "force",
 
     "allowJs": true,
     "esModuleInterop": true,
     "baseUrl": ".",
-    "paths": {
-      "@styles/*": ["resources/css/*"],
-      "@components/*": ["resources/components/*"]
-    },
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["resources", "resources/**/*.ts","resources/**/*.vue"]
+  "include": ["resources/**/*.ts","resources/**/*.vue"]
 }

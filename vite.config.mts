@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "node:path";
-import tailwindcss from "@tailwindcss/vite";
 import { fileURLToPath } from "node:url";
 
 export default defineConfig(({ mode }) => ({
@@ -12,7 +11,6 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     vue(),
-    tailwindcss(),
     {
       name: "reload-php-server",
       handleHotUpdate({ file, server }) {
@@ -71,6 +69,7 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       "@components": path.resolve(__dirname, "./resources/components"),
+      "@fonts": path.resolve(__dirname, "./resources/fonts/"),
       "@images": path.resolve(
         __dirname,
         mode === "development" ? "./wp-content/uploads" : "../../uploads"
