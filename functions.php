@@ -202,6 +202,7 @@ function load_acf_fields(): void {
 		'prose-block',
 		'gallery-slider',
 		'footer',
+		'shooting-references',
 	);
 	include_acf_modules( $acf_modules );
 
@@ -212,10 +213,31 @@ function load_acf_fields(): void {
 	load_acf_fields_front_page();
 	load_acf_fields_shooting_page();
 	load_acf_fields_contact_page();
+	add_shooting_reference();
 }
 
 
 add_action( 'acf/init', 'load_acf_fields' );
+
+function update_acf_in_shooting_type( $post_id ) {
+	if ( get_post_type( $post_id ) !== 'shooting' ) {
+		return;
+	}
+
+	$product_id = get_field( 'product_id', $post_id );
+
+	$product_title = get_field( 'title', $post_id );
+
+	if ( $product_id == md5( $product_title ) ) {
+		return;
+	}
+
+	$product_id = md5( $product_title );
+
+	update_field( 'product_id', $product_id, $post_id );
+}
+
+add_action( 'acf/save_post', 'update_acf_in_shooting_type', 20 );
 
 /**
  * Register custom post type for shootings

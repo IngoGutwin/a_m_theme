@@ -3,22 +3,22 @@
   @apply flex flex-col items-start;
 
   .book-appointment-btn {
-    @apply -mt-8 cursor-pointer self-end rounded-2xl border-8 border-brown bg-blue px-4 py-2 font-lato-bold font-bold text-creme hover:bg-brown;
+    @apply bg-blue font-lato-bold text-creme hover:bg-brown -mt-8 cursor-pointer self-end rounded-2xl px-4 py-2 font-bold;
   }
 
   p {
-    @apply mt-4 font-lato-regular;
+    @apply font-lato-regular mt-4;
   }
 
   .banner-intro {
     @apply font-lato-regular;
 
     h2 {
-      @apply mt-8 font-lato-regular font-normal;
+      @apply font-lato-regular mt-8 font-normal;
     }
 
     h1 {
-      @apply mt-4 font-lato-bold font-bold;
+      @apply font-lato-bold mt-4 font-bold;
     }
   }
 

@@ -1,9 +1,9 @@
 .navbar {
-  @apply relative mx-auto flex max-w-5xl items-center justify-between bg-creme px-2 xl:px-0;
+  @apply bg-creme relative mx-auto flex max-w-5xl items-center justify-between px-2 xl:px-0;
 
   .logo {
     svg {
-      @apply h-18 w-32 md:h-28 md:w-48;
+      @apply h-20 w-32 md:h-28 md:w-48;
 
       path {
         @apply fill-blue;
@@ -15,16 +15,16 @@
     @apply flex items-center;
 
     button {
-      @apply flex cursor-pointer items-center p-2 font-lato-bold font-bold hover:bg-brown/20;
+      @apply font-lato-bold hover:bg-brown/20 flex cursor-pointer items-center p-2 font-bold;
     }
 
     a {
-      @apply flex cursor-pointer items-center p-2 font-lato-bold font-bold hover:bg-brown/20;
+      @apply font-lato-bold hover:bg-brown/20 flex cursor-pointer items-center p-2 font-bold;
       font-size: clamp(1rem, 0.75rem + 1vw, 1.25rem);
     }
 
     .navigation {
-      @apply absolute top-20 left-2 z-50 flex w-8/12 rounded-2xl bg-blue p-4 font-lato-regular font-bold text-creme transition-all duration-300 ease-in-out md:top-34;
+      @apply bg-blue font-lato-regular text-creme absolute left-2 top-20 z-50 flex w-8/12 rounded-2xl p-4 font-bold transition-all duration-300 ease-in-out md:top-32;
 
       li {
         a {
@@ -46,13 +46,13 @@
     }
 
     .menu {
-      @apply p-2 hover:bg-brown/20;
+      @apply hover:bg-brown/20 p-2;
 
       .hamburger {
         @apply flex h-6 w-6 cursor-pointer flex-col items-center justify-around md:h-8 md:w-8;
 
         div {
-          @apply h-[4px] w-6 rounded-2xl bg-blue transition-all duration-500 ease-in-out md:h-[6px] md:w-8;
+          @apply bg-blue h-[4px] w-6 rounded-2xl transition-all duration-500 ease-in-out md:h-[6px] md:w-8;
         }
       }
     }

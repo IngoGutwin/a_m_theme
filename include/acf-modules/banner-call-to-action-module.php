@@ -196,7 +196,7 @@ function generate_banner_cta_section( $group_title, $location_value, $location_p
 			'hide_on_screen'        => '',
 			'active'                => true,
 			'description'           => '',
-			'show_in_rest'          => true,
+			'show_in_rest'          => false,
 		)
 	);
 
