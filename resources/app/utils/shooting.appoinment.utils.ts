@@ -5,8 +5,10 @@ async function loadApp(rootComponent: HTMLElement) {
 }
 
 export function initShootingAppoinment() {
-  let shootingAppoinment = document.querySelector<HTMLElement>("#shooting-appoinment");
+  let shootingAppoinment = document.querySelector<HTMLElement>(
+    "#shooting-appoinment-booking-section"
+  );
   if (shootingAppoinment) {
     loadApp(shootingAppoinment);
-  };
+  }
 }

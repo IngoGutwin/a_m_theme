@@ -16,7 +16,7 @@ get_template_part( 'parts/header-default' );
 
 ?>
 
-<section id="shooting-appoinment"></section>
+<section id="shooting-appoinment-booking-section"></section>
 
 <?php
 
