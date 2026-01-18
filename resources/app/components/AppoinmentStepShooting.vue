@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import type { CustomerProduct, Shooting } from "resources";
-
-const props = defineProps<{
+defineProps<{
   shootings: object;
-  customerProduct: CustomerProduct;
 }>();
 defineEmits(["saveShooting"]);
 </script>

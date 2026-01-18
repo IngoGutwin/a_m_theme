@@ -71,7 +71,6 @@ onMounted(async () => {
     <AppoinmentStepShooting
       @save-shooting="saveShooting"
       :shootings="shootings"
-      :customerProduct="customerProduct"
       v-if="formStep === 1"
     />
     <AppoinmentStepVariant
