@@ -12,14 +12,14 @@ $page_fields = get_page_fields( $page_id );
 
 $footer_section = $page_fields['Footer Section'] ?? array();
 
-get_template_part( 'parts/header-default' );
+get_template_part( 'parts/header-default', '', array( 'shooting_booking_page' => true ) );
 
 ?>
 
 <section id="shooting-appoinment-booking-section"></section>
 
-<?php
+</main>
+<?php wp_footer(); ?>
+</body>
 
-get_template_part( 'parts/footer-default', 'default', $footer_section );
-
-?>
+</html>
