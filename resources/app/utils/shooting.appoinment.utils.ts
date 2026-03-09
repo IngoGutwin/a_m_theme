@@ -1,7 +1,7 @@
 async function loadApp(rootComponent: HTMLElement) {
   const { createApp } = await import("vue");
-  const AppoinmentBooking = await import("./../components/AppoinmentBooking.vue");
-  createApp(AppoinmentBooking.default).mount(rootComponent);
+  const BookingShooting = await import("@app/components/booking-shooting/BookingShooting.vue");
+  createApp(BookingShooting.default).mount(rootComponent);
 }
 
 export function initShootingAppoinment() {

@@ -24,10 +24,7 @@
   "license": "MIT",
   "description": "Classic wordpress theme with vuejs + vite + tailwindcss.",
   "devDependencies": {
-    "@eslint/css": "^0.10.0",
     "@eslint/js": "^9.33.0",
-    "@eslint/json": "^0.13.1",
-    "@eslint/markdown": "^7.1.0",
     "@faker-js/faker": "10.2.0",
     "@playwright/test": "1.58.2",
     "@types/node": "^22.13.9",
@@ -51,6 +48,6 @@
     "zod": "4.3.5"
   },
   "dependencies": {
-    "swiper": "12.0.2"
+    "swiper": "12.1.2"
   }
 }

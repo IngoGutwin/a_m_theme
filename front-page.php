@@ -39,6 +39,7 @@ if ( ! empty( $hero_section_fields ) ) {
 		array(
 			'page_fields' => $hero_section_fields,
 			'css_class'   => 'banner',
+			'test_id'     => 'hero-section',
 		)
 	);
 }

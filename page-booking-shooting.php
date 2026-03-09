@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Shooting Booking Page
+ * Template Name: Booking Shooting Page
  * Template Post Type: page
  *
  * @package a_m_theme
@@ -16,7 +16,7 @@ get_template_part( 'parts/header-default', '', array( 'shooting_booking_page' =>
 
 ?>
 
-<section id="shooting-appoinment-booking-section"></section>
+<section id="shooting-appoinment-booking-section" data-testid="booking-shooting-form"></section>
 
 </main>
 <?php wp_footer(); ?>
