@@ -11,7 +11,7 @@
     "dev-debug": "DEBUG='vite:*' npm run dev",
     "copy-images-dir": "cp -r resources/images/ dist/",
     "lint": "npx eslint resources",
-    "lint-fix": "npx eslint resources --fix",
+    "lint-fix": "npx eslint resources --fix"
   },
   "keywords": [
     "wordpress",
