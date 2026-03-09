@@ -1,5 +1,5 @@
 .footer {
-  @apply bg-blue text-creme flex justify-center py-8;
+  @apply text-creme flex justify-center bg-black py-8;
 
   .footer-container {
     @apply m-auto w-full max-w-5xl px-2 xl:px-0;

@@ -10,11 +10,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        creme: "#f4efe5",
-        blue: "#395968",
-        black: "#0b1111",
-        white: "#fdfcf7",
-        brown: "#a97150",
+        creme: "rgb(var(--color-creme))",
+        black: "rgb(var(--color-black))",
       },
       fontFamily: {
         "lato-regular": ["Lato Regular", "sans-serif"],

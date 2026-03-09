@@ -1,3 +1,10 @@
+@layer base {
+  :root {
+    --color-creme: 255 252 246;
+    --color-black: 1 1 0;
+  }
+}
+
 @keyframes slide-in-translate-x {
   0% {
     transform: translateX(-120%);

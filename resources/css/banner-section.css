@@ -3,7 +3,7 @@
   @apply flex flex-col items-start;
 
   .book-appointment-btn {
-    @apply bg-blue font-lato-bold text-creme hover:bg-brown -mt-8 cursor-pointer self-end rounded-2xl px-4 py-2 font-bold;
+    @apply font-lato-bold text-creme -mt-8 cursor-pointer self-end rounded-2xl bg-black px-4 py-2 font-bold hover:bg-gray-700;
   }
 
   p {
