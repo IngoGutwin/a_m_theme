@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "private": "true",
   "engines": {
-    "node": "22.20.0"
+    "node": "20.20.0"
   },
   "scripts": {
     "dev": "vite --host",
     "build": "vite build && npm run copy-images-dir",
     "dev-debug": "DEBUG='vite:*' npm run dev",
-    "copy-images-dir": "cp -r resources/images/ dist/"
+    "copy-images-dir": "cp -r resources/images/ dist/",
+    "lint": "npx eslint resources",
+    "lint-fix": "npx eslint resources --fix",
   },
   "keywords": [
     "wordpress",
@@ -20,13 +22,14 @@
   ],
   "author": "Ingo Gutwin",
   "license": "MIT",
-  "description": "a simple theme for wordpress theme with vuejs + vite + tailwindcss. full - seo and page reload",
+  "description": "Classic wordpress theme with vuejs + vite + tailwindcss.",
   "devDependencies": {
     "@eslint/css": "^0.10.0",
     "@eslint/js": "^9.33.0",
     "@eslint/json": "^0.13.1",
     "@eslint/markdown": "^7.1.0",
     "@faker-js/faker": "10.2.0",
+    "@playwright/test": "1.58.2",
     "@types/node": "^22.13.9",
     "@vitejs/plugin-vue": "^5.2.1",
     "autoprefixer": "10.4.23",

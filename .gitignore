@@ -3,3 +3,10 @@ dist
 /vendor/
 a_m_theme
 logs
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
