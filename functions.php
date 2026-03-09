@@ -121,6 +121,7 @@ function load_acf_fields_shooting_page(): void {
 	$location_param = 'post_type';
 	generate_banner_cta_section( 'Hero Section Shooting', $location_value, $location_param, 0 );
 	generate_prose_block( 'Shooting Prices', $location_value, $location_param, 1 );
+	add_shooting_reference( 'Shooting References' );
 	generate_gallery_slider( 'Shooting Impressions Gallery', 10, $location_value, $location_param, 2 );
 	generate_prose_block( 'Shooting Checkup List', $location_value, $location_param, 3 );
 	generate_banner_cta_section( 'Shooting Advertisement Banner', $location_value, $location_param, 4 );
@@ -213,7 +214,6 @@ function load_acf_fields(): void {
 	load_acf_fields_front_page();
 	load_acf_fields_shooting_page();
 	load_acf_fields_contact_page();
-	add_shooting_reference();
 }
 
 
@@ -228,7 +228,8 @@ function update_acf_in_shooting_type( $post_id ) {
 
 	$product_title = get_field( 'title', $post_id );
 
-	if ( $product_id == md5( $product_title ) ) {
+	error_log( print_r( $product_id, true ) );
+	if ( empty( $product_id ) || $product_id == md5( $product_title ) ) {
 		return;
 	}
 

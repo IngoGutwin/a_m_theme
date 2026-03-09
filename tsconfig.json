@@ -21,7 +21,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    "paths": {
+      "@app/*": ["resources/app/*"],
+      "@lib/*": ["resources/lib/*"],
+     }
   },
   "include": ["resources/**/*.ts","resources/**/*.vue"]
 }
