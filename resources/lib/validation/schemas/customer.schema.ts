@@ -1,17 +1,36 @@
 import { z } from "zod";
 
-const allowedSeparators = ["-", "'", " "];
+function validateName(value: string) {
+  value = value.normalize("NFC");
 
-function validateName(name: string) {}
+  let result = true;
+  let allowedNameSeparators = ["-", "'", " "];
+  let allowedNameRegex = /\p{L}/u;
+
+  for (let i = 0; i < value.length; i++) {
+    let char = value[i];
+
+    if (allowedNameSeparators.includes(char)) {
+      if (i === 0 || i === value.length) {
+        result = false;
+        break;
+      }
+    }
+
+    if (!allowedNameRegex.test(char)) {
+      result = false;
+      break;
+    }
+  }
+  return result;
+}
 
 export const NameSchema = z
   .string()
   .trim()
   .min(2, "Mindestens zwei Zeichen!")
   .max(36, "Darf maximal 36 Zeichen sein!")
-  .refine((v) => {
-    return validateName(v);
-  }, "Ungültiger Name!");
+  .refine(validateName, "keine Sonderzeichen in Namen!");
 
 export const StreetSchema = z
   .string()
