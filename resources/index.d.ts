@@ -18,18 +18,6 @@ export interface Shooting {
   variants: Record<string, ShootingVariant>;
 }
 
-export interface Customer {
-  firstName: string;
-  lastName: string;
-  email: string;
-  city: string;
-  street: string;
-  houseNm: string;
-  zipCode: number;
-  telMobile: number;
-  gdpr: boolean;
-}
-
 export interface Participants {
   adults: number;
   childrens: number;
@@ -42,9 +30,4 @@ export interface Booking {
   productId: string;
   variant: ShootingVariant;
   participants: Participants;
-}
-
-export interface CustomerAppoinment {
-  shooting: CustomerProduct;
-  customer: Customer;
 }

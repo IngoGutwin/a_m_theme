@@ -16,7 +16,7 @@ get_template_part( 'parts/header-default', '', array( 'shooting_booking_page' =>
 
 ?>
 
-<section id="shooting-appoinment-booking-section" data-testid="booking-shooting-form"></section>
+<section class="booking-shooting-section" id="shooting-appoinment-booking-section" data-testid="booking-shooting-form"></section>
 
 </main>
 <?php wp_footer(); ?>
