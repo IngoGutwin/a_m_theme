@@ -15,4 +15,10 @@ describe("Test Zip Code Schema", () => {
     let result = ZipCodeSchema.safeParse(validZipCode);
     expect(result.success).toBe(false);
   });
+
+  it("tests not valid digits", () => {
+    const validZipCode = fakerDE.location.zipCode() + "[";
+    let result = ZipCodeSchema.safeParse(validZipCode);
+    expect(result.success).toBe(false);
+  });
 });
