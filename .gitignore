@@ -3,6 +3,7 @@ dist
 /vendor/
 a_m_theme
 logs
+public
 
 # Playwright
 /test-results/
