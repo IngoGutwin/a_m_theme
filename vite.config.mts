@@ -70,6 +70,7 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@app": fileURLToPath(new URL("./resources/app", import.meta.url)),
       "@lib": fileURLToPath(new URL("./resources/lib", import.meta.url)),
+      "@components": fileURLToPath(new URL("./resources/app/components", import.meta.url)),
     },
   },
 }));
