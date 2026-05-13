@@ -1,47 +1,24 @@
 <script setup lang="ts">
 import type { Participants } from "resources";
-import { ParticipantsSchema } from "@lib/validation/schemas/participants.schema";
-import { ref, reactive, watchEffect } from "vue";
-import type { ZodIssueBase } from "zod";
 
-defineEmits<{
-  (e: "render-step", step: string): void;
+const participants = defineModel<Participants>("participants", { required: true });
+
+type ValidationErrors<T> = Partial<Record<keyof T, string>>;
+
+const props = defineProps<{
+  validationErrors: ValidationErrors<Participants>;
 }>();
 
-const participants = defineModel<Participants>("participants", {
-  required: true,
-});
-
-const nextStep = ref<boolean>(false);
-
-const validationErrors = reactive<Partial<Record<keyof Participants, string[]>>>({});
-
-const showErrors = (issues: ZodIssueBase[]) => {
-  issues.forEach((issue) => {
-    let field = issue.path[0];
-    let message = issue.message;
-    validationErrors[field] = [message];
-  });
-};
-
-watchEffect(() => {
-  let result = ParticipantsSchema.safeParse(participants.value);
-  nextStep.value = result.success;
-  if (!result.success) {
-    showErrors(result.error.issues);
-  } else {
-    Object.keys(validationErrors).forEach((error) => {
-      delete validationErrors[error];
-    });
-  }
-});
+const emit = defineEmits<{
+  (e: "participants-set-touched-field", field: keyof Participants): void;
+}>();
 </script>
 
 <template>
-  <div data-testid="booking-step-participants">
+  <div data-testid="booking-step-participants" class="participants-container">
     <h3>Wer wird da sein?</h3>
-    <div class="shooting-people">
-      <div class="participants">
+    <div class="participants-fields">
+      <div class="participants-field">
         <label for="adults">Erwachsene</label>
         <input
           id="adults"
@@ -50,12 +27,13 @@ watchEffect(() => {
           placeholder="min. 1 Erwachsener"
           name="adults"
           required="true"
+          @input.once="emit('participants-set-touched-field', 'adults')"
         />
-        <span v-if="validationErrors.adults" class="error">
-          {{ validationErrors.adults[0] }}
+        <span v-if="props.validationErrors.adults" class="error">
+          {{ props.validationErrors.adults }}
         </span>
       </div>
-      <div class="participants">
+      <div class="participants-field">
         <label for="childrens">Kinder ab 2 Jahren</label>
         <input
           id="childrens"
@@ -63,12 +41,13 @@ watchEffect(() => {
           type="text"
           placeholder="0"
           name="childrens"
+          @input.once="emit('participants-set-touched-field', 'childrens')"
         />
-        <span v-if="validationErrors.childrens" class="error">
-          {{ validationErrors.childrens[0] }}
+        <span v-if="props.validationErrors.childrens" class="error">
+          {{ props.validationErrors.childrens }}
         </span>
       </div>
-      <div class="participants">
+      <div class="participants-field">
         <label for="toddlers">Kinder bis 2 Jahren</label>
         <input
           id="toddlers"
@@ -76,12 +55,13 @@ watchEffect(() => {
           type="text"
           placeholder="0"
           name="toddlers"
+          @input.once="emit('participants-set-touched-field', 'toddlers')"
         />
-        <span v-if="validationErrors.toddlers" class="error">
-          {{ validationErrors.toddlers[0] }}
+        <span v-if="props.validationErrors.toddlers" class="error">
+          {{ props.validationErrors.toddlers }}
         </span>
       </div>
-      <div class="participants">
+      <div class="participants-field">
         <label for="animals">Haustiere</label>
         <input
           id="animals"
@@ -89,37 +69,38 @@ watchEffect(() => {
           type="text"
           placeholder="0"
           name="animals"
+          @input.once="emit('participants-set-touched-field', 'animals')"
         />
-        <span v-if="validationErrors.animals" class="error">
-          {{ validationErrors.animals[0] }}
+        <span v-if="props.validationErrors.animals" class="error">
+          {{ props.validationErrors.animals }}
         </span>
       </div>
-    </div>
-    <div class="bottom-controls">
-      <button :disabled="!nextStep" class="forward-btn" @click="$emit('render-step', 'variants')">
-        weiter
-      </button>
     </div>
   </div>
 </template>
 
 <style>
-.shooting-people {
-  @apply font-lato-bold flex flex-wrap gap-4 text-black;
+.participants-container {
+  h3 {
+    @apply font-lato-bold py-8 font-bold md:pb-8;
+  }
+  .participants-fields {
+    @apply font-lato-bold flex flex-wrap gap-4 text-black;
 
-  .participants {
-    @apply relative flex flex-col gap-x-4;
+    .participants-field {
+      @apply relative flex flex-col gap-x-4;
 
-    .error {
-      @apply font-lato-regular absolute -bottom-6 text-red-500;
-    }
+      .error {
+        @apply font-lato-regular -bottom-6 text-red-500;
+      }
 
-    label {
-      @apply py-2;
-    }
+      label {
+        @apply py-2;
+      }
 
-    input {
-      @apply rounded-md bg-gray-300 px-2 py-1;
+      input {
+        @apply rounded-md bg-gray-300 px-2 py-1;
+      }
     }
   }
 }

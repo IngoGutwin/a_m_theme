@@ -1,87 +1,55 @@
 <script setup lang="ts">
-import { Customer } from "resources";
-import { ref, reactive } from "vue";
-
-defineEmits<{
-  (e: "render-step", step: string): void;
-}>();
-
-const validationErrors = reactive<Partial<Record<keyof Customer, string[]>>>({});
+import LabelElement from "@components/LabelElement.vue";
+import type { ValidationErrors, TouchedFields } from "resources";
+import type { Customer } from "@lib/validation/schemas/customer.schema";
+import { customerFormFields } from "./booking.form.shape";
 
 const customer = defineModel<Customer>("customer", {
   required: true,
 });
 
-const nextStep = ref<boolean>(false);
+const props = defineProps<{
+  validationErrors: ValidationErrors<Customer>;
+}>();
+
+const emit = defineEmits<{
+  (e: "touch-customer-field", field: keyof Customer): void;
+}>();
 </script>
 <template>
   <div data-testid="booking-step-customer">
     <h3>Deine Daten</h3>
-    <div class="customer">
-      <div class="data">
-        <label for="firstname">Vorname</label>
+    <div class="input-container">
+      <div
+        v-for="field in customerFormFields"
+        :key="field.id"
+        class="data"
+        :class="{ gdpr: field.id === 'gdpr' || field.id === 'newsletter' }"
+      >
+        <LabelElement :label="field.label" :link="field.link" :for="field.id" />
         <input
-          id="firstname"
-          v-model="customer.firstName"
-          type="text"
-          name="firstname"
-          required="true"
+          :id="field.id"
+          v-model="customer[field.id as keyof Customer]"
+          :type="field.type"
+          :name="field.id"
+          :required="field.required"
+          :data-testid="field.dataTestId"
+          :autocomplete="field.autocomplete"
+          @input.once="emit('touch-customer-field', field.id as keyof Customer)"
         />
-        <span v-if="validationErrors.firstname" class="error">
-          {{ validationErrors.firstname[0] }}
+        <span v-if="props.validationErrors[field.id as keyof Customer]" class="error">
+          {{ props.validationErrors[field.id as keyof Customer] }}
         </span>
       </div>
-      <div class="data">
-        <label for="lastname">Nachname</label>
-        <input
-          id="lastname"
-          v-model="customer.lastName"
-          type="text"
-          name="lastname"
-          required="true"
-        />
-        <span v-if="validationErrors.lastname" class="error">
-          {{ validationErrors.lastname[0] }}
-        </span>
-      </div>
-      <div class="data">
-        <label for="email">E-Mail</label>
-        <input id="email" v-model="customer.email" type="text" name="email" required="true" />
-        <span v-if="validationErrors.email" class="error">
-          {{ validationErrors.email[0] }}
-        </span>
-      </div>
-      <div class="data">
-        <label for="telMobile">Tel Nr.</label>
-        <input
-          id="telMobile"
-          v-model="customer.telMobile"
-          type="text"
-          name="telMobile"
-          required="true"
-        />
-        <span v-if="validationErrors.telMobile" class="error">
-          {{ validationErrors.telMobile[0] }}
-        </span>
-      </div>
-    </div>
-    <div class="bottom-controls">
-      <button :disabled="!nextStep" class="forward-btn" @click="$emit('render-step', 'variants')">
-        weiter
-      </button>
     </div>
   </div>
 </template>
 <style>
-.customer {
-  @apply font-lato-bold flex flex-wrap gap-4 text-black;
+.input-container {
+  @apply font-lato-bold gap-4 text-black sm:flex sm:flex-wrap;
 
   .data {
-    @apply relative flex flex-col gap-x-4;
-
-    .error {
-      @apply font-lato-regular absolute bottom-0 text-red-500;
-    }
+    @apply relative flex max-w-48 flex-col items-start gap-x-4;
 
     label {
       @apply py-2;
@@ -90,6 +58,27 @@ const nextStep = ref<boolean>(false);
     input {
       @apply rounded-md bg-gray-300 px-2 py-1;
     }
+  }
+  .gdpr {
+    @apply font-lato-regular my-8 flex max-w-fit flex-col flex-wrap items-start gap-4 text-base text-black;
+
+    label {
+      a {
+        @apply text-base font-bold;
+      }
+    }
+
+    input[type="checkbox"] {
+      @apply h-4 w-4 rounded-md accent-black;
+    }
+
+    .error {
+      @apply font-lato-regular bottom-0 text-red-500;
+    }
+  }
+
+  .error {
+    @apply font-lato-regular bottom-0 text-red-500;
   }
 }
 </style>

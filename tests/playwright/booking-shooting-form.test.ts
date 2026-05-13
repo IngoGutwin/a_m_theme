@@ -1,4 +1,5 @@
 import { test, expect, Page } from "@playwright/test";
+import { type Customer } from "../../resources/lib/validation/schemas/customer.schema.ts";
 
 const bookingShootingTestId = "booking-shooting-form";
 
@@ -57,33 +58,77 @@ async function testVariantsStep(page: Page, variantsTestId: string, nextStepTest
   await expect(page.getByTestId(nextStepTestId)).toBeVisible();
 }
 
-async function testCustomerStep(page: Page, customerTestId: string, nextStepTestId: string) {
+async function testCustomerStep(page: Page, customerTestId: string, nextStepTestId?: string) {
+  const testCustomer: Customer = {
+    firstName: "David",
+    lastName: "Bowie",
+    email: "david.bowie@gmail.com",
+    mobilePhone: "015143568769",
+    street: "Fahrenheitstraße",
+    houseNumber: "10B",
+    zipCode: "45456",
+    city: "Berlin",
+  };
+
   const customer = page.getByTestId(customerTestId);
-  await customer.getByLabel("Vorname").fill("2");
-  // await participants.getByLabel("Haustiere").fill("1");
+  await expect(customer).toBeVisible();
+  await expect(customer).toBeEnabled();
+
+  await customer.getByTestId("first-name").fill(testCustomer.firstName);
+  const firstName = await customer.getByTestId("first-name").inputValue();
+  expect(firstName).toBe(testCustomer.firstName);
+
+  await customer.getByTestId("last-name").fill(testCustomer.lastName);
+  const lastName = await customer.getByTestId("last-name").inputValue();
+  expect(lastName).toBe(testCustomer.lastName);
+
+  await customer.getByTestId("e-mail").fill(testCustomer.email);
+  const eMail = await customer.getByTestId("e-mail").inputValue();
+  expect(eMail).toBe(testCustomer.email);
+
+  await customer.getByTestId("mobile-phone").fill(testCustomer.mobilePhone);
+  const mobilePhone = await customer.getByTestId("mobile-phone").inputValue();
+  expect(mobilePhone).toBe(testCustomer.mobilePhone);
+
+  await customer.getByTestId("street-name").fill(testCustomer.street);
+  const street = await customer.getByTestId("street-name").inputValue();
+  expect(street).toBe(testCustomer.street);
+
+  await customer.getByTestId("house-number").fill(testCustomer.houseNumber);
+  const houseNumber = await customer.getByTestId("house-number").inputValue();
+  expect(houseNumber).toBe(testCustomer.houseNumber);
+
+  await customer.getByTestId("zip-code").fill(testCustomer.zipCode);
+  const zipCode = await customer.getByTestId("zip-code").inputValue();
+  expect(zipCode).toBe(testCustomer.zipCode);
+
+  await customer.getByTestId("gdpr").check();
+  const gdpr = await customer.getByTestId("gdpr").isChecked();
+  expect(gdpr).toBe(true);
 }
 
-// test("test if the booking form is loaded", async ({ page }) => {
-//   await testIsBookingShootingFormLoaded(page);
-// });
+test.skip("test if the booking form is loaded", async ({ page }) => {
+  await testIsBookingShootingFormLoaded(page);
+});
 
-// test("step 1: check if shootings are loaded", async ({ page }) => {
-//   await testShootingStep(page, shooting, shootingsTestId, participantsTestId);
-// });
+test.skip("step 1: check if shootings are loaded", async ({ page }) => {
+  await testShootingStep(page, shooting, shootingsTestId, participantsTestId);
+});
 
-// test("step 2: run step 1 and fill out participants", async ({ page }) => {
-//   await testShootingStep(page, shooting, shootingsTestId, participantsTestId);
-//   await testParticipantsStep(page, participantsTestId, variantsTestId);
-// });
+test.skip("step 2: run step 1 and fill out participants", async ({ page }) => {
+  await testShootingStep(page, shooting, shootingsTestId, participantsTestId);
+  await testParticipantsStep(page, participantsTestId, variantsTestId);
+});
 
-// test("step 3: run step 1 & 2 and check one variant", async ({ page }) => {
-//   await testShootingStep(page, shooting, shootingsTestId, participantsTestId);
-//   await testParticipantsStep(page, participantsTestId, variantsTestId);
-//   await testVariantsStep(page, variantsTestId, customerTestId);
-// });
+test.skip("step 3: run step 1 & 2 and check one variant", async ({ page }) => {
+  await testShootingStep(page, shooting, shootingsTestId, participantsTestId);
+  await testParticipantsStep(page, participantsTestId, variantsTestId);
+  await testVariantsStep(page, variantsTestId, customerTestId);
+});
 
 test("step 4: run step 1 to 3 and fill out customer data", async ({ page }) => {
   await testShootingStep(page, shooting, shootingsTestId, participantsTestId);
   await testParticipantsStep(page, participantsTestId, variantsTestId);
   await testVariantsStep(page, variantsTestId, customerTestId);
+  await testCustomerStep(page, customerTestId);
 });

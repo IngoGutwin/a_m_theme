@@ -1,17 +1,24 @@
-import type { Shooting, ShootingVariant, Booking, Participants } from "resources";
+import type {
+  Shooting,
+  ShootingVariant,
+  Booking,
+  ValidationErrors,
+  TouchedFields,
+} from "resources";
 import type { Customer } from "@lib/validation/schemas/customer.schema";
-import { computed, onMounted, reactive, ref, watchEffect, type Ref } from "vue";
+import { ParticipantsSchema } from "@lib/validation/schemas/participants.schema";
+import { CustomerSchema } from "@lib/validation/schemas/customer.schema";
 import { FetchApi } from "@app/utils/fetch.api.wrapper.utils";
-import type { core } from "zod";
+import { computed, type ComputedRef, onMounted, reactive, ref } from "vue";
+import { type ZodSchema } from "zod";
 
 export function useBookingForm() {
-  let API = FetchApi();
-  let apiURL = import.meta.env.VITE_API_URL;
+  const apiURL = import.meta.env.VITE_API_URL;
+  const API = FetchApi();
 
-  let shootings = ref<[]>([]);
-  let shootingVariants = ref<Record<string, ShootingVariant> | null>({});
+  // --- Daten ---
 
-  let customer = reactive<Customer>({
+  const customer = reactive<Customer>({
     firstName: "",
     lastName: "",
     city: "",
@@ -24,98 +31,172 @@ export function useBookingForm() {
     newsLetter: false,
   });
 
-  let booking = reactive<Booking>({
+  const booking = reactive<Booking>({
     title: "",
     productId: "",
-    variant: {
-      title: "",
-      benefits: "",
-    },
-    participants: {
-      adults: 0,
-      toddlers: 0,
-      childrens: 0,
-      animals: 0,
-    },
+    variant: { title: "", benefits: "" },
+    participants: { adults: 0, toddlers: 0, childrens: 0, animals: 0 },
   });
+
+  const shootings = ref<Shooting[]>([]);
+  const shootingVariants = ref<Record<string, ShootingVariant> | null>(null);
+
+  // --- Field Error Validation ---
+
+  function useValidation<T extends object>(schema: ZodSchema<T>, data: T) {
+    const touchedFields = reactive<TouchedFields<T>>({});
+
+    function touchField(field: keyof T) {
+      touchedFields[field] = true;
+    }
+
+    function touchAll() {
+      (Object.keys(data) as (keyof T)[]).forEach((key) => {
+        touchedFields[key] = true;
+      });
+    }
+
+    const errors = computed<ValidationErrors<T>>(() => {
+      const result = schema.safeParse(data);
+      if (result.success) return {};
+
+      return result.error.issues.reduce((acc, issue) => {
+        const field = issue.path[0] as keyof T;
+        if (touchedFields[field]) {
+          acc[field] = issue.message;
+        }
+        return acc;
+      }, {} as ValidationErrors<T>);
+    });
+
+    const isValid = computed(() => schema.safeParse(data).success);
+
+    return { errors, touchField, touchAll, isValid };
+  }
+
+  const {
+    errors: participantErrors,
+    touchField: participantsSetTouchedField,
+    touchAll: touchAllParticipants,
+    isValid: participantsValid,
+  } = useValidation(ParticipantsSchema, booking.participants);
+
+  const {
+    errors: customerErrors,
+    touchField: touchCustomerField,
+    touchAll: touchAllCustomer,
+    isValid: customerValid,
+  } = useValidation(CustomerSchema, customer);
+
+  // --- StepConfig ---
 
   interface StepConfig {
     id: string;
-    nextIsReady: Ref<boolean, boolean>;
+    nextIsReady: ComputedRef<boolean>;
+    skip?: () => boolean;
   }
 
-  let stepConfig: StepConfig[] = [
+  const stepConfig: StepConfig[] = [
     {
       id: "shooting",
-      nextIsReady: ref(false),
+      nextIsReady: computed(() => !!booking.productId),
     },
     {
       id: "participants",
-      nextIsReady: ref(false),
+      nextIsReady: participantsValid,
+    },
+    {
+      id: "variants",
+      nextIsReady: computed(() => !!booking.variant.title),
+      skip: () => shootingVariants.value === null,
+    },
+    {
+      id: "customer",
+      nextIsReady: computed(() => customerValid.value && customer.gdpr),
+    },
+    {
+      id: "checkup",
+      nextIsReady: computed(() => false),
     },
   ];
 
-  let currentIndex = ref(0);
-  let formStep = computed(() => stepConfig[currentIndex.value].id);
-  let canGoBack = computed(() => (currentIndex.value > 0 ? true : false));
-  let canGoNext = computed(() => stepConfig[currentIndex.value].nextIsReady.value);
+  // --- Navigation ---
 
-  let updateNextStepReady = () =>
-    (stepConfig[currentIndex.value].nextIsReady.value = stepConfig[currentIndex.value].nextIsReady
-      .value
-      ? false
-      : true);
+  const currentIndex = ref(0);
+  const activeSteps = computed(() => stepConfig.filter((step) => !step.skip?.()));
+  const currentStep = computed(() => activeSteps.value[currentIndex.value]);
+  const formStep = computed(() => currentStep.value.id);
+  const canGoBack = computed(() => currentIndex.value > 0);
+  const canGoNext = computed(() => currentStep.value.nextIsReady.value);
 
-  function renderStep(direction: string) {
-    console.log(direction);
+  function renderStep(direction: "next" | "back") {
+    if (direction === "next" && canGoNext.value) {
+      if (formStep.value === "participants") touchAllParticipants();
+      if (formStep.value === "customer") touchAllCustomer();
+      currentIndex.value++;
+    } else if (direction === "back" && canGoBack.value) {
+      currentIndex.value--;
+    }
   }
 
-  function toggleShooting(shooting: Shooting) {
-    let { title, product_id } = shooting;
-    function saveShooting() {
-      booking.title = title;
-      booking.productId = product_id;
-      if (!canGoNext.value) {
-        updateNextStepReady();
-      }
-    }
-    function clearShooting() {
+  // --- Shooting ---
+
+  function hasVariants(variants: Record<string, ShootingVariant>): boolean {
+    return Object.values(variants).some((v) => !!v.title);
+  }
+
+  function toggleShooting({ title, product_id, variants }: Shooting) {
+    if (booking.title === title) {
       booking.title = "";
       booking.productId = "";
-      if (canGoNext.value) {
-        updateNextStepReady();
-      }
-    }
-    if (booking.title === title) {
-      clearShooting();
+      shootingVariants.value = null;
     } else {
-      saveShooting();
+      booking.title = title;
+      booking.productId = product_id;
+      shootingVariants.value = hasVariants(variants) ? variants : null;
     }
   }
 
+  // --- Variants ---
+
+  function toggleVariant({ title, benefits }: ShootingVariant) {
+    const isSelected = booking.variant.title === title;
+    booking.variant.title = isSelected ? "" : title;
+    booking.variant.benefits = isSelected ? "" : benefits;
+  }
+
+  // --- Checkup ---
+  function sendQuery() {
+    console.log("sending request");
+  }
+
+  // --- API ---
+
   onMounted(async () => {
-    /**
-     * get data from API
-     */
-    let response = await API.get(`${apiURL}/shooting`);
-    shootings.value = response.map((rawShooting) => {
-      let shooting: Shooting = rawShooting.acf;
-      return shooting;
-    });
+    const response = await API.get<any[]>(`${apiURL}/shooting`);
+    if (!response) return;
+    shootings.value = response.map((raw) => raw.acf as Shooting);
   });
 
   return {
-    // data
+    // Data
     customer,
     booking,
-    shootingVariants,
     shootings,
-    stepConfig,
+    shootingVariants,
+    // Validation
+    participantErrors,
+    customerErrors,
+    // Navigation
     formStep,
     canGoBack,
     canGoNext,
-    // functions
-    toggleShooting,
+    // Actions
     renderStep,
+    toggleShooting,
+    toggleVariant,
+    participantsSetTouchedField,
+    touchCustomerField,
+    sendQuery,
   };
 }

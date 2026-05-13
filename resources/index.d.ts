@@ -31,3 +31,7 @@ export interface Booking {
   variant: ShootingVariant;
   participants: Participants;
 }
+
+export type ValidationErrors<T> = Partial<Record<keyof T, string>>;
+
+export type TouchedFields<T> = Partial<Record<keyof T, boolean>>;

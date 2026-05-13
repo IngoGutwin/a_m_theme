@@ -20,6 +20,9 @@ export default {
       gridTemplateColumns: {
         "shootings-grid": "repeat(auto-fill, minmax(8rem, 1fr))",
       },
+      gridTemplateRows: {
+        "view-ui": "1fr 100px",
+      },
     },
   },
   plugins: [],
