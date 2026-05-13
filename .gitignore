@@ -13,3 +13,5 @@ public
 /playwright/.auth/
 
 .env
+
+.vscode
