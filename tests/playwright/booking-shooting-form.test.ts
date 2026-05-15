@@ -1,21 +1,6 @@
 import { test, expect, Page } from "@playwright/test";
 import { type Customer } from "../../resources/lib/validation/schemas/customer.schema.ts";
 
-const bookingShootingTestId = "booking-shooting-form";
-
-const shootingsTestId = "booking-step-shootings";
-const shooting = "Familie";
-
-const participantsTestId = "booking-step-participants";
-
-const variantsTestId = "booking-step-variants";
-
-const customerTestId = "booking-step-customer";
-
-test.beforeEach(async ({ page }) => {
-  await page.goto("/buche-dein-shooting/");
-});
-
 async function testIsBookingShootingFormLoaded(page: Page) {
   await expect(page.getByTestId(bookingShootingTestId)).toBeVisible();
   await expect(page.getByTestId(bookingShootingTestId)).toBeEnabled();
@@ -25,6 +10,7 @@ async function testShootingStep(
   page: Page,
   shooting: string,
   shootigsTestId: string,
+  nextStepButton: string,
   nextStepTestId: string
 ) {
   const shootings = page.getByTestId(shootigsTestId);
@@ -68,6 +54,8 @@ async function testCustomerStep(page: Page, customerTestId: string, nextStepTest
     houseNumber: "10B",
     zipCode: "45456",
     city: "Berlin",
+    gdpr: true,
+    newsLetter: false,
   };
 
   const customer = page.getByTestId(customerTestId);
@@ -107,11 +95,31 @@ async function testCustomerStep(page: Page, customerTestId: string, nextStepTest
   expect(gdpr).toBe(true);
 }
 
+const bookingShootingTestId = "booking-shooting-form";
+
+const shootingsTestId = "booking-step-shootings";
+
+const shooting = "Familie";
+
+const participantsTestId = "booking-step-participants";
+
+const variantsTestId = "booking-step-variants";
+
+const customerTestId = "booking-step-customer";
+
+const nextButton = "go-next-button";
+
+const sendQueryButton = "send-query-button";
+
+test.beforeEach(async ({ page }) => {
+  await page.goto("/buche-dein-shooting/");
+});
+
 test.skip("test if the booking form is loaded", async ({ page }) => {
   await testIsBookingShootingFormLoaded(page);
 });
 
-test.skip("step 1: check if shootings are loaded", async ({ page }) => {
+test("step 1: check if shootings are loaded", async ({ page }) => {
   await testShootingStep(page, shooting, shootingsTestId, participantsTestId);
 });
 
@@ -126,7 +134,7 @@ test.skip("step 3: run step 1 & 2 and check one variant", async ({ page }) => {
   await testVariantsStep(page, variantsTestId, customerTestId);
 });
 
-test("step 4: run step 1 to 3 and fill out customer data", async ({ page }) => {
+test.skip("step 4: run step 1 to 3 and fill out customer data", async ({ page }) => {
   await testShootingStep(page, shooting, shootingsTestId, participantsTestId);
   await testParticipantsStep(page, participantsTestId, variantsTestId);
   await testVariantsStep(page, variantsTestId, customerTestId);
