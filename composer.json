@@ -12,7 +12,8 @@
     "vinkla/headache": "^3.5",
     "enshrined/svg-sanitize": "^0.22.0",
     "wpackagist-plugin/advanced-custom-fields": "^6.6.2",
-    "wpackagist-plugin/wordpress-seo": "^26.3"
+    "wpackagist-plugin/wordpress-seo": "^26.3",
+    "wpackagist-plugin/participants-database": "^2.7.8.3"
   },
   "repositories": [
     {
