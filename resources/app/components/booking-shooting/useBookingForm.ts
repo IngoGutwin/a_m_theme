@@ -8,12 +8,13 @@ import type {
 import type { Customer } from "@lib/validation/schemas/customer.schema";
 import { ParticipantsSchema } from "@lib/validation/schemas/participants.schema";
 import { CustomerSchema } from "@lib/validation/schemas/customer.schema";
-import { FetchApi } from "@app/utils/fetch.api.wrapper.utils";
+import { FetchApi, type WpPost } from "@app/utils/fetch.api.wrapper.utils";
 import { computed, type ComputedRef, onMounted, reactive, ref } from "vue";
 import { type ZodSchema } from "zod";
 
 export function useBookingForm() {
   const apiURL = import.meta.env.VITE_API_URL;
+  const shootingLeadsApiURL = import.meta.env.VITE_SHOOTING_LEAD_POST_API_URL;
   const API = FetchApi();
 
   // --- Daten ---
@@ -166,16 +167,35 @@ export function useBookingForm() {
   }
 
   // --- Checkup ---
-  function sendQuery() {
-    console.log("sending request");
+  async function sendQuery() {
+    try {
+      let response = await API.post({
+        url: shootingLeadsApiURL,
+        body: {
+          ...customer,
+          ...booking,
+        },
+      });
+      console.log(response);
+    } catch (e) {
+      API.handleNetworkError(e);
+    }
   }
 
   // --- API ---
 
   onMounted(async () => {
-    const response = await API.get<any[]>(`${apiURL}/shooting`);
-    if (!response) return;
-    shootings.value = response.map((raw) => raw.acf as Shooting);
+    try {
+      let response = await API.get<WpPost<Shooting>[]>(`${apiURL}/shooting`);
+
+      if (API.isWpError(response)) return;
+
+      if (response) {
+        shootings.value = response.map((raw: WpPost<Shooting>) => raw.acf);
+      }
+    } catch (e) {
+      API.handleNetworkError(e);
+    }
   });
 
   return {

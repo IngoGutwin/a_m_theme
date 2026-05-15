@@ -62,11 +62,17 @@ const {
   <div class="booking-shooting-controls-wrapper">
     <div class="booking-shooting-controls">
       <ControlsButton text="zurück" :disabled="!canGoBack" @click="renderStep('back')" />
-      <ControlsButton v-if="formStep === 'checkup'" text="Absenden" @click="sendQuery" />
+      <ControlsButton
+        v-if="formStep === 'checkup'"
+        text="Absenden"
+        data-testid="send-query-button"
+        @click="sendQuery"
+      />
       <ControlsButton
         v-else-if="formStep !== 'checkup'"
         text="weiter"
         :disabled="!canGoNext"
+        data-testid="go-next-button"
         @click="renderStep('next')"
       />
     </div>
