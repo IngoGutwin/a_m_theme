@@ -17,6 +17,8 @@ const {
   participantErrors,
   shootingVariants,
   customerErrors,
+  renderCustomerFields,
+  renderParticipantFields,
   toggleShooting,
   renderStep,
   toggleVariant,
@@ -56,7 +58,13 @@ const {
       @touch-customer-field="touchCustomerField"
     />
 
-    <BookingStepCheckUp v-if="formStep === 'checkup'" :customer="customer" :booking="booking" />
+    <BookingStepCheckUp
+      v-if="formStep === 'checkup'"
+      :customer="customer"
+      :booking="booking"
+      :render-participant-fields="renderParticipantFields"
+      :render-customer-fields="renderCustomerFields"
+    />
   </div>
 
   <div class="booking-shooting-controls-wrapper">

@@ -122,6 +122,19 @@ export function useBookingForm() {
     },
   ];
 
+  // --- Render Fields ---
+
+  const renderCustomerFields = computed(() => {
+    const skip: (keyof Customer)[] = ["gdpr", "newsLetter", "honeyPot"];
+    return Object.fromEntries(
+      Object.entries(customer).filter(([key]) => !skip.includes(key as keyof Customer))
+    );
+  });
+
+  const renderParticipantFields = computed(() =>
+    Object.entries(booking.participants).filter(([, val]) => Number(val) > 0)
+  );
+
   // --- Navigation ---
 
   const currentIndex = ref(0);
@@ -168,6 +181,7 @@ export function useBookingForm() {
   }
 
   // --- Checkup ---
+
   async function sendQuery() {
     try {
       let response = await API.post({
@@ -205,6 +219,8 @@ export function useBookingForm() {
     booking,
     shootings,
     shootingVariants,
+    renderCustomerFields,
+    renderParticipantFields,
     // Validation
     participantErrors,
     customerErrors,

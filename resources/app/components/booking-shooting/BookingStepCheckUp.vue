@@ -1,24 +1,13 @@
 <script setup lang="ts">
-import type { Booking } from "resources";
+import type { Booking, Participants } from "resources";
 import type { Customer } from "@lib/validation/schemas/customer.schema";
-import { computed } from "vue";
 import { customerFormFields, participantsFormFields } from "./booking.form.shape";
 
 const props = defineProps<{
-  customer: Customer;
+  renderCustomerFields: Customer;
+  renderParticipantFields: Participants;
   booking: Booking;
 }>();
-
-const customerData = computed(() => {
-  const skip: (keyof Customer)[] = ["gdpr", "newsLetter", "honeyPot"];
-  return Object.fromEntries(
-    Object.entries(props.customer).filter(([key]) => !skip.includes(key as keyof Customer))
-  ) as Omit<Customer, "gdpr" | "newsLetter">;
-});
-
-const participantData = computed(() =>
-  Object.entries(props.booking.participants).filter(([, val]) => Number(val) > 0)
-);
 </script>
 
 <template>
@@ -45,7 +34,7 @@ const participantData = computed(() =>
     <div class="checkup-section">
       <h4>Teilnehmer</h4>
       <table class="checkup-table">
-        <tr v-for="[key, val] in participantData" :key="key">
+        <tr v-for="[key, val] in props.renderParticipantFields" :key="key">
           <th scope="row">
             {{ participantsFormFields[key as keyof typeof participantsFormFields].label }}:
           </th>
@@ -58,7 +47,7 @@ const participantData = computed(() =>
     <div class="checkup-section">
       <h4>Deine Daten</h4>
       <table class="checkup-table">
-        <tr v-for="(val, key) in customerData" :key="key">
+        <tr v-for="(val, key) in renderCustomerFields" :key="key">
           <th scope="row">
             {{ customerFormFields[key as keyof typeof customerFormFields].label }}:
           </th>

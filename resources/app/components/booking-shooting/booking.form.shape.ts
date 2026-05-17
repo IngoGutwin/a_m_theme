@@ -126,7 +126,8 @@ export const customerFormFields: Record<keyof Customer, BookingFormFields> = {
     shouldRender: true,
   },
   gdpr: {
-    label: "Ich habe die [link]Datenschutzerklärung[/link] zur Kentniss genommen.",
+    label:
+      "Ich habe die [link] Datenschutzerklärung [/link] zur Kenntnis genommen und bin damit einverstanden, dass meine Angaben zur Beantwortung meiner Anfrage verarbeitet werden.",
     id: "gdpr",
     type: "checkbox",
     required: true,
@@ -134,16 +135,16 @@ export const customerFormFields: Record<keyof Customer, BookingFormFields> = {
     link: "https://authentische-momente.de/datenschutz",
     shouldRender: true,
   },
-  newsLetter: {
-    label:
-      "Ich möchte den Newsletter erhalten und habe die [link]Datenschutzerklärung[/link] zur Kenntniss genommen.",
-    id: "newsletter",
-    type: "checkbox",
-    required: false,
-    dataTestId: "newsletter-check",
-    link: "https://authentische-momente.de/datenschutz",
-    shouldRender: true,
-  },
+  // newsLetter: {
+  //   label:
+  //     "Ich möchte den Newsletter erhalten und habe die [link]Datenschutzerklärung[/link] zur Kenntniss genommen.",
+  //   id: "newsletter",
+  //   type: "checkbox",
+  //   required: false,
+  //   dataTestId: "newsletter-check",
+  //   link: "https://authentische-momente.de/datenschutz",
+  //   shouldRender: true,
+  // },
   honeyPot: {
     label: "Website Traffic Numbers",
     id: "web-traffic-nm",

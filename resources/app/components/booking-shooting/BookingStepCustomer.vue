@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import LabelElement from "@components/LabelElement.vue";
-import type { ValidationErrors, TouchedFields } from "resources";
+import type { ValidationErrors } from "resources";
 import type { Customer } from "@lib/validation/schemas/customer.schema";
 import { customerFormFields } from "./booking.form.shape";
 
