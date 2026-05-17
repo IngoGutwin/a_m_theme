@@ -51,12 +51,16 @@ function am_shooting_lead_main_callback( WP_REST_Request $request ): WP_REST_Res
 	$parts    = $booking['participants'];
 	$variant  = $booking['variant'];
 
-	error_log(
-		print_r( $customer, true )
-	);
-	error_log(
-		print_r( $booking, true )
-	);
+	if ( ! $customer['gdpr'] ) {
+		return new WP_REST_Response(
+			array(
+				'status'  => 'error',
+				'code'    => 'gdpr_field_required',
+				'message' => 'The gdpr field is required.',
+			),
+			400
+		);
+	}
 
 	// ── 3. Duplicate guard: reject if e-mail already exists ─────────────────
 	$existing_ids = Participants_Db::get_id_list(
@@ -184,163 +188,173 @@ add_filter(
 function am_shooting_lead_get_args( $args ): array {
 	return array(
 		// ── Customer ────────────────────────────────────────────────────────────
-
 		'customer' => array(
-			'firstName'   => array(
-				'required'          => true,
-				'type'              => 'string',
-				'minLength'         => 2,
-				'maxLength'         => 100,
-				'sanitize_callback' => 'sanitize_text_field',
-				'validate_callback' => function ( $value ) {
-					if ( ! preg_match( '/^[\p{L}\s\-\'\.]+$/u', $value ) ) {
-						return new WP_Error(
-							'invalid_first_name',
-							__( 'First name contains invalid characters.' ),
-							array( 'status' => 422 )
-						);
-					}
-					return true;
-				},
-			),
+			'required'          => true,
+			'type'              => 'object',
 
-			'lastName'    => array(
-				'required'          => true,
-				'type'              => 'string',
-				'minLength'         => 2,
-				'maxLength'         => 100,
-				'sanitize_callback' => 'sanitize_text_field',
-				'validate_callback' => function ( $value ) {
-					if ( ! preg_match( '/^[\p{L}\s\-\'\.]+$/u', $value ) ) {
-						return new WP_Error(
-							'invalid_last_name',
-							__( 'Last name contains invalid characters.' ),
-							array( 'status' => 422 )
-						);
-					}
-					return true;
-				},
-			),
+			'validate_callback' => function ( $value ) {
 
-			'email'       => array(
-				'required'          => true,
-				'type'              => 'string',
-				'format'            => 'email',          // WP prüft RFC-Format automatisch
-				'maxLength'         => 254,
-				'sanitize_callback' => 'sanitize_email',
-				'validate_callback' => function ( $value ) {
-					if ( ! is_email( $value ) ) {
-						return new WP_Error(
-							'invalid_email',
-							__( 'Invalid email address.' ),
-							array( 'status' => 422 )
-						);
-					}
-					return true;
-				},
-			),
+				if ( ! is_array( $value ) ) {
+					return new WP_Error(
+						'invalid_customer',
+						__( 'Customer must be an object.' ),
+						array( 'status' => 422 )
+					);
+				}
 
-			'street'      => array(
-				'required'          => false,
-				'type'              => 'string',
-				'minLength'         => 2,
-				'maxLength'         => 150,
-				'sanitize_callback' => 'sanitize_text_field',
-			),
+				// ─────────────────────────────
+				// FIRST NAME
+				// ─────────────────────────────
+				$firstName = $value['firstName'] ?? '';
 
-			'houseNumber' => array(
-				'required'          => false,
-				'type'              => 'string',
-				'maxLength'         => 20,
-				'sanitize_callback' => 'sanitize_text_field',
-				'validate_callback' => function ( $value ) {
-					// Erlaubt: "12", "12a", "12 a", "12-14"
-					if ( ! preg_match( '/^[0-9]{1,5}[a-zA-Z\s\-\/]{0,5}$/', $value ) ) {
-						return new WP_Error(
-							'invalid_house_number',
-							__( 'House number is invalid.' ),
-							array( 'status' => 422 )
-						);
-					}
-					return true;
-				},
-			),
+				if ( empty( $firstName ) || ! is_string( $firstName ) ) {
+					return new WP_Error(
+						'invalid_first_name',
+						__( 'First name is required.' ),
+						array( 'status' => 422 )
+					);
+				}
 
-			'zipCode'     => array(
-				'required'          => false,
-				'type'              => 'string',
-				'sanitize_callback' => 'sanitize_text_field',
-				'validate_callback' => function ( $value ) {
-					// Deutsches PLZ-Format (5 Ziffern) – ggf. anpassen
-					if ( ! preg_match( '/^\d{5}$/', $value ) ) {
+				if ( strlen( $firstName ) < 2 || strlen( $firstName ) > 100 ) {
+					return new WP_Error(
+						'invalid_first_name_length',
+						__( 'First name length invalid.' ),
+						array( 'status' => 422 )
+					);
+				}
+
+				if ( ! preg_match( '/^[\p{L}\s\-\'\.]+$/u', $firstName ) ) {
+					return new WP_Error(
+						'invalid_first_name_chars',
+						__( 'First name contains invalid characters.' ),
+						array( 'status' => 422 )
+					);
+				}
+
+				// ─────────────────────────────
+				// LAST NAME
+				// ─────────────────────────────
+				$lastName = $value['lastName'] ?? '';
+
+				if ( empty( $lastName ) || ! is_string( $lastName ) ) {
+					return new WP_Error(
+						'invalid_last_name',
+						__( 'Last name is required.' ),
+						array( 'status' => 422 )
+					);
+				}
+
+				if ( strlen( $lastName ) < 2 || strlen( $lastName ) > 100 ) {
+					return new WP_Error(
+						'invalid_last_name_length',
+						__( 'Last name length invalid.' ),
+						array( 'status' => 422 )
+					);
+				}
+
+				if ( ! preg_match( '/^[\p{L}\s\-\'\.]+$/u', $lastName ) ) {
+					return new WP_Error(
+						'invalid_last_name_chars',
+						__( 'Last name contains invalid characters.' ),
+						array( 'status' => 422 )
+					);
+				}
+
+				// ─────────────────────────────
+				// EMAIL
+				// ─────────────────────────────
+				$email = $value['email'] ?? '';
+
+				if ( empty( $email ) || ! is_email( $email ) ) {
+					return new WP_Error(
+						'invalid_email',
+						__( 'Invalid email address.' ),
+						array( 'status' => 422 )
+					);
+				}
+
+				if ( strlen( $email ) > 254 ) {
+					return new WP_Error(
+						'invalid_email_length',
+						__( 'Email too long.' ),
+						array( 'status' => 422 )
+					);
+				}
+
+				// ─────────────────────────────
+				// MOBILE PHONE
+				// ─────────────────────────────
+				$mobilePhone = preg_replace( '/[\s\-\(\)]/', '', $value['mobilePhone'] ?? '' );
+
+				if ( ! preg_match( '/^\+?[0-9]{7,15}$/', $mobilePhone ) ) {
+					return new WP_Error(
+						'invalid_mobile_phone',
+						__( 'Mobile phone number is invalid.' ),
+						array( 'status' => 422 )
+					);
+				}
+
+				// ─────────────────────────────
+				// GDPR
+				// ─────────────────────────────
+				if ( ( $value['gdpr'] ?? false ) !== true ) {
+					return new WP_Error(
+						'gdpr_required',
+						__( 'GDPR consent is required.' ),
+						array( 'status' => 422 )
+					);
+				}
+
+				// ─────────────────────────────
+				// NEWSLETTER (optional)
+				// ─────────────────────────────
+				if ( isset( $value['newsLetter'] ) && ! is_bool( $value['newsLetter'] ) ) {
+					return new WP_Error(
+						'invalid_newsletter',
+						__( 'Newsletter must be boolean.' ),
+						array( 'status' => 422 )
+					);
+				}
+
+				// ─────────────────────────────
+				// STREET (optional)
+				// ─────────────────────────────
+				if ( ! empty( $value['street'] ) && ! is_string( $value['street'] ) ) {
+					return new WP_Error(
+						'invalid_street',
+						__( 'Street must be string.' ),
+						array( 'status' => 422 )
+					);
+				}
+
+				// ─────────────────────────────
+				// ZIP CODE (optional)
+				// ─────────────────────────────
+				if ( ! empty( $value['zipCode'] ) ) {
+					if ( ! preg_match( '/^\d{5}$/', $value['zipCode'] ) ) {
 						return new WP_Error(
 							'invalid_zip_code',
-							__( 'ZIP code must be exactly 5 digits.' ),
+							__( 'ZIP code must be 5 digits.' ),
 							array( 'status' => 422 )
 						);
 					}
-					return true;
-				},
-			),
+				}
 
-			'city'        => array(
-				'required'          => false,
-				'type'              => 'string',
-				'minLength'         => 2,
-				'maxLength'         => 100,
-				'sanitize_callback' => 'sanitize_text_field',
-				'validate_callback' => function ( $value ) {
-					if ( ! preg_match( '/^[\p{L}\s\-\.]+$/u', $value ) ) {
+				// ─────────────────────────────
+				// CITY (optional)
+				// ─────────────────────────────
+				if ( ! empty( $value['city'] ) ) {
+					if ( ! preg_match( '/^[\p{L}\s\-\.]+$/u', $value['city'] ) ) {
 						return new WP_Error(
 							'invalid_city',
-							__( 'City name contains invalid characters.' ),
+							__( 'City contains invalid characters.' ),
 							array( 'status' => 422 )
 						);
 					}
-					return true;
-				},
-			),
+				}
 
-			'mobilePhone' => array(
-				'required'          => true,
-				'type'              => 'string',
-				'maxLength'         => 30,
-				'sanitize_callback' => 'sanitize_text_field',
-				'validate_callback' => function ( $value ) {
-					// E.164-kompatibel; erlaubt +49..., 0..., Leerzeichen, Bindestriche
-					$normalized = preg_replace( '/[\s\-\(\)]/', '', $value );
-					if ( ! preg_match( '/^\+?[0-9]{7,15}$/', $normalized ) ) {
-						return new WP_Error(
-							'invalid_mobile_phone',
-							__( 'Mobile phone number is invalid.' ),
-							array( 'status' => 422 )
-						);
-					}
-					return true;
-				},
-			),
-
-			'gdpr'        => array(
-				'required'          => true,
-				'type'              => 'boolean',
-				'validate_callback' => function ( $value ) {
-					// Muss explizit true sein – false ist kein gültiger Submit
-					if ( true !== $value ) {
-						return new WP_Error(
-							'gdpr_not_accepted',
-							__( 'GDPR consent is required.' ),
-							array( 'status' => 422 )
-						);
-					}
-					return true;
-				},
-			),
-
-			'newsLetter'  => array(
-				'required' => false,
-				'type'     => 'boolean',
-				'default'  => false,
-			),
+				return true;
+			},
 		),
 
 		// ── Booking ─────────────────────────────────────────────────────────────
