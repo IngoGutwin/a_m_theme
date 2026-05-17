@@ -7,6 +7,8 @@
  * @package a_m_theme
  */
 
+require_once get_template_directory() . '/include/security/rate-limiting-checker.php';
+require_once get_template_directory() . '/include/api/shooting-lead-api.php';
 require_once get_template_directory() . '/include/acf-loader-helpers.php';
 require_once get_template_directory() . '/include/svg-sanitizer.php';
 require_once get_template_directory() . '/include/logo.php';
