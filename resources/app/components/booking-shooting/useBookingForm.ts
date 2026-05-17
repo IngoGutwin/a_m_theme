@@ -30,6 +30,7 @@ export function useBookingForm() {
     mobilePhone: "",
     gdpr: false,
     newsLetter: false,
+    honeyPot: "",
   });
 
   const booking = reactive<Booking>({
@@ -172,8 +173,8 @@ export function useBookingForm() {
       let response = await API.post({
         url: shootingLeadsApiURL,
         body: {
-          ...customer,
-          ...booking,
+          customer: { ...customer },
+          booking: { ...booking },
         },
       });
       console.log(response);

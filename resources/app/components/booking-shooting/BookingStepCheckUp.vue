@@ -10,7 +10,7 @@ const props = defineProps<{
 }>();
 
 const customerData = computed(() => {
-  const skip: (keyof Customer)[] = ["gdpr", "newsLetter"];
+  const skip: (keyof Customer)[] = ["gdpr", "newsLetter", "honeyPot"];
   return Object.fromEntries(
     Object.entries(props.customer).filter(([key]) => !skip.includes(key as keyof Customer))
   ) as Omit<Customer, "gdpr" | "newsLetter">;

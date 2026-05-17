@@ -22,6 +22,7 @@ export const CustomerSchema = z.object({
   houseNumber: HouseNumberSchema,
   gdpr: GdprSchema,
   newsLetter: NewsletterSchema,
+  honeyPot: z.string(),
 });
 
 export type Customer = z.infer<typeof CustomerSchema>;

@@ -9,6 +9,8 @@ interface BookingFormFields {
   dataTestId: string;
   autocomplete?: string;
   link?: string;
+  class?: string;
+  shouldRender?: boolean;
 }
 
 export const participantsFormFields: Record<keyof Participants, BookingFormFields> = {
@@ -19,6 +21,7 @@ export const participantsFormFields: Record<keyof Participants, BookingFormField
     required: true,
     dataTestId: "adults-test-id",
     autocomplete: "on",
+    shouldRender: true,
   },
   childrens: {
     label: "Kinder ab zwei Jahren",
@@ -27,6 +30,7 @@ export const participantsFormFields: Record<keyof Participants, BookingFormField
     required: true,
     dataTestId: "children-test-id",
     autocomplete: "on",
+    shouldRender: true,
   },
   animals: {
     label: "Haustiere",
@@ -35,6 +39,7 @@ export const participantsFormFields: Record<keyof Participants, BookingFormField
     required: true,
     dataTestId: "animals-test-id",
     autocomplete: "on",
+    shouldRender: true,
   },
   toddlers: {
     label: "Kinder bis zwei Jahren",
@@ -43,6 +48,7 @@ export const participantsFormFields: Record<keyof Participants, BookingFormField
     required: true,
     dataTestId: "toddlers-test-id",
     autocomplete: "on",
+    shouldRender: true,
   },
 };
 
@@ -54,6 +60,7 @@ export const customerFormFields: Record<keyof Customer, BookingFormFields> = {
     required: true,
     dataTestId: "first-name",
     autocomplete: "on",
+    shouldRender: true,
   },
   lastName: {
     label: "Nachname",
@@ -62,6 +69,7 @@ export const customerFormFields: Record<keyof Customer, BookingFormFields> = {
     required: true,
     dataTestId: "last-name",
     autocomplete: "on",
+    shouldRender: true,
   },
   city: {
     label: "Stadt",
@@ -70,6 +78,7 @@ export const customerFormFields: Record<keyof Customer, BookingFormFields> = {
     required: true,
     dataTestId: "city-name",
     autocomplete: "on",
+    shouldRender: true,
   },
   zipCode: {
     label: "PLZ",
@@ -78,6 +87,7 @@ export const customerFormFields: Record<keyof Customer, BookingFormFields> = {
     required: true,
     dataTestId: "zip-code",
     autocomplete: "on",
+    shouldRender: true,
   },
   street: {
     label: "Straße",
@@ -86,6 +96,7 @@ export const customerFormFields: Record<keyof Customer, BookingFormFields> = {
     required: true,
     dataTestId: "street-name",
     autocomplete: "on",
+    shouldRender: true,
   },
   houseNumber: {
     label: "Hausnummer",
@@ -94,6 +105,7 @@ export const customerFormFields: Record<keyof Customer, BookingFormFields> = {
     required: true,
     dataTestId: "house-number",
     autocomplete: "on",
+    shouldRender: true,
   },
   mobilePhone: {
     label: "Handy Nummer",
@@ -102,6 +114,7 @@ export const customerFormFields: Record<keyof Customer, BookingFormFields> = {
     required: true,
     dataTestId: "mobile-phone",
     autocomplete: "on",
+    shouldRender: true,
   },
   email: {
     label: "E-Mail",
@@ -110,6 +123,7 @@ export const customerFormFields: Record<keyof Customer, BookingFormFields> = {
     required: true,
     dataTestId: "e-mail",
     autocomplete: "on",
+    shouldRender: true,
   },
   gdpr: {
     label: "Ich habe die [link]Datenschutzerklärung[/link] zur Kentniss genommen.",
@@ -118,6 +132,7 @@ export const customerFormFields: Record<keyof Customer, BookingFormFields> = {
     required: true,
     dataTestId: "gdpr-check",
     link: "https://authentische-momente.de/datenschutz",
+    shouldRender: true,
   },
   newsLetter: {
     label:
@@ -127,5 +142,15 @@ export const customerFormFields: Record<keyof Customer, BookingFormFields> = {
     required: false,
     dataTestId: "newsletter-check",
     link: "https://authentische-momente.de/datenschutz",
+    shouldRender: true,
+  },
+  honeyPot: {
+    label: "Website Traffic Numbers",
+    id: "web-traffic-nm",
+    dataTestId: "web-traffic-test",
+    type: "text",
+    required: false,
+    class: "hp-field",
+    shouldRender: false,
   },
 };

@@ -13,7 +13,7 @@ export const MobilePhoneSchema = z
   .string()
   .trim()
   .min(7, MIN_ERROR)
-  .max(15, MAX_ERROR)
+  .max(20, MAX_ERROR)
   .refine((v) => {
     let number = v.normalize(normalizationFormat);
     return validatePhoneNumber(number, allowedPhoneNumberSeparators, digitRegex);

@@ -24,7 +24,7 @@ const emit = defineEmits<{
         v-for="field in customerFormFields"
         :key="field.id"
         class="data"
-        :class="{ gdpr: field.id === 'gdpr' || field.id === 'newsletter' }"
+        :class="{ gdpr: field.id === 'gdpr' || field.id === 'newsletter', 'hp-field': field.class }"
       >
         <LabelElement :label="field.label" :link="field.link" :for="field.id" />
         <input
@@ -58,6 +58,9 @@ const emit = defineEmits<{
     input {
       @apply rounded-md bg-gray-300 px-2 py-1;
     }
+  }
+  .hp-field {
+    @apply absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0;
   }
   .gdpr {
     @apply font-lato-regular my-8 flex max-w-fit flex-col flex-wrap items-start gap-4 text-base text-black;
