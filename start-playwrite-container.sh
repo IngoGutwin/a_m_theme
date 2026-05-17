@@ -13,6 +13,7 @@ run_new_container () {
     --network host \
     --init \
     --ipc=host \
+    --env-file .env \
     -v "$(pwd)":/app \
     -w /app \
     -e PLAYWRIGHT_BROWSERS_PATH=/ms-playwright \
