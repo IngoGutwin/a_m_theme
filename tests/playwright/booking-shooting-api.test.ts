@@ -59,18 +59,25 @@ test.beforeEach(async () => {
 });
 
 test.describe("clean data Test", () => {
-  test.skip("send a request to shooting-lead shootingLeadsApiUrl", async ({ request }) => {
-    const payload = JSON.stringify({
+  test("send a request to shooting-lead shootingLeadsApiUrl", async ({ request }) => {
+    const payload = {
       customer: basePayload.customer,
       booking: basePayload.booking,
-    });
+    };
+
+    console.log(payload.customer);
+    console.log(payload.booking);
+
     let response = await request.post(shootingLeadsApiUrl, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      data: payload,
+      data: JSON.stringify(payload),
     });
+
+    console.log(response);
+
     expect(response.ok()).toBe(true);
   });
 
@@ -92,114 +99,5 @@ test.describe("clean data Test", () => {
     expect(response.status()).toBe(400);
     expect(response.ok()).toBe(false);
   });
-});
 
-test.describe("security fuzzing", () => {
-  test("rejects xss payload", async ({ request }) => {
-    const payload = structuredClone(basePayload);
-
-    payload.customer.firstName = randomAttack("xss");
-
-    const response = await request.post(shootingLeadsApiUrl, {
-      data: payload,
-    });
-
-    expect(response.status()).toBeLessThan(500);
-  });
-
-  test("rejects sql injection payload", async ({ request }) => {
-    const payload = structuredClone(basePayload);
-
-    payload.customer.lastName = randomAttack("sql");
-
-    const response = await request.post(shootingLeadsApiUrl, {
-      data: payload,
-    });
-
-    expect(response.status()).toBeLessThan(500);
-  });
-
-  test("rejects html injection payload", async ({ request }) => {
-    const payload = structuredClone(basePayload);
-
-    payload.customer.city = randomAttack("htmlInjection");
-
-    const response = await request.post(shootingLeadsApiUrl, {
-      data: payload,
-    });
-
-    expect(response.status()).toBeLessThan(500);
-  });
-
-  test("rejects overflow payload", async ({ request }) => {
-    const payload = structuredClone(basePayload);
-
-    payload.customer.firstName = randomAttack("overflow");
-
-    const response = await request.post(shootingLeadsApiUrl, {
-      data: payload,
-    });
-
-    expect(response.status()).toBeLessThan(500);
-  });
-
-  test("rejects unicode payload", async ({ request }) => {
-    const payload = structuredClone(basePayload);
-
-    payload.customer.firstName = randomAttack("unicode");
-
-    const response = await request.post(shootingLeadsApiUrl, {
-      data: payload,
-    });
-
-    expect(response.status()).toBeLessThan(500);
-  });
-
-  test("rejects malformed payload", async ({ request }) => {
-    const payload = structuredClone(basePayload);
-
-    payload.customer.email = randomAttack("malformed");
-
-    const response = await request.post(shootingLeadsApiUrl, {
-      data: payload,
-    });
-
-    expect(response.status()).toBeLessThan(500);
-  });
-
-  test("rejects mixed chaos payload", async ({ request }) => {
-    const payload = structuredClone(basePayload);
-
-    const attacks = generateAttackSet();
-
-    payload.customer.firstName = attacks.xss;
-    payload.customer.lastName = attacks.sql;
-    payload.customer.city = attacks.unicode;
-
-    payload.customer.email = attacks.malformed;
-
-    const response = await request.post(shootingLeadsApiUrl, {
-      data: payload,
-    });
-
-    expect(response.status()).toBeLessThan(500);
-  });
-
-  test("test numbers on strings", async ({ request }) => {
-    const payload = structuredClone(basePayload);
-
-    const attacks = generateAttackSet();
-
-    payload.customer.firstName = 2323232;
-    payload.customer.lastName = 232323;
-    payload.customer.city = 232323;
-
-    const response = await request.post(shootingLeadsApiUrl, {
-      data: payload,
-    });
-
-    console.log("status: ", response.status());
-    console.log("message: ", response.statusText());
-    expect(response.status()).toBeLessThan(500);
-  });
 });

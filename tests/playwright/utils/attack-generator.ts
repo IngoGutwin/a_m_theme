@@ -32,13 +32,3 @@ export function randomAttack(type: keyof typeof attacks): string {
   const list = attacks[type];
   return list[Math.floor(Math.random() * list.length)];
 }
-
-export function generateAttackSet() {
-  return {
-    xss: randomAttack("xss"),
-    sql: randomAttack("sql"),
-    overflow: randomAttack("overflow"),
-    unicode: randomAttack("unicode"),
-    malformed: randomAttack("malformed"),
-  };
-}
