@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Theme Functions.
  *
@@ -7,8 +8,6 @@
  * @package a_m_theme
  */
 
-require_once get_template_directory() . '/include/security/rate-limiting-checker.php';
-require_once get_template_directory() . '/include/api/shooting-lead-api.php';
 require_once get_template_directory() . '/include/acf-loader-helpers.php';
 require_once get_template_directory() . '/include/svg-sanitizer.php';
 require_once get_template_directory() . '/include/logo.php';
@@ -230,7 +229,6 @@ function update_acf_in_shooting_type( $post_id ) {
 
 	$product_title = get_field( 'title', $post_id );
 
-	error_log( print_r( $product_id, true ) );
 	if ( empty( $product_id ) || $product_id == md5( $product_title ) ) {
 		return;
 	}

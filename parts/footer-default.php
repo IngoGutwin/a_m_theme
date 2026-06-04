@@ -7,14 +7,14 @@
 
 $front_page_id = get_option( 'page_on_front' );
 
-$footer_fields = get_page_fields( $front_page_id )['Footer Section'];
+$footer_fields     = get_page_fields( $front_page_id )['Footer Section'];
 $field_group_title = $footer_fields['field_group_title'];
-$hash      = $footer_fields['group_hash'] ?? '';
-$instagram = $footer_fields[ "instagram_{$hash}" ] ?? '';
-$facebook  = $footer_fields[ "facebook_{$hash}" ] ?? '';
-$impressum = $footer_fields[ "impressum_{$hash}" ] ?? '';
-$gdpr      = $footer_fields[ "gdpr_{$hash}" ] ?? '';
-$contact   = $footer_fields[ "contact_{$hash}" ] ?? '';
+$hash              = $footer_fields['group_hash'] ?? '';
+$instagram         = $footer_fields[ "instagram_{$hash}" ] ?? '';
+$facebook          = $footer_fields[ "facebook_{$hash}" ] ?? '';
+$impressum         = $footer_fields[ "impressum_{$hash}" ] ?? '';
+$gdpr              = $footer_fields[ "gdpr_{$hash}" ] ?? '';
+$contact           = $footer_fields[ "contact_{$hash}" ] ?? '';
 ?>
 
 </main>
