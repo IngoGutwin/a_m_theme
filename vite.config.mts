@@ -1,6 +1,5 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
 import { fileURLToPath } from "node:url";
 
 export default defineConfig(({ mode }) => ({
@@ -10,7 +9,6 @@ export default defineConfig(({ mode }) => ({
     devSourcemap: true,
   },
   plugins: [
-    vue(),
     {
       name: "reload-php-server",
       handleHotUpdate({ file, server }) {
@@ -70,7 +68,6 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@app": fileURLToPath(new URL("./resources/app", import.meta.url)),
       "@lib": fileURLToPath(new URL("./resources/lib", import.meta.url)),
-      "@components": fileURLToPath(new URL("./resources/app/components", import.meta.url)),
     },
   },
 }));

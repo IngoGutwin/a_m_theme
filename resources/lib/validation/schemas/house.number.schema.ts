@@ -10,7 +10,8 @@ const letterRegex = /\p{L}/u;
 const digitRegex = /\d/;
 const normalizationFormat = "NFC";
 
-export const HouseNumberSchema = z
+export const HouseNumberSchema =  z.preprocess((value) => (value === "" ? undefined : value),
+  z
   .string()
   .trim()
   .min(1, MIN_ERROR)
@@ -18,7 +19,8 @@ export const HouseNumberSchema = z
   .transform((value: string) => value.normalize(normalizationFormat))
   .refine((value) => {
     return validateHouseNumber(value, allowedHouseNumberSeparators, digitRegex, letterRegex);
-  }, CHAR_ERROR);
+  }, CHAR_ERROR).optional()
+);
 
 function validateHouseNumber(
   validationValue: string,

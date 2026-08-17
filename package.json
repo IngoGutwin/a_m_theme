@@ -16,23 +16,22 @@
   "keywords": [
     "wordpress",
     "vite",
-    "vuejs",
+    "alpinejs",
     "tailwindcss",
     "roots"
   ],
   "author": "Ingo Gutwin",
   "license": "MIT",
-  "description": "Classic wordpress theme with vuejs + vite + tailwindcss.",
+  "description": "Classic wordpress theme with alpinejs + vite + tailwindcss.",
   "devDependencies": {
     "@eslint/js": "^9.33.0",
     "@faker-js/faker": "10.2.0",
     "@playwright/test": "1.58.2",
+    "@types/alpinejs": "3.13.11",
     "@types/node": "^22.13.9",
-    "@vitejs/plugin-vue": "^5.2.1",
     "autoprefixer": "10.4.23",
     "eslint": "^9.33.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-vue": "^10.4.0",
     "globals": "^16.3.0",
     "jiti": "2.6.1",
     "postcss": "8.5.6",
@@ -43,11 +42,10 @@
     "typescript-eslint": "^8.40.0",
     "vite": "^6.2.0",
     "vitest": "4.0.17",
-    "vue": "^3.5.13",
-    "vue-tsc": "3.2.1",
     "zod": "4.3.5"
   },
   "dependencies": {
+    "alpinejs": "3.15.12",
     "swiper": "12.1.2"
   }
 }

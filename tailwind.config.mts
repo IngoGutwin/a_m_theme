@@ -2,9 +2,10 @@ import type { Config } from "tailwindcss";
 
 export default {
   content: [
-    "./resources/app/components/**/*.vue",
+    "./resources/app/**/*.{ts,js}",
     "./resources/css/*.css",
     "./index.php",
+    "./page-*.php",
     "./parts/**/*.php",
   ],
   theme: {

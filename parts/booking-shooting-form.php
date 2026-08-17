@@ -1,33 +1,12 @@
 <?php
+
 /**
- * Template Name: Contact Page
- * Template Post Type: page
+ * Booking Shooting Form Part
  *
  * @package a_m_theme
  */
 
-$page_id = get_the_ID();
-
-$page_fields = get_page_fields( $page_id );
-
-$hero_section_fields = $page_fields['Hero Section Contact'] ?? array();
-
-$description_block_fields = $page_fields['Contact Description'] ?? array();
-
-$footer_section = $page_fields['Footer Section'] ?? array();
-
-get_template_part( 'parts/header-default' );
 ?>
-
-<section
-    class="whats-app-container" x-show="showWhatsApp">
-    <h3>Bist du bereit?</h3>
-    <h2>Ich glaube du bist es!</h2>
-    <a class="whats-app-btn" href="https://wa.me/4917684900416" target="_blank" rel="noopener noreferrer">
-        Schreibe mir direkt per WhatsApp
-    </a>
-    <p>Oder, nutze mein Kontakt Formular</p>
-</section>
 
 <section
 	class="booking-shooting-section"
@@ -80,6 +59,78 @@ get_template_part( 'parts/header-default' );
 			</div>
 		</fieldset>
 
+		<!-- Participants -->
+		<fieldset data-testid="booking-step-participants">
+			<legend>Wer wird da sein?</legend>
+			<div class="field-row">
+				<div class="field">
+					<label for="adults">Erwachsene</label>
+					<input
+						id="adults"
+						name="adults"
+						type="text"
+						inputmode="numeric"
+						placeholder="min. 1"
+						x-model="booking.participants.adults"
+						data-testid="adults-test-id"
+						required />
+					<p
+						class="error"
+						data-error-for="booking.participants.adults"
+						x-show="error('booking.participants.adults')"
+						x-text="error('booking.participants.adults')"></p>
+				</div>
+				<div class="field">
+					<label for="childrens">Kinder ab zwei Jahren</label>
+					<input
+						id="childrens"
+						name="childrens"
+						type="text"
+						inputmode="numeric"
+						placeholder="0"
+						x-model="booking.participants.childrens"
+						data-testid="children-test-id" />
+					<p
+						class="error"
+						data-error-for="booking.participants.childrens"
+						x-show="error('booking.participants.childrens')"
+						x-text="error('booking.participants.childrens')"></p>
+				</div>
+				<div class="field">
+					<label for="toddlers">Kinder bis zwei Jahren</label>
+					<input
+						id="toddlers"
+						name="toddlers"
+						type="text"
+						inputmode="numeric"
+						placeholder="0"
+						x-model="booking.participants.toddlers"
+						data-testid="toddlers-test-id" />
+					<p
+						class="error"
+						data-error-for="booking.participants.toddlers"
+						x-show="error('booking.participants.toddlers')"
+						x-text="error('booking.participants.toddlers')"></p>
+				</div>
+				<div class="field">
+					<label for="animals">Haustiere</label>
+					<input
+						id="animals"
+						name="animals"
+						type="text"
+						inputmode="numeric"
+						placeholder="0"
+						x-model="booking.participants.animals"
+						data-testid="animals-test-id" />
+					<p
+						class="error"
+						data-error-for="booking.participants.animals"
+						x-show="error('booking.participants.animals')"
+						x-text="error('booking.participants.animals')"></p>
+				</div>
+			</div>
+		</fieldset>
+
 		<!-- Customer -->
 		<fieldset data-testid="booking-step-customer">
 			<legend>Deine Daten</legend>
@@ -92,20 +143,20 @@ get_template_part( 'parts/header-default' );
 						type="text"
 						autocomplete="given-name"
 						x-model="customer.firstName"
-						data-testid="firstName"
+						data-testid="first-name"
 						required />
 					<p class="error" data-error-for="customer.firstName" x-show="error('customer.firstName')" x-text="error('customer.firstName')"></p>
 				</div>
-                <div class="field">
+				<div class="field">
 					<label for="lastName">Nachname&nbsp;*</label>
 					<input
 						id="lastName"
 						name="lastName"
 						type="text"
-						autocomplete="given-name"
+						autocomplete="family-name"
 						x-model="customer.lastName"
-						data-testid="lastName"
-						/>
+						data-testid="last-name"
+						required />
 					<p class="error" data-error-for="customer.lastName" x-show="error('customer.lastName')" x-text="error('customer.lastName')"></p>
 				</div>
 				<div class="field">
@@ -121,31 +172,66 @@ get_template_part( 'parts/header-default' );
 					<p class="error" data-error-for="customer.email" x-show="error('customer.email')" x-text="error('customer.email')"></p>
 				</div>
 				<div class="field">
-					<label for="mobilePhone">Tel.&nbsp;Nummer&nbsp;*</label>
+					<label for="mobilePhone">Handy Nummer</label>
 					<input
 						id="mobilePhone"
 						name="mobilePhone"
 						type="tel"
 						autocomplete="tel"
+						placeholder="optional"
 						x-model="customer.mobilePhone"
 						data-testid="mobile-phone" />
 					<p class="error" data-error-for="customer.mobilePhone" x-show="error('customer.mobilePhone')" x-text="error('customer.mobilePhone')"></p>
 				</div>
-
-			</div>
-
-			<div class="field">
-				<label for="message">Nachricht</label>
-				<textarea
-					id="message"
-					name="message"
-					type="text"
-					x-model="customer.message"
-					size="80"
-					data-testid="message">
-
-				</textarea>
-				<p class="error" data-error-for="customer.message" x-show="error('customer.message')" x-text="error('customer.message')"></p>
+				<div class="field">
+					<label for="street">Straße</label>
+					<input
+						id="street"
+						name="street"
+						type="text"
+						autocomplete="address-line1"
+						placeholder="optional"
+						x-model="customer.street"
+						data-testid="street-name" />
+					<p class="error" data-error-for="customer.street" x-show="error('customer.street')" x-text="error('customer.street')"></p>
+				</div>
+				<div class="field">
+					<label for="houseNumber">Hausnummer</label>
+					<input
+						id="houseNumber"
+						name="houseNumber"
+						type="text"
+						autocomplete="address-line2"
+						placeholder="optional"
+						x-model="customer.houseNumber"
+						data-testid="house-number" />
+					<p class="error" data-error-for="customer.houseNumber" x-show="error('customer.houseNumber')" x-text="error('customer.houseNumber')"></p>
+				</div>
+				<div class="field">
+					<label for="zipCode">PLZ</label>
+					<input
+						id="zipCode"
+						name="zipCode"
+						type="text"
+						inputmode="numeric"
+						autocomplete="postal-code"
+						placeholder="optional"
+						x-model="customer.zipCode"
+						data-testid="zip-code" />
+					<p class="error" data-error-for="customer.zipCode" x-show="error('customer.zipCode')" x-text="error('customer.zipCode')"></p>
+				</div>
+				<div class="field">
+					<label for="city">Stadt</label>
+					<input
+						id="city"
+						name="city"
+						type="text"
+						autocomplete="address-level2"
+						placeholder="optional"
+						x-model="customer.city"
+						data-testid="city-name" />
+					<p class="error" data-error-for="customer.city" x-show="error('customer.city')" x-text="error('customer.city')"></p>
+				</div>
 			</div>
 
 			<!-- Honeypot -->
@@ -176,7 +262,6 @@ get_template_part( 'parts/header-default' );
 				</label>
 				<p class="error" data-error-for="customer.gdpr" x-show="error('customer.gdpr')" x-text="error('customer.gdpr')"></p>
 			</div>
-
 		</fieldset>
 
 		<div class="submit-row">
@@ -189,7 +274,3 @@ get_template_part( 'parts/header-default' );
 		</div>
 	</form>
 </section>
-
-
-<?php
-get_template_part( 'parts/footer-default', 'default', $footer_section );

@@ -16,7 +16,7 @@
 
     "allowJs": true,
     "esModuleInterop": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -25,8 +25,8 @@
 
     "paths": {
       "@app/*": ["resources/app/*"],
-      "@lib/*": ["resources/lib/*"],
-     }
+      "@lib/*": ["resources/lib/*"]
+    }
   },
-  "include": ["resources/**/*.ts","resources/**/*.vue"]
+  "include": ["resources/**/*.ts", "resources/**/*.d.ts"]
 }

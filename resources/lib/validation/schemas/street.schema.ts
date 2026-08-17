@@ -10,15 +10,19 @@ const letterRegex = /\p{L}/u;
 const digitRegex = /\d/;
 const normalizationFormat = "NFC";
 
-export const StreetSchema = z
-  .string()
-  .trim()
-  .min(2, MIN_ERROR)
-  .max(65, MAX_ERROR)
-  .transform((value: string) => value.normalize(normalizationFormat))
-  .refine((value) => {
-    return validateStreet(value, allowedStreetNameSeparators, letterRegex, digitRegex);
-  }, CHAR_ERROR);
+export const StreetSchema = z.preprocess(
+  (value) => (value === "" ? undefined : value),
+  z
+    .string()
+    .trim()
+    .min(2, MIN_ERROR)
+    .max(65, MAX_ERROR)
+    .transform((value: string) => value.normalize(normalizationFormat))
+    .refine((value) => {
+      return validateStreet(value, allowedStreetNameSeparators, letterRegex, digitRegex);
+    }, CHAR_ERROR)
+    .optional()
+);
 
 function validateStreet(
   validationValue: string,

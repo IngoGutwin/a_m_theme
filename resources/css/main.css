@@ -9,6 +9,7 @@
 @import "./swiper.css";
 @import "./footer-section.css";
 @import "./archive.css";
+@import "./booking-form.css";
 
 body {
   @apply bg-creme;

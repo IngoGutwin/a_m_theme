@@ -1,10 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { fakerDE } from "@faker-js/faker";
-import { type Shooting, type Booking } from "../../resources";
-import { type Customer } from "./../../resources/lib/validation/schemas/customer.schema";
-import { customerFormFields } from "../../resources/app/components/booking-shooting/booking.form.shape";
+import { type Shooting } from "../../resources";
 import { FetchApi, type WpPost } from "../../resources/app/utils/fetch.api.wrapper.utils";
-import { randomAttack, generateAttackSet } from "./utils/attack-generator";
 
 const basePayload = {
   customer: {
@@ -21,16 +18,15 @@ const basePayload = {
     honeyPot: "",
   },
   booking: {
-    title: "",
-    productId: "",
-    variant: { title: "", benefits: "" },
+    title: "Babybauch Shooting",
+    productId: "testId",
     participants: { adults: 2, toddlers: 0, childrens: 0, animals: 0 },
   },
 };
 
 const API = FetchApi();
 const apiUrl = process.env.VITE_API_URL + "/shooting";
-const shootingLeadsApiUrl = process.env.VITE_SHOOTING_LEAD_POST_API_URL ?? "";
+const shootingLeadApiUrl = process.env.VITE_SHOOTING_LEAD_API_URL ?? "http://a-m.test/wp-json/am/v2/shooting-lead";
 
 async function getShootingsData() {
   try {
@@ -40,12 +36,10 @@ async function getShootingsData() {
 
     if (response) {
       response.forEach((raw: WpPost<Shooting>) => {
-        let { title, product_id, variants } = raw.acf;
+        let { title, product_id } = raw.acf;
         if (title === "Familie") {
           basePayload.booking.title = title;
           basePayload.booking.productId = product_id;
-          basePayload.booking.variant.title = variants["variant_2"].title;
-          basePayload.booking.variant.benefits = variants["variant_2"].benefits;
         }
       });
     }
@@ -58,17 +52,18 @@ test.beforeEach(async () => {
   await getShootingsData();
 });
 
-test.describe("clean data Test", () => {
+test.describe("espo crm Test", () => {
   test("send a request to shooting-lead shootingLeadsApiUrl", async ({ request }) => {
     const payload = {
       customer: basePayload.customer,
       booking: basePayload.booking,
     };
 
-    console.log(payload.customer);
-    console.log(payload.booking);
+    //payload.customer.newsLetter = true;
 
-    let response = await request.post(shootingLeadsApiUrl, {
+    console.log(payload.customer);
+
+    let response = await request.post(shootingLeadApiUrl, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -76,28 +71,39 @@ test.describe("clean data Test", () => {
       data: JSON.stringify(payload),
     });
 
-    console.log(response);
+    console.log(await response.text());
 
     expect(response.ok()).toBe(true);
   });
 
-  test.skip("send a request to shooting-lead shootingLeadsApiUrl, with false gdpr", async ({
-    request,
-  }) => {
-    basePayload.customer.gdpr = false;
-    const payload = JSON.stringify({
+  test.skip("double e-mail check", async ({ request }) => {
+    const payload = {
       customer: basePayload.customer,
       booking: basePayload.booking,
-    });
-    let response = await request.post(shootingLeadsApiUrl, {
+    };
+
+    let responseOne = await request.post(shootingLeadApiUrl, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      data: payload,
+      data: JSON.stringify(payload),
     });
-    expect(response.status()).toBe(400);
-    expect(response.ok()).toBe(false);
-  });
 
+    console.log(await responseOne.text());
+
+    expect(responseOne.ok()).toBe(true);
+
+    let responseTwo = await request.post(shootingLeadApiUrl, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      data: JSON.stringify(payload),
+    });
+
+    console.log(await responseTwo.text());
+
+    expect(responseTwo.ok()).toBe(false);
+  });
 });

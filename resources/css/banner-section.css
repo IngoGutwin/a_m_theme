@@ -2,8 +2,8 @@
 .ads-banner {
   @apply flex flex-col items-start;
 
-  .book-appointment-btn {
-    @apply font-lato-bold text-creme -mt-8 cursor-pointer self-end rounded-2xl bg-black px-4 py-2 font-bold hover:bg-gray-700;
+  button {
+    @apply -mt-8;
   }
 
   p {

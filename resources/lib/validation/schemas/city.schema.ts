@@ -9,7 +9,8 @@ const MAX_ERROR = "maximal 65 Zeichen!";
 const letterRegex = /\p{L}/u;
 const normalizationFormat = "NFC";
 
-export const CitySchema = z
+export const CitySchema = z.preprocess((value) => (value === "" ? undefined : value),
+  z
   .string()
   .trim()
   .min(2, MIN_ERROR)
@@ -17,7 +18,8 @@ export const CitySchema = z
   .transform((value: string) => value.normalize(normalizationFormat))
   .refine((value: string) => {
     return validateCity(value, allowedCityNameSeparators, letterRegex);
-  }, CHAR_ERROR);
+  }, CHAR_ERROR).optional()
+);
 
 function validateCity(
   validationValue: string,

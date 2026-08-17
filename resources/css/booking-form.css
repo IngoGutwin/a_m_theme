@@ -1,0 +1,84 @@
+[x-cloak] {
+  display: none !important;
+}
+
+.booking-form {
+  @apply mx-auto flex flex-col gap-8;
+}
+
+.booking-form fieldset {
+  @apply flex flex-col gap-3 border-0 p-0;
+}
+
+.booking-form legend {
+  @apply font-lato-bold mb-2 text-lg font-bold text-black;
+}
+
+.booking-form .field {
+  @apply flex max-w-md flex-col gap-1;
+}
+
+.booking-form .field-row {
+  @apply flex flex-wrap gap-4;
+}
+
+.booking-form label {
+  @apply font-lato-bold text-sm text-black;
+}
+
+.booking-form input[type="text"],
+.booking-form input[type="email"],
+.booking-form input[type="tel"],
+.booking-form input[type="number"],
+.booking-form select,
+.booking-form textarea {
+  @apply rounded-md font-lato-regular bg-gray-300 px-2 py-1 text-black;
+}
+
+.booking-form select, textarea {
+  @apply cursor-pointer;
+}
+
+.booking-form input[type="checkbox"] {
+  @apply h-4 w-4 accent-black;
+}
+
+.booking-form .error {
+  @apply font-lato-regular text-sm text-red-500;
+}
+
+.booking-form .gdpr-field {
+  @apply font-lato-regular max-w-xl flex-row flex-wrap items-start gap-3 text-base py-4;
+}
+
+.booking-form .gdpr-field label a {
+  @apply font-bold underline;
+}
+
+.booking-form .hp-field {
+  @apply absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0;
+}
+
+.booking-form .submit-row {
+  @apply pt-2;
+}
+
+.booking-form .submit-btn {
+  @apply font-lato-bold cursor-pointer rounded-md bg-black px-6 py-3 text-creme disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.success-box {
+  @apply font-lato-bold flex flex-col gap-3 text-black;
+}
+
+.booking-form .status-error {
+  @apply font-lato-regular text-red-600;
+}
+
+.whats-app-container {
+  @apply font-lato-bold;
+
+  h2, h3, button, p {
+    @apply my-4 md:my-8;
+  }
+}

@@ -21,7 +21,6 @@ const basePayload = {
   booking: {
     title: "",
     productId: "",
-    variant: { title: "", benefits: "" },
     participants: { adults: 2, toddlers: 0, childrens: 0, animals: 0 },
   },
 };
@@ -38,12 +37,10 @@ async function getShootingsData() {
 
     if (response) {
       response.forEach((raw: WpPost<Shooting>) => {
-        let { title, product_id, variants } = raw.acf;
+        let { title, product_id } = raw.acf;
         if (title === "Familie") {
           basePayload.booking.title = title;
           basePayload.booking.productId = product_id;
-          basePayload.booking.variant.title = variants["variant_2"].title;
-          basePayload.booking.variant.benefits = variants["variant_2"].benefits;
         }
       });
     }
@@ -206,21 +203,6 @@ test.describe("security fuzzing", () => {
 
     for (let key in payload.booking.participants) {
       payload.booking.participants[key] = randomAttack("mixedChaos");
-
-      const response = await request.post(shootingLeadsApiUrl, {
-        data: payload,
-      });
-
-      console.log(response);
-      expect(response.status()).toBe(400);
-      expect(response.ok()).toBe(false);
-    }
-  });
-  test("rejects mixed chaos payload on vairant fields", async ({ request }) => {
-    const payload = structuredClone(basePayload);
-
-    for (let key in payload.booking.variant) {
-      payload.booking.variant[key] = randomAttack("mixedChaos");
 
       const response = await request.post(shootingLeadsApiUrl, {
         data: payload,

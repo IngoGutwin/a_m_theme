@@ -11,7 +11,7 @@ export const ParticipantsSchema = z.object({
     (v: string) => Number.parseInt(v),
     z
       .int({ error: GIVE_A_NUMBER })
-      .min(MIN_PERSONS, MIN_PERSONS_MESSAGE)
+      .min(0)
       .max(MAX_PERSONS, MAX_PERSONS_MESSAGE)
   ),
   childrens: z.preprocess(

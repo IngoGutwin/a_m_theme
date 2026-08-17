@@ -2,7 +2,7 @@
   @apply text-creme flex justify-center bg-black py-8;
 
   .footer-container {
-    @apply m-auto w-full max-w-5xl px-2 xl:px-0;
+    @apply m-auto w-full max-w-5xl px-2 xl:px-0 font-lato-regular ;
 
     .social {
       @apply m-auto flex w-full justify-between;
@@ -23,7 +23,7 @@
     }
 
     .info {
-      @apply font-lato-regular mt-8 text-lg;
+      @apply mt-8 text-lg;
 
       li {
         @apply my-2 py-2 md:my-4;

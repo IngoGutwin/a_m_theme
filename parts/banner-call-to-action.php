@@ -50,7 +50,7 @@ if ( ! empty( $section[ "bg_image_xl_{$hash}" ] ) ) {
 			array(
 				'button_text' => $button_text,
 				'button_url'  => $button_url,
-				'css_class'   => 'book-appointment-btn',
+				'css_class'   => 'contact-btn',
 			)
 		);
 	}

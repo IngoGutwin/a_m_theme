@@ -7,15 +7,21 @@ const MAX_ERROR = "maximal sechs Zeichen!";
 const digitRegex = /\d/;
 const normalizationFormat = "NFC";
 
-export const ZipCodeSchema = z
+export const ZipCodeSchema = z.preprocess((value) => (value === "" ? undefined : value),
+  z
   .string()
   .trim()
   .min(4, MIN_ERROR)
   .max(6, MAX_ERROR)
   .refine((v) => {
+    if (!v) {
+      return undefined;
+    }
     let code = v.normalize(normalizationFormat);
     return validateZipCode(code, digitRegex);
-  }, CHAR_ERROR);
+  }, CHAR_ERROR)
+  .optional()
+)
 
 function validateZipCode(validationValue: string, digitRegex: RegExp) {
   let result = false;

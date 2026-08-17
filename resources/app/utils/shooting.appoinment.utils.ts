@@ -1,14 +1,14 @@
-async function loadApp(rootComponent: HTMLElement) {
-  const { createApp } = await import("vue");
-  const BookingShooting = await import("@app/components/booking-shooting/BookingShooting.vue");
-  createApp(BookingShooting.default).mount(rootComponent);
+import Alpine from "alpinejs";
+import { bookingForm } from "../booking/booking.form";
+
+declare global {
+  interface Window {
+    Alpine: typeof Alpine;
+  }
 }
 
 export function initShootingAppoinment() {
-  let shootingAppoinment = document.querySelector<HTMLElement>(
-    "#shooting-appoinment-booking-section"
-  );
-  if (shootingAppoinment) {
-    loadApp(shootingAppoinment);
-  }
+  window.Alpine = Alpine;
+  Alpine.data("bookingForm", bookingForm);
+  Alpine.start();
 }

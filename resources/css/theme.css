@@ -38,3 +38,11 @@
   font-display: swap;
   font-weight: 800;
 }
+
+.contact-btn {
+  @apply font-lato-bold text-creme cursor-pointer self-end rounded-2xl bg-black px-4 py-2 font-bold hover:bg-gray-700;
+}
+
+.whats-app-btn {
+  @apply font-lato-bold text-black cursor-pointer self-end rounded-2xl bg-green-500 px-4 py-2 font-bold hover:bg-green-300;
+}
