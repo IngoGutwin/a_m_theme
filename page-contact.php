@@ -20,13 +20,13 @@ get_template_part( 'parts/header-default' );
 ?>
 
 <section
-    class="whats-app-container" x-show="showWhatsApp">
-    <h3>Bist du bereit?</h3>
-    <h2>Ich glaube du bist es!</h2>
-    <a class="whats-app-btn" href="https://wa.me/4917684900416" target="_blank" rel="noopener noreferrer">
-        Schreibe mir direkt per WhatsApp
-    </a>
-    <p>Oder, nutze mein Kontakt Formular</p>
+	class="whats-app-container" x-show="showWhatsApp">
+	<h3>Bist du bereit?</h3>
+	<h2>Ich glaube du bist es!</h2>
+	<a class="whats-app-btn" href="https://wa.me/4917684900416" target="_blank" rel="noopener noreferrer">
+		Schreibe mir direkt per WhatsApp
+	</a>
+	<p>Oder, nutze mein Kontakt Formular</p>
 </section>
 
 <section
@@ -96,7 +96,7 @@ get_template_part( 'parts/header-default' );
 						required />
 					<p class="error" data-error-for="customer.firstName" x-show="error('customer.firstName')" x-text="error('customer.firstName')"></p>
 				</div>
-                <div class="field">
+				<div class="field">
 					<label for="lastName">Nachname&nbsp;*</label>
 					<input
 						id="lastName"

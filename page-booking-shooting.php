@@ -84,7 +84,7 @@ get_template_part( 'parts/header-default', '', array( 'shooting_booking_page' =>
 						required />
 					<p class="error" data-error-for="customer.firstName" x-show="error('customer.firstName')" x-text="error('customer.firstName')"></p>
 				</div>
-                <div class="field">
+				<div class="field">
 					<label for="lastName">Nachname&nbsp;*</label>
 					<input
 						id="lastNameName"
