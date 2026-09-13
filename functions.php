@@ -64,34 +64,7 @@ function am_theme_enqueue_production_scripts(): void {
 	wp_enqueue_style( 'main', get_theme_file_uri( '/dist/' ) . $entry_css['file'], array(), null );
 }
 
-/**
- * Enqueue scripts and styles for development mode (Vite dev server).
- *
- * @return void
- */
-function am_theme_enqueue_development_scripts(): void {
-	$resources_path = '/resources';
-	$id_vite_client = 'vite-client';
-	$vite_host_url  = 'http://localhost:5173';
-	wp_enqueue_script_module( $id_vite_client, $vite_host_url . '/@vite/client', array(), null );
-	wp_enqueue_script_module( 'base', $vite_host_url . $resources_path . '/app/base.ts', array(), null );
-	wp_enqueue_script_module( 'appoinment', $vite_host_url . $resources_path . '/app/appoinment.entry.ts', array(), null );
-	wp_enqueue_style( 'main', $vite_host_url . $resources_path . '/css/main.css', array(), null );
-}
-
-/**
- * Enqueue scripts depending on the current environment.
- *
- * @return void
- */
-function am_theme_handle_scripts(): void {
-	if ( WP_ENVIRONMENT === 'production' ) {
-		am_theme_enqueue_production_scripts();
-	} else {
-		am_theme_enqueue_development_scripts();
-	}
-}
-add_action( 'wp_enqueue_scripts', 'am_theme_handle_scripts' );
+add_action( 'wp_enqueue_scripts', 'am_theme_enqueue_production_scripts' );
 
 /**
  * Load ACF blocks and register custom field groups for landing page template.
