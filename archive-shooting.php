@@ -9,13 +9,11 @@ $page_id = get_the_ID();
 
 $page_fields = get_page_fields( $page_id );
 
-$hero_section_fields = $page_fields['Hero Section Archive Shootings'];
+$hero_section_fields = $page_fields['Hero Section Archive Shootings'] ?? array();
 
-$seo_section_fields = $page_fields['Archive Seo Description'];
+$seo_section_fields = $page_fields['Archive Seo Description'] ?? array();
 
 get_template_part( 'parts/header-default', 'default' );
-
-get_template_part( 'parts/navbar' );
 
 get_template_part(
 	'parts/banner-call-to-action',

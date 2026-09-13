@@ -4,9 +4,8 @@
  *
  * @package a_m_theme
  */
-$global_javascript_variables = array(
-	'contactPageUrl' => get_permalink( get_page_by_path( 'kontakt' ) ),
-);
+$shooting_booking_page       = $args['shooting_booking_page'] ?? false;
+$global_javascript_variables = array();
 ?>
 
 <!DOCTYPE html>
@@ -20,4 +19,18 @@ $global_javascript_variables = array(
 </head>
 
 <body>
-	<main id="app" data-global-variables="<?php echo esc_attr( wp_json_encode( $global_javascript_variables ) ); ?>">
+	<?php
+	if ( $shooting_booking_page ) {
+		get_template_part( 'parts/shop-navbar' );
+	} else {
+		get_template_part( 'parts/navbar' );
+	}
+	?>
+<main id="app">
+	<?php
+	if ( ! empty( $global_javascript_variables ) ) {
+		?>
+			data-global-variables="<?php echo esc_attr( wp_json_encode( $global_javascript_variables ) ); ?>">
+		<?php
+	}
+	?>

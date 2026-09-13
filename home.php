@@ -14,8 +14,6 @@ $hero_section_fields = $page_fields['Hero Section Blog Page'] ?? array();
 
 get_template_part( 'parts/header-default', 'default' );
 
-get_template_part( 'parts/navbar' );
-
 $args = array(
 	'post_type'      => 'post',
 	'posts_per_page' => 10,

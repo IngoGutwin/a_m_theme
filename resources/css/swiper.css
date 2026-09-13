@@ -1,5 +1,5 @@
 .swiper {
-  --swiper-navigation-color: var(--color-brown);
+  --swiper-navigation-color: rgb(var(--color-creme));
 
   .swiper-wrapper {
     @apply my-8;
@@ -13,13 +13,13 @@
     }
 
     .teaser-slide {
-      @apply flex w-auto flex-col justify-between px-2 cursor-grab;
+      @apply flex w-auto cursor-grab flex-col justify-between px-2;
 
       article {
         @apply flex flex-col items-start self-start pb-2;
 
         h3 {
-          @apply text-start font-lato-bold font-bold;
+          @apply font-lato-bold text-start font-bold;
         }
         h5 {
           @apply font-lato-regular;
@@ -34,6 +34,6 @@
 
   .swiper-button-prev,
   .swiper-button-next {
-    @apply h-16 w-16 rounded-full bg-blue/80 p-2;
+    @apply h-16 w-16 rounded-full bg-black/80 p-2 hover:bg-gray-600;
   }
 }

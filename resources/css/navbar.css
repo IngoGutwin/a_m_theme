@@ -1,12 +1,12 @@
 .navbar {
-  @apply relative flex items-center justify-between bg-creme;
+  @apply bg-creme relative mx-auto flex max-w-5xl items-center justify-between px-2 xl:px-0;
 
   .logo {
     svg {
-      @apply h-18 w-32 font-cormorant-bold md:h-28 md:w-48;
+      @apply h-20 w-32 md:h-28 md:w-48;
 
       path {
-        @apply fill-blue;
+        @apply fill-black;
       }
     }
   }
@@ -14,25 +14,19 @@
   .nav-right {
     @apply flex items-center;
 
-    button {
-      @apply flex cursor-pointer items-center p-2 font-lato-bold font-bold hover:bg-brown/20;
-    }
-
     a {
-      @apply flex cursor-pointer items-center p-2 font-lato-bold font-bold hover:bg-brown/20;
+      @apply font-lato-bold flex cursor-pointer items-center p-2 font-bold hover:bg-black/20;
       font-size: clamp(1rem, 0.75rem + 1vw, 1.25rem);
     }
 
     .navigation {
-      @apply absolute top-20 right-0 z-50 flex w-full rounded-2xl bg-blue p-8 font-lato-regular font-bold text-creme transition-all duration-300 ease-in-out md:top-34;
+      @apply font-lato-regular text-creme absolute left-2 top-20 z-50 flex w-8/12 rounded-2xl bg-black p-4 font-bold transition-all duration-300 ease-in-out md:top-32;
 
-      li {
-        a {
-          @apply h-full w-full rounded-2xl p-2;
+      a {
+        @apply h-full w-full rounded-2xl p-2;
 
-          &:hover {
-            @apply bg-brown;
-          }
+        &:hover {
+          @apply bg-gray-500;
         }
       }
     }
@@ -45,37 +39,37 @@
       @apply pointer-events-auto translate-y-0 opacity-100;
     }
 
-    .hamburger {
-      @apply cursor-pointer w-6 h-6 flex flex-col justify-around items-center md:w-8 md:h-8;
+    .menu {
+      @apply p-2 hover:bg-black/20;
 
-      div {
-        @apply h-[4px] w-6 rounded-2xl transition-all duration-500 ease-in-out md:h-[6px] md:w-8;
+      .hamburger {
+        @apply flex h-6 w-6 cursor-pointer flex-col items-center justify-around md:h-8 md:w-8;
+
+        div {
+          @apply h-[4px] w-6 rounded-2xl bg-black transition-all duration-500 ease-in-out md:h-[6px] md:w-8;
+        }
       }
     }
 
-    .hamburger[data-is-toggled="false"] {
-      @apply hover:bg-brown/20;
+    .menu[data-is-toggled="true"] {
+      .hamburger {
+        @apply bg-black;
 
-      div {
-        @apply bg-blue;
-      }
-    }
+        div {
+          @apply bg-creme opacity-100;
+        }
 
-    .hamburger[data-is-toggled="true"] {
-      @apply bg-blue hover:bg-blue/20;
+        .first-div {
+          @apply translate-y-2 rotate-45 md:translate-y-2.5;
+        }
 
-      div {
-        @apply bg-creme opacity-100;
-      }
+        .second-div {
+          @apply -translate-x-9 opacity-0;
+        }
 
-      .first-div {
-        @apply translate-y-2 md:translate-y-2.5 rotate-45;
-      }
-      .second-div {
-        @apply -translate-x-9 opacity-0;
-      }
-      .third-div {
-        @apply -translate-y-2 md:-translate-y-2.5 -rotate-45;
+        .third-div {
+          @apply -translate-y-2 -rotate-45 md:-translate-y-2.5;
+        }
       }
     }
   }
