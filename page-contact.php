@@ -19,15 +19,8 @@ $footer_section = $page_fields['Footer Section'] ?? array();
 get_template_part( 'parts/header-default' );
 ?>
 
-<section
-	class="whats-app-container" x-show="showWhatsApp">
-	<h3>Bist du bereit?</h3>
-	<h2>Ich glaube du bist es!</h2>
-	<a class="whats-app-btn" href="https://wa.me/4917684900416" target="_blank" rel="noopener noreferrer">
-		Schreibe mir direkt per WhatsApp
-	</a>
-	<p>Oder, nutze mein Kontakt Formular</p>
-</section>
+
+
 
 <section
 	class="booking-shooting-section"
@@ -35,6 +28,18 @@ get_template_part( 'parts/header-default' );
 	data-testid="booking-shooting-form"
 	x-data="bookingForm"
 	x-cloak>
+
+    <template x-if="showWhatsApp">
+        <div class="whats-app-container" >
+             <h3>Bist du bereit?</h3>
+	        <h2>Ich glaube du bist es!</h2>
+	        <a class="whats-app-btn" href="https://wa.me/4917684900416" target="_blank" rel="noopener noreferrer">
+		    Schreibe mir direkt per WhatsApp
+	        </a>
+	        <p>Oder, nutze mein Kontakt Formular</p>
+        </div>
+    </template>
+
 	<template x-if="isSuccess">
 		<div class="success-box" data-testid="booking-step-finished">
 			<h3>Deine Anfrage ist eingegangen.</h3>

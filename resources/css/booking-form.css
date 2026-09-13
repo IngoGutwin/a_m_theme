@@ -76,7 +76,7 @@
 }
 
 .whats-app-container {
-  @apply font-lato-bold;
+  @apply font-lato-bold mb-8;
 
   h2, h3, button, p {
     @apply my-4 md:my-8;

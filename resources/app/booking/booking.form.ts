@@ -65,6 +65,7 @@ export function bookingForm() {
     submitError: "",
     loadingShootings: true,
     redirectNotice: false,
+    showWhatsApp: true,
 
     get isSubmitting(): boolean {
       return this.status === "submitting";
@@ -145,8 +146,6 @@ export function bookingForm() {
       this.status = "submitting";
 
       try {
-        console.log(this.customer);
-        console.log(this.booking);
         const response = await API.post<
           { success?: boolean },
           { customer: Customer; booking: BookingData }
@@ -171,7 +170,8 @@ export function bookingForm() {
 
         if (response.success) {
           this.status = "success";
-          //this.startRedirect();
+          this.showWhatsApp = false;
+          this.startRedirect();
           return;
         }
 
@@ -184,13 +184,13 @@ export function bookingForm() {
       }
     },
 
-    // startRedirect() {
-    //   window.setTimeout(() => {
-    //     this.redirectNotice = true;
-    //   }, 2000);
-    //   window.setTimeout(() => {
-    //     window.location.href = "https://authentische-momente.de";
-    //   }, 5000);
-    // },
+    startRedirect() {
+      window.setTimeout(() => {
+        this.redirectNotice = true;
+      }, 2000);
+      window.setTimeout(() => {
+        window.location.href = "https://authentische-momente.de";
+      }, 5000);
+    },
   };
 }
