@@ -1,4 +1,4 @@
-const appointmetnButtons = document.querySelectorAll<HTMLButtonElement>(".book-appointment-btn");
+const appointmetnButtons = document.querySelectorAll<HTMLButtonElement>(".contact-btn");
 
 function loadListeners() {
   appointmetnButtons.forEach((button: HTMLButtonElement) => {

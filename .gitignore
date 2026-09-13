@@ -2,4 +2,8 @@ node_modules
 dist
 /vendor/
 logs
+playwright-report
+test-results
+public
+launch.json
 .env

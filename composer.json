@@ -1,6 +1,6 @@
 {
   "name": "lone/sensible",
-  "description": "a theme with vite, vuejs and tailwind",
+  "description": "a theme with vite, alpinejs and tailwind",
   "license": "MIT",
   "authors": [
     {
@@ -11,7 +11,7 @@
   "require": {
     "vinkla/headache": "^3.5",
     "enshrined/svg-sanitize": "^0.22.0",
-    "wpackagist-plugin/advanced-custom-fields": "^6.6.2",
+    "wpackagist-plugin/advanced-custom-fields": "^6.8",
     "wpackagist-plugin/wordpress-seo": "^26.3"
   },
   "repositories": [
@@ -36,6 +36,7 @@
     }
   },
   "require-dev": {
-    "php-stubs/wordpress-stubs": "^6.8"
+    "php-stubs/wordpress-stubs": "^6.8",
+    "php-stubs/acf-pro-stubs": "^6.5"
   }
 }
