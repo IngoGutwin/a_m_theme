@@ -4,7 +4,6 @@
  *
  * @package Theme a_m_theme
  */
-
 $shooting_menu_items   = wp_get_nav_menu_items( 'Shootings' ) ?? array();
 $navigation_menu_items = wp_get_nav_menu_items( 'Navigation' ) ?? array();
 $shootings_url         = $shooting_menu_items[0]->url;
@@ -22,12 +21,12 @@ $shootings_url         = $shooting_menu_items[0]->url;
 			Foto-Shootings
 		</a>
 
-        <div class="menu" id="hamburger-container" data-is-toggled="false">
-            <div class="hamburger" id="hamburger-menu">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
+		<div class="menu" id="hamburger-container" data-is-toggled="false">
+			<div class="hamburger" id="hamburger-menu">
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
 		</div>
 
 		<ul

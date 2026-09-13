@@ -3,3 +3,15 @@ dist
 /vendor/
 a_m_theme
 logs
+public
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+.env
+
+.vscode

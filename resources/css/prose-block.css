@@ -1,14 +1,14 @@
 .prose-block {
   h2 {
-    @apply mb-6 font-lato-bold font-bold text-black md:mt-5;
+    @apply font-lato-bold mb-6 font-bold text-black md:mt-5;
   }
 
   h3 {
-    @apply mt-12 mb-2 font-lato-bold font-bold;
+    @apply font-lato-bold mb-2 mt-12 font-bold;
   }
 
   p {
-    @apply mt-2 font-lato-regular;
+    @apply font-lato-regular mt-2;
 
     a {
       @apply font-bold;

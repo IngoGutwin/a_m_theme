@@ -109,7 +109,7 @@ function generate_footer_section( $group_title ) {
 			'hide_on_screen'        => '',
 			'active'                => true,
 			'description'           => '',
-			'show_in_rest'          => 0,
+			'show_in_rest'          => false,
 		)
 	);
 

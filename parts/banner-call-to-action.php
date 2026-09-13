@@ -9,27 +9,34 @@ $section           = $args['page_fields'];
 $field_group_title = $section['field_group_title'];
 $hash              = $section['group_hash'] ?? '';
 $css_class         = $args['css_class'] ?? '';
+$data_test_id      = $args['test_id'] ?? '';
 $banner_title      = $section[ "title_{$hash}" ] ?? '';
 $sub_title         = $section[ "sub_title_{$hash}" ] ?? '';
 $description       = $section[ "description_{$hash}" ] ?? '';
 $button_text       = $section[ "button_text_{$hash}" ] ?? '';
 $button_url        = $section[ "button_url_{$hash}" ] ?? '';
 $bg_image_xl       = '';
-$bg_image_sm       = '';
 if ( ! empty( $section[ "bg_image_xl_{$hash}" ] ) ) {
 	$bg_image_xl = $section[ "bg_image_xl_{$hash}" ] . $bg_image_xl;
-	$bg_image_sm = $section[ "bg_image_sm_{$hash}" ] . $bg_image_sm;
 }
 ?>
 <!-- <?php echo esc_html( $field_group_title ); ?> start -->
-<section class="<?php echo esc_html( $css_class ); ?>">
+<section
+	class="<?php echo esc_html( $css_class ); ?>"
 	<?php
-	if ( ! empty( $bg_image_sm ) || ! empty( $bg_image_xl ) ) {
+	if ( ! empty( $data_test_id ) ) {
+		?>
+	data-testid="<?php echo esc_html( $data_test_id ); ?>"
+		<?php
+	}
+	?>
+>
+	<?php
+	if ( ! empty( $bg_image_xl ) ) {
 		?>
 	<picture>
-		<source media="(min-width:465px)" type="image/jpeg" srcset="<?php echo esc_html( $bg_image_sm ); ?>">
-		<source media="(max-width:465px)" type="image/jpeg" srcset="<?php echo esc_html( $bg_image_xl ); ?>">
-		<img srcset="<?php echo esc_html( implode( ', ', array( $bg_image_sm, $bg_image_xl ) ) ); ?>" src="<?php echo esc_html( $bg_image_xl ); ?>" alt="" />
+		<source type="image/jpeg" srcset="<?php echo esc_html( $bg_image_xl ); ?>">
+		<img srcset="<?php echo esc_html( $bg_image_xl ); ?>" src="<?php echo esc_html( $bg_image_xl ); ?>" alt="" />
 	</picture>
 
 		<?php
@@ -43,7 +50,7 @@ if ( ! empty( $section[ "bg_image_xl_{$hash}" ] ) ) {
 			array(
 				'button_text' => $button_text,
 				'button_url'  => $button_url,
-				'css_class'   => 'book-appointment-btn',
+				'css_class'   => 'contact-btn',
 			)
 		);
 	}

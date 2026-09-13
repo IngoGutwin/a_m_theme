@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20492eeaa5a1b2cc350e79ee0a3dab37",
+    "content-hash": "ee6ca003f7292c00e8bf779334f40c15",
     "packages": [
         {
             "name": "composer/installers",
@@ -199,16 +199,16 @@
         },
         {
             "name": "vinkla/headache",
-            "version": "3.5.3",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vinkla/headache.git",
-                "reference": "510df5a96f927b555e4acb3a2af95ebb973069d5"
+                "reference": "b1c0c88aacea4b35015d46cc6f9e62bfec775a0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vinkla/headache/zipball/510df5a96f927b555e4acb3a2af95ebb973069d5",
-                "reference": "510df5a96f927b555e4acb3a2af95ebb973069d5",
+                "url": "https://api.github.com/repos/vinkla/headache/zipball/b1c0c88aacea4b35015d46cc6f9e62bfec775a0a",
+                "reference": "b1c0c88aacea4b35015d46cc6f9e62bfec775a0a",
                 "shasum": ""
             },
             "require": {
@@ -235,21 +235,21 @@
             ],
             "support": {
                 "issues": "https://github.com/vinkla/headache/issues",
-                "source": "https://github.com/vinkla/headache/tree/3.5.3"
+                "source": "https://github.com/vinkla/headache/tree/3.6.0"
             },
-            "time": "2025-07-03T09:30:02+00:00"
+            "time": "2025-12-03T08:12:36+00:00"
         },
         {
             "name": "wpackagist-plugin/advanced-custom-fields",
-            "version": "6.6.2",
+            "version": "6.8.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/advanced-custom-fields/",
-                "reference": "tags/6.6.2"
+                "reference": "tags/6.8.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/advanced-custom-fields.6.6.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/advanced-custom-fields.6.8.4.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -259,15 +259,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "26.3",
+            "version": "26.9",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/26.3"
+                "reference": "tags/26.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.26.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.26.9.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -278,17 +278,69 @@
     ],
     "packages-dev": [
         {
-            "name": "php-stubs/wordpress-stubs",
-            "version": "v6.8.3",
+            "name": "php-stubs/acf-pro-stubs",
+            "version": "v6.8.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-stubs/wordpress-stubs.git",
-                "reference": "abeb5a8b58fda7ac21f15ee596f302f2959a7114"
+                "url": "https://github.com/php-stubs/acf-pro-stubs.git",
+                "reference": "b22454992d9651cd837439a2c1073a0955b68d94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-stubs/wordpress-stubs/zipball/abeb5a8b58fda7ac21f15ee596f302f2959a7114",
-                "reference": "abeb5a8b58fda7ac21f15ee596f302f2959a7114",
+                "url": "https://api.github.com/repos/php-stubs/acf-pro-stubs/zipball/b22454992d9651cd837439a2c1073a0955b68d94",
+                "reference": "b22454992d9651cd837439a2c1073a0955b68d94",
+                "shasum": ""
+            },
+            "require": {
+                "php-stubs/wordpress-stubs": "^4.7 || ^5.0 || ^6.0 || ^7.0"
+            },
+            "require-dev": {
+                "php": "~7.1 || ^8.0",
+                "php-stubs/generator": "^0.8",
+                "phpdocumentor/reflection-docblock": "^5.3"
+            },
+            "suggest": {
+                "symfony/polyfill-php73": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
+                "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
+            },
+            "type": "library",
+            "extra": {
+                "installer-paths": {
+                    "source/{$name}/": [
+                        "type:wordpress-plugin"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Advanced Custom Fields PRO stubs for static analysis.",
+            "homepage": "https://github.com/php-stubs/acf-pro-stubs",
+            "keywords": [
+                "PHPStan",
+                "acf",
+                "static analysis",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/php-stubs/acf-pro-stubs/issues",
+                "source": "https://github.com/php-stubs/acf-pro-stubs/tree/v6.8.2"
+            },
+            "time": "2026-06-01T12:08:34+00:00"
+        },
+        {
+            "name": "php-stubs/wordpress-stubs",
+            "version": "v6.9.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-stubs/wordpress-stubs.git",
+                "reference": "90a9412826b9944f93b10bf41d795b5fe68abcd5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-stubs/wordpress-stubs/zipball/90a9412826b9944f93b10bf41d795b5fe68abcd5",
+                "reference": "90a9412826b9944f93b10bf41d795b5fe68abcd5",
                 "shasum": ""
             },
             "conflict": {
@@ -298,10 +350,11 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
                 "nikic/php-parser": "^5.5",
                 "php": "^7.4 || ^8.0",
-                "php-stubs/generator": "^0.8.3",
-                "phpdocumentor/reflection-docblock": "^5.4.1",
+                "php-stubs/generator": "^0.8.6",
+                "phpdocumentor/reflection-docblock": "^6.0",
                 "phpstan/phpstan": "^2.1",
                 "phpunit/phpunit": "^9.5",
+                "symfony/polyfill-php80": "*",
                 "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^1.1.1",
                 "wp-coding-standards/wpcs": "3.1.0 as 2.3.0"
             },
@@ -324,9 +377,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-stubs/wordpress-stubs/issues",
-                "source": "https://github.com/php-stubs/wordpress-stubs/tree/v6.8.3"
+                "source": "https://github.com/php-stubs/wordpress-stubs/tree/v6.9.4"
             },
-            "time": "2025-09-30T20:58:47+00:00"
+            "time": "2026-05-01T20:36:01+00:00"
         }
     ],
     "aliases": [],
@@ -336,5 +389,5 @@
     "prefer-lowest": false,
     "platform": {},
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }

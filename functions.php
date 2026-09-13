@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Theme Functions.
  *
@@ -14,16 +15,11 @@ require_once get_template_directory() . '/include/logo.php';
 add_theme_support( 'post-thumbnails' );
 
 /**
- * Enqueue scripts and styles for production build.
- *
- * Reads the Vite manifest.json and registers the bundled assets.
+ * Enqueue script for coockie banner.
  *
  * @return void
  */
-function am_theme_enqueue_production_scripts(): void {
-	$json_manifest = json_decode( file_get_contents( get_template_directory() . '/dist/.vite/manifest.json' ), true );
-	$entry_js      = $json_manifest['resources/app/index.ts'];
-	$entry_css     = $json_manifest['resources/css/main.css'];
+function am_theme_enqueue_ccm19_script(): void {
 	wp_enqueue_script(
 		'ccm19-app',
 		COOKIE_API_URL,
@@ -42,7 +38,29 @@ function am_theme_enqueue_production_scripts(): void {
 		10,
 		2
 	);
-	wp_enqueue_script_module( 'main', get_theme_file_uri( '/dist/' ) . $entry_js['file'], array(), null );
+}
+
+/**
+ * Enqueue scripts and styles for production build.
+ *
+ * @return void
+ */
+function am_theme_enqueue_production_scripts(): void {
+	$json_manifest = json_decode( file_get_contents( get_template_directory() . '/dist/.vite/manifest.json' ), true );
+
+	$entries = array(
+		'entry_js'          => $json_manifest['resources/app/base.ts'] ?? array(),
+		'appoinment_script' => $json_manifest['resources/app/appoinment.entry.ts'] ?? array(),
+	);
+
+	$entry_css = $json_manifest['resources/css/main.css'];
+
+	am_theme_enqueue_ccm19_script();
+
+	foreach ( $entries as $entry ) {
+		wp_enqueue_script_module( $entry['name'], get_theme_file_uri( '/dist/' ) . $entry['file'], array(), null );
+	}
+
 	wp_enqueue_style( 'main', get_theme_file_uri( '/dist/' ) . $entry_css['file'], array(), null );
 }
 
@@ -56,7 +74,8 @@ function am_theme_enqueue_development_scripts(): void {
 	$id_vite_client = 'vite-client';
 	$vite_host_url  = 'http://localhost:5173';
 	wp_enqueue_script_module( $id_vite_client, $vite_host_url . '/@vite/client', array(), null );
-	wp_enqueue_script_module( 'index', $vite_host_url . $resources_path . '/app/index.ts', array(), null );
+	wp_enqueue_script_module( 'base', $vite_host_url . $resources_path . '/app/base.ts', array(), null );
+	wp_enqueue_script_module( 'appoinment', $vite_host_url . $resources_path . '/app/appoinment.entry.ts', array(), null );
 	wp_enqueue_style( 'main', $vite_host_url . $resources_path . '/css/main.css', array(), null );
 }
 
@@ -103,6 +122,7 @@ function load_acf_fields_shooting_page(): void {
 	$location_param = 'post_type';
 	generate_banner_cta_section( 'Hero Section Shooting', $location_value, $location_param, 0 );
 	generate_prose_block( 'Shooting Prices', $location_value, $location_param, 1 );
+	add_shooting_reference( 'Shooting References' );
 	generate_gallery_slider( 'Shooting Impressions Gallery', 10, $location_value, $location_param, 2 );
 	generate_prose_block( 'Shooting Checkup List', $location_value, $location_param, 3 );
 	generate_banner_cta_section( 'Shooting Advertisement Banner', $location_value, $location_param, 4 );
@@ -184,6 +204,7 @@ function load_acf_fields(): void {
 		'prose-block',
 		'gallery-slider',
 		'footer',
+		'shooting-references',
 	);
 	include_acf_modules( $acf_modules );
 
@@ -198,6 +219,26 @@ function load_acf_fields(): void {
 
 
 add_action( 'acf/init', 'load_acf_fields' );
+
+function update_acf_in_shooting_type( $post_id ) {
+	if ( get_post_type( $post_id ) !== 'shooting' ) {
+		return;
+	}
+
+	$product_id = get_field( 'product_id', $post_id );
+
+	$product_title = get_field( 'title', $post_id );
+
+	if ( empty( $product_id ) || $product_id == md5( $product_title ) ) {
+		return;
+	}
+
+	$product_id = md5( $product_title );
+
+	update_field( 'product_id', $product_id, $post_id );
+}
+
+add_action( 'acf/save_post', 'update_acf_in_shooting_type', 20 );
 
 /**
  * Register custom post type for shootings
