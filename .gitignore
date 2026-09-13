@@ -3,3 +3,8 @@ dist
 /vendor/
 a_m_theme
 logs
+playwright-report
+test-results
+public
+launch.json
+.env
