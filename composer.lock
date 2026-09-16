@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee6ca003f7292c00e8bf779334f40c15",
+    "content-hash": "bb3ae76655e0d4793ad5facbf3ec1555",
     "packages": [
         {
             "name": "composer/installers",
@@ -199,16 +199,16 @@
         },
         {
             "name": "vinkla/headache",
-            "version": "3.6.0",
+            "version": "3.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vinkla/headache.git",
-                "reference": "b1c0c88aacea4b35015d46cc6f9e62bfec775a0a"
+                "reference": "0e636a9629fd380922f5e68e1f5456fb13e8060a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vinkla/headache/zipball/b1c0c88aacea4b35015d46cc6f9e62bfec775a0a",
-                "reference": "b1c0c88aacea4b35015d46cc6f9e62bfec775a0a",
+                "url": "https://api.github.com/repos/vinkla/headache/zipball/0e636a9629fd380922f5e68e1f5456fb13e8060a",
+                "reference": "0e636a9629fd380922f5e68e1f5456fb13e8060a",
                 "shasum": ""
             },
             "require": {
@@ -235,21 +235,21 @@
             ],
             "support": {
                 "issues": "https://github.com/vinkla/headache/issues",
-                "source": "https://github.com/vinkla/headache/tree/3.6.0"
+                "source": "https://github.com/vinkla/headache/tree/3.7.0"
             },
-            "time": "2025-12-03T08:12:36+00:00"
+            "time": "2026-08-25T07:30:43+00:00"
         },
         {
             "name": "wpackagist-plugin/advanced-custom-fields",
-            "version": "6.8.4",
+            "version": "6.8.10",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/advanced-custom-fields/",
-                "reference": "tags/6.8.4"
+                "reference": "tags/6.8.10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/advanced-custom-fields.6.8.4.zip"
+                "url": "https://downloads.wordpress.org/plugin/advanced-custom-fields.6.8.10.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
