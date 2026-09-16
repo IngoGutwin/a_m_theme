@@ -7,3 +7,4 @@ test-results
 public
 launch.json
 .env
+build

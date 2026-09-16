@@ -64,8 +64,6 @@ function am_theme_enqueue_production_scripts(): void {
 	wp_enqueue_style( 'main', get_theme_file_uri( '/dist/' ) . $entry_css['file'], array(), null );
 }
 
-add_action( 'wp_enqueue_scripts', 'am_theme_enqueue_production_scripts' );
-
 /**
  * Load ACF blocks and register custom field groups for landing page template.
  *
