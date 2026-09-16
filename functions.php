@@ -64,14 +64,15 @@ function am_theme_enqueue_production_scripts(): void {
 	wp_enqueue_style( 'main', get_theme_file_uri( '/dist/' ) . $entry_css['file'], array(), null );
 }
 
-add_action( 'wp_enqueue_scripts', 'am_theme_enqueue_production_scripts' );
-
 /**
  * Enqueue scripts and styles for development mode (Vite dev server).
  *
  * @return void
  */
 function am_theme_enqueue_development_scripts(): void {
+    error_log(
+        print_r(WP_ENVIRONMENT, true)
+    );
 	$resources_path = '/resources';
 	$id_vite_client = 'vite-client';
 	$vite_host_url  = 'http://localhost:5173';
