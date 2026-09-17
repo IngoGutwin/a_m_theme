@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 export default defineConfig(({ mode }) => ({
   publicDir: "public",
-  base: mode === "development" ? "/" : "/wp-content/themes/a_m_theme/dist",
+  base: mode === "development" ? "/" : "/wp-content/themes/a_m_theme/assets",
   css: {
     devSourcemap: true,
   },
@@ -50,7 +50,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     target: "es2020",
     cssCodeSplit: true,
-    outDir: "dist",
+    outDir: "assets",
     assetsDir: "",
     manifest: true,
     emptyOutDir: true,

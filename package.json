@@ -9,7 +9,7 @@
     "dev": "vite --host",
     "build": "vite build && npm run copy-images-dir",
     "dev-debug": "DEBUG='vite:*' npm run dev",
-    "copy-images-dir": "cp -r resources/images/ dist/",
+    "copy-images-dir": "cp -r resources/images/ assets/",
     "lint": "npx eslint resources",
     "lint-fix": "npx eslint resources --fix"
   },
