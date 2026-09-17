@@ -5,13 +5,18 @@ set -euo pipefail
 THEME_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 THEME_BUILD_DIR="$THEME_ROOT/build"
 
-copy_files_to_build_dir() {
+build_frontend_assets() {
+    echo "building front end assets"
+    npm run build
+    cp -r "assets" "$THEME_BUILD_DIR/"
+}
+
+copy_theme_files_to_build_dir() {
     echo "building theme folder"
     mkdir -p "build"
     cp -r "parts" "$THEME_BUILD_DIR/"
     cp -r "vendor" "$THEME_BUILD_DIR/"
     cp -r "include" "$THEME_BUILD_DIR/"
-    cp -r "dist" "$THEME_BUILD_DIR/"
     cp "front-page.php" "$THEME_BUILD_DIR/"
     cp "archive-shooting.php" "$THEME_BUILD_DIR/"
     cp "functions.php" "$THEME_BUILD_DIR/"
@@ -21,13 +26,6 @@ copy_files_to_build_dir() {
     cp "single-post.php" "$THEME_BUILD_DIR/"
     cp "single-shooting.php" "$THEME_BUILD_DIR/"
     cp "style.css" "$THEME_BUILD_DIR/"
-
-    mv "$THEME_BUILD_DIR/dist" "$THEME_BUILD_DIR/assets"
-}
-
-build_frontend_assets() {
-    echo "building front end assets"
-    npm run build
 }
 
 install_composer_dependencies() {
@@ -38,8 +36,8 @@ install_composer_dependencies() {
 run_build_script() {
     echo "building theme"
     install_composer_dependencies
+    copy_theme_files_to_build_dir
     build_frontend_assets
-    copy_files_to_build_dir
 }
 
 if [ -d "$THEME_BUILD_DIR" ]; then

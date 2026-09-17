@@ -46,7 +46,7 @@ function am_theme_enqueue_ccm19_script(): void {
  * @return void
  */
 function am_theme_enqueue_production_scripts(): void {
-	$json_manifest = json_decode( file_get_contents( get_template_directory() . '/dist/.vite/manifest.json' ), true );
+	$json_manifest = json_decode( file_get_contents( get_template_directory() . '/assets/.vite/manifest.json' ), true );
 
 	$entries = array(
 		'entry_js'          => $json_manifest['resources/app/base.ts'] ?? array(),
@@ -58,10 +58,10 @@ function am_theme_enqueue_production_scripts(): void {
 	am_theme_enqueue_ccm19_script();
 
 	foreach ( $entries as $entry ) {
-		wp_enqueue_script_module( $entry['name'], get_theme_file_uri( '/dist/' ) . $entry['file'], array(), null );
+		wp_enqueue_script_module( $entry['name'], get_theme_file_uri( '/assets/' ) . $entry['file'], array(), null );
 	}
 
-	wp_enqueue_style( 'main', get_theme_file_uri( '/dist/' ) . $entry_css['file'], array(), null );
+	wp_enqueue_style( 'main', get_theme_file_uri( '/assets/' ) . $entry_css['file'], array(), null );
 }
 
 /**
@@ -70,9 +70,6 @@ function am_theme_enqueue_production_scripts(): void {
  * @return void
  */
 function am_theme_enqueue_development_scripts(): void {
-    error_log(
-        print_r(WP_ENVIRONMENT, true)
-    );
 	$resources_path = '/resources';
 	$id_vite_client = 'vite-client';
 	$vite_host_url  = 'http://localhost:5173';
