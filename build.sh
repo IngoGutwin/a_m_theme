@@ -5,12 +5,6 @@ set -euo pipefail
 THEME_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 THEME_BUILD_DIR="$THEME_ROOT/build"
 
-build_frontend_assets() {
-    echo "building front end assets"
-    npm run build
-    cp -r "assets" "$THEME_BUILD_DIR/"
-}
-
 copy_theme_files_to_build_dir() {
     echo "building theme folder"
     mkdir -p "build"
@@ -28,6 +22,11 @@ copy_theme_files_to_build_dir() {
     cp "style.css" "$THEME_BUILD_DIR/"
 }
 
+build_frontend_assets() {
+    echo "building front end assets"
+    npm run build
+}
+
 install_composer_dependencies() {
     echo "intalling composer dependencies"
     composer install --no-dev --prefer-dist --optimize-autoloader
@@ -36,8 +35,8 @@ install_composer_dependencies() {
 run_build_script() {
     echo "building theme"
     install_composer_dependencies
-    copy_theme_files_to_build_dir
     build_frontend_assets
+    copy_theme_files_to_build_dir
 }
 
 if [ -d "$THEME_BUILD_DIR" ]; then
