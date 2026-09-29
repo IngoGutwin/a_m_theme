@@ -9,11 +9,11 @@ $page_id = get_the_ID();
 
 $page_fields = get_page_fields( $page_id );
 
-$hero_section_fields = $page_fields['Hero Section Archive Shootings'] ?? array();
+$hero_section_fields = $page_fields['Hero Section Archive Shootings'] ?? '';
 
-$seo_section_fields = $page_fields['Archive Seo Description'] ?? array();
+$seo_section_fields = $page_fields['Archive Seo Description'] ?? '';
 
-get_template_part( 'parts/header-default', 'default' );
+get_template_part( 'parts/header-default', 'default' ) ?? '';
 
 get_template_part(
 	'parts/banner-call-to-action',
@@ -39,31 +39,31 @@ if ( $shootings->have_posts() ) {
 				<?php
 				while ( $shootings->have_posts() ) :
 					$shootings->the_post();
-					$the_post_id   = get_the_ID();
-					$acf_fields    = get_page_fields( $the_post_id )['Hero Section Shooting'];
-					$hash          = $acf_fields['group_hash'];
-					$hero_title    = $acf_fields[ "title_{$hash}" ];
-					$sub_title     = $acf_fields[ "sub_title_{$hash}" ];
-					$thumbnail_url = get_the_post_thumbnail_url( $the_post_id, 'large' );
+					$the_post_id  = get_the_ID();
+					$acf_fields   = get_page_fields( $the_post_id )['Hero Section Shooting'] ?? '';
+					$hash         = $acf_fields['group_hash'] ?? '';
+					$hero_title   = $acf_fields[ "title_{$hash}" ] ?? '';
+					$sub_title    = $acf_fields[ "sub_title_{$hash}" ] ?? '';
+					$thumbnail_id = get_post_thumbnail_id( $the_post_id );
 					?>
 					<li>
-						<a href="<?php echo esc_html( get_the_permalink( $the_post_id ) ); ?>">
+						<a href="<?php echo esc_url( get_the_permalink( $the_post_id ) ); ?>">
 							<article>
 								<h3><?php echo esc_html( $hero_title ); ?></h3>
 								<p><?php echo esc_html( $sub_title ); ?></p>
 							</article>
-							<picture>
-								<source type="image/webp" srcset="<?php echo esc_html( $thumbnail_url ); ?>" />
-								<?php
-								the_post_thumbnail(
-									$the_post_id,
-									'large',
-									array(
-										'alt' => $hero_title,
-									)
-								)
-								?>
-							</picture>
+							<?php if ( $thumbnail_id ) : ?>
+                                <?php
+                                echo wp_get_attachment_image(
+                                    $thumbnail_id,
+                                    'shooting-archive-cover-img',
+                                    false,
+                                    array(
+                                        'loading' => 'lazy',
+                                    )
+                                );
+                                ?>
+                            <?php endif; ?>
 						</a>
 					</li>
 					<?php

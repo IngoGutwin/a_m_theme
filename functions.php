@@ -79,6 +79,8 @@ function am_theme_enqueue_development_scripts(): void {
 	wp_enqueue_style( 'main', $vite_host_url . $resources_path . '/css/main.css', array(), null );
 }
 
+//add_filter( 'xmlrpc_enabled', '__return_false' );
+
 /**
  * Enqueue scripts depending on the current environment.
  *
@@ -181,6 +183,17 @@ function load_acf_fields_archive_blog_page(): void {
 }
 
 /**
+ * Load ACF blocks and register custom field groups for the template page.
+ *
+ * @return void
+ */
+function load_acf_fields_template_page(): void {
+	$location_value = 'page-template.php';
+	$location_param = 'page_template';
+	generate_prose_block( 'Hero Section Template Page', $location_value, $location_param, 0 );
+}
+
+/**
  * Load general ACF blocks and register custom field groups.
  *
  * @return void
@@ -215,10 +228,15 @@ function load_acf_fields(): void {
 	load_acf_fields_front_page();
 	load_acf_fields_shooting_page();
 	load_acf_fields_contact_page();
+    load_acf_fields_template_page();
 }
 
 
 add_action( 'acf/init', 'load_acf_fields' );
+
+add_action( 'after_setup_theme', function () {
+    add_image_size( 'shooting-archive-cover-img', 800, 500, true );
+} );
 
 function update_acf_in_shooting_type( $post_id ) {
 	if ( get_post_type( $post_id ) !== 'shooting' ) {
@@ -227,11 +245,11 @@ function update_acf_in_shooting_type( $post_id ) {
 
 	$product_id = get_field( 'product_id', $post_id );
 
-	$product_title = get_field( 'title', $post_id );
-
-	if ( empty( $product_id ) || $product_id == md5( $product_title ) ) {
+	if ( ! empty( $product_id ) ) {
 		return;
 	}
+
+	$product_title = get_field( 'title', $post_id );
 
 	$product_id = md5( $product_title );
 

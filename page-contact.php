@@ -71,9 +71,9 @@ get_template_part( 'parts/header-default' );
 					required
 					:disabled="loadingShootings">
 					<option value="">Bitte wählen…</option>
-					<template x-for="shooting in shootings" :key="shooting.product_id">
+					<template x-for="shooting in shootings" :key="shooting.title">
 						<option
-							:value="shooting.product_id"
+							:value="shooting.productId"
 							x-text="shooting.title"></option>
 					</template>
 				</select>
