@@ -50,7 +50,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     target: "es2020",
     cssCodeSplit: true,
-    outDir: "assets",
+    outDir: "build/assets",
     assetsDir: "",
     manifest: true,
     emptyOutDir: true,
