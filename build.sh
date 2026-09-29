@@ -19,6 +19,7 @@ copy_theme_files_to_build_dir() {
     cp "page-contact.php" "$THEME_BUILD_DIR/"
     cp "single-post.php" "$THEME_BUILD_DIR/"
     cp "single-shooting.php" "$THEME_BUILD_DIR/"
+    cp "page-template.php" "$THEME_BUILD_DIR/"
     cp "style.css" "$THEME_BUILD_DIR/"
 }
 
