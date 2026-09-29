@@ -3,13 +3,12 @@
     @apply m-auto flex flex-wrap justify-between gap-8;
 
     li {
-      @apply flex w-full justify-center md:w-auto;
+      @apply flex w-full justify-center  md:max-w-[450px];
 
       a {
         @apply w-full;
 
         article {
-          @apply md:max-w-[340px] lg:max-w-[450px] xl:max-w-[550px];
 
           h3,
           h4 {
@@ -22,10 +21,8 @@
         }
       }
 
-      picture {
-        img {
-          @apply md:max-w-[340px] lg:max-w-[450px] xl:max-w-[550px];
-        }
+      img {
+        @apply aspect-[16/10] w-full object-cover;
       }
     }
   }
