@@ -4,11 +4,7 @@ import {
   type BookingData,
 } from "@lib/validation/schemas/booking.schema";
 import type { Customer } from "@lib/validation/schemas/customer.schema";
-
-export interface Shooting {
-  title: string;
-  product_id: string;
-}
+import { Shooting, WPShooting } from "resources";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 type ErrorMap = Record<string, string>;
@@ -82,14 +78,14 @@ export function bookingForm() {
     async loadShootings() {
       this.loadingShootings = true;
       try {
-        const response = await API.get<WpPost<Shooting>[]>(`${apiURL}/shooting`);
+        const response = await API.get<WpPost<WPShooting>[]>(`${apiURL}/shooting`);
         if (API.isWpError(response) || !response) {
           this.submitError = "Shootings konnten nicht geladen werden.";
           return;
         }
         this.shootings = response.map((raw) => ({
           title: raw.acf.title,
-          product_id: raw.acf.product_id,
+          productId: raw.acf.product_id,
         }));
       } catch (e) {
         API.handleNetworkError(e);
@@ -100,7 +96,7 @@ export function bookingForm() {
     },
 
     onShootingChange() {
-      const selected = this.shootings.find((s) => s.product_id === this.booking.productId);
+      const selected = this.shootings.find((s) => s.productId === this.booking.productId);
       this.booking.title = selected?.title ?? "";
       delete this.errors["booking.title"];
       delete this.errors["booking.productId"];

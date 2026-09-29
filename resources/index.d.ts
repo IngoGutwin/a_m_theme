@@ -1,5 +1,10 @@
 export interface Shooting {
   title: string;
+  productId: string;
+}
+
+export interface WPShooting {
+  title: string;
   product_id: string;
 }
 

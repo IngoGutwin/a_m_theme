@@ -150,6 +150,8 @@ export function FetchApi() {
 
     const data = await response.json();
 
+    console.log(data);
+
     if (!response.ok) {
       // Log 429 retry hint to the console so devs can see it during testing
       if (response.status === 429 && isWpError(data) && data.data.retry_after) {
