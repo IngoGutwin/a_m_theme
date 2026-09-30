@@ -10,11 +10,11 @@ $page_id = get_the_ID();
 
 $page_fields = get_page_fields( $page_id );
 
-$hero_section_fields = $page_fields['Hero Section Post'];
+$hero_section_fields = $page_fields['Hero Section Post'] ?? '';
 
-$blog_post = $page_fields['Blog Post Main Content'];
+$blog_post = $page_fields['Blog Post Main Content'] ?? '';
 
-$gallery_slider = $page_fields['Gallery Slider Blog Post'];
+$gallery_slider = $page_fields['Gallery Slider Blog Post'] ?? '';
 
 get_template_part( 'parts/header-default', 'default' );
 

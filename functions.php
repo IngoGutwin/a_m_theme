@@ -106,11 +106,11 @@ function load_acf_fields_front_page(): void {
 	generate_banner_cta_section( 'Hero Section', $location_value, $location_param, 0 );
 	generate_teaser_slides( 'Product Teaser Slides', 10, $location_value, $location_param, 1 );
 	generate_prose_block( 'Offer Prose Block', $location_value, $location_param, 2 );
-	generate_gallery_slider( 'Impressions Gallery One', 10, $location_value, $location_param, 3 );
+	generate_gallery_slider( 'Impressions Gallery One', 20, $location_value, $location_param, 3 );
 	generate_prose_block( 'Impressions Prose Block', $location_value, $location_param, 4 );
 	generate_banner_cta_section( 'Call to Action Banner', $location_value, $location_param, 5 );
 	generate_prose_block( 'Call to Action Banner Message', $location_value, $location_param, 6 );
-	generate_gallery_slider( 'Impressions Gallery Two', 10, $location_value, $location_param, 7 );
+	generate_gallery_slider( 'Impressions Gallery Two', 20, $location_value, $location_param, 7 );
 	generate_prose_block( 'Advertisement Seo Block', $location_value, $location_param, 8 );
 }
 
@@ -125,12 +125,12 @@ function load_acf_fields_shooting_page(): void {
 	generate_banner_cta_section( 'Hero Section Shooting', $location_value, $location_param, 0 );
 	generate_prose_block( 'Shooting Prices', $location_value, $location_param, 1 );
 	add_shooting_reference( 'Shooting References' );
-	generate_gallery_slider( 'Shooting Impressions Gallery', 10, $location_value, $location_param, 2 );
+	generate_gallery_slider( 'Shooting Impressions Gallery', 20, $location_value, $location_param, 2 );
 	generate_prose_block( 'Shooting Checkup List', $location_value, $location_param, 3 );
 	generate_banner_cta_section( 'Shooting Advertisement Banner', $location_value, $location_param, 4 );
-	generate_gallery_slider( 'Shooting Advertisement Impressions', 10, $location_value, $location_param, 5 );
+	generate_gallery_slider( 'Shooting Advertisement Impressions', 20, $location_value, $location_param, 5 );
 	generate_prose_block( 'Shooting Infos Prose Block', $location_value, $location_param, 6 );
-	generate_teaser_slides( 'Shooting Products Teaser Slides', 10, $location_value, $location_param, 7 );
+	generate_teaser_slides( 'Shooting Products Teaser Slides', 20, $location_value, $location_param, 7 );
 }
 
 /**
@@ -143,7 +143,7 @@ function load_acf_fields_blog_post_page(): void {
 	$location_param = 'post_type';
 	generate_banner_cta_section( 'Hero Section Post', $location_value, $location_param, 0 );
 	generate_prose_block( 'Blog Post Main Content', $location_value, $location_param, 1 );
-	generate_gallery_slider( 'Gallery Slider Blog Post', 10, $location_value, $location_param, 2 );
+	generate_gallery_slider( 'Gallery Slider Blog Post', 20, $location_value, $location_param, 2 );
 }
 
 /**
